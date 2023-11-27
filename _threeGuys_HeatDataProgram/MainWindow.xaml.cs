@@ -8,6 +8,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+
+using FactoryDataReader;
 
 namespace _threeGuys_HeatDataProgram
 {
@@ -16,9 +19,17 @@ namespace _threeGuys_HeatDataProgram
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
+
+
+            string filePath = "heatTreatingFactoryData.csv";
+
+            FactoryDataReader.FactoryDataReader test = new FactoryDataReader.FactoryDataReader();
+
+            test.heatTreatingFactoryDataRead(filePath);
         }
     }
 }
