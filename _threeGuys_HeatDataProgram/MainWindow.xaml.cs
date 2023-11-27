@@ -29,8 +29,8 @@ namespace _threeGuys_HeatDataProgram
             string filePath = "heatTreatingFactoryData.csv";
 
             FactoryDataReader.FactoryDataReader test = new FactoryDataReader.FactoryDataReader();
-
-            test.heatTreatingFactoryDataRead(filePath);
+            
+            dataGrid_History.ItemsSource = test.heatTreatingFactoryDataRead(filePath);
         }
 
 
