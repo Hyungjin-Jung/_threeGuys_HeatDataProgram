@@ -7,27 +7,98 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TabControl>
-            <TabItem Header="Main">
-                <Grid Background="#FFE5E5E5"/>
-
+        <TabControl x:Name="tabControl">
+            <TabItem x:Name="tabItem_Main" Header="Main">
+                <Grid Background="#FFE5E5E5">
+                    <TextBlock x:Name="textBlock_Temp1" HorizontalAlignment="Left" Margin="100,232,0,0" TextWrapping="Wrap" Text="온도 : " VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Watt1" HorizontalAlignment="Left" Margin="100,203,0,0" TextWrapping="Wrap" Text="전력 : " VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Temp2" HorizontalAlignment="Left" Margin="250,232,0,0" TextWrapping="Wrap" Text="온도 : " VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Watt2" HorizontalAlignment="Left" Margin="250,203,0,0" TextWrapping="Wrap" Text="전력 : " VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Temp3" HorizontalAlignment="Left" Margin="414,232,0,0" TextWrapping="Wrap" Text="온도 : " VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Watt3" HorizontalAlignment="Left" Margin="414,203,0,0" TextWrapping="Wrap" Text="전력 : " VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Temp4" HorizontalAlignment="Left" Margin="600,232,0,0" TextWrapping="Wrap" Text="온도 : " VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Watt4" HorizontalAlignment="Left" Margin="600,203,0,0" TextWrapping="Wrap" Text="전력 : " VerticalAlignment="Top"/>
+                    <Label Content="Label" HorizontalAlignment="Left" Margin="150,198,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Label" HorizontalAlignment="Left" Margin="150,227,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Label" HorizontalAlignment="Left" Margin="300,198,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Label" HorizontalAlignment="Left" Margin="300,227,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Label" HorizontalAlignment="Left" Margin="464,198,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Label" HorizontalAlignment="Left" Margin="464,227,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Label" HorizontalAlignment="Left" Margin="650,198,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Label" HorizontalAlignment="Left" Margin="650,227,0,0" VerticalAlignment="Top"/>
+                    <ListBox x:Name="listBox_Notice" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="50,258,50,44"/>
+                    <Button x:Name="button_GoToTab1"  Content="Button" HorizontalAlignment="Left" Margin="100,81,0,0" VerticalAlignment="Top" Height="98" Width="106" Click="_DisplayFirstAreaTab">
+                        <Button.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/Resources/pepe1.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button x:Name="button_GoToTab2"  Content="Button" HorizontalAlignment="Left" Margin="250,81,0,0" VerticalAlignment="Top" Height="98" Width="106" Click="_DisplaySecondAreaTab">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Resources/pepe1.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button x:Name="button_GoToTab3"  Content="Button" HorizontalAlignment="Left" Margin="414,81,0,0" VerticalAlignment="Top" Height="98" Width="106" Click="_DisplayThirdAreaTab">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Resources/pepe1.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button x:Name="button_GoToTab4"  Content="Button" HorizontalAlignment="Left" Margin="600,81,0,0" VerticalAlignment="Top" Height="98" Width="106" Click="_DisplayFourthAreaTab">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/Resources/pepe1.png"/>
+                        </Button.Background>
+                    </Button>
+                </Grid>
             </TabItem>
-            <TabItem Header="1번">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem x:Name="tabItem_tab1" Header="1번">
+                <Grid Background="#FFE5E5E5">
+                    <ComboBox x:Name="comboBox_tab1" HorizontalAlignment="Left" Margin="34,65,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
+                        <ComboBoxItem>전력</ComboBoxItem>
+                        <ComboBoxItem>온도</ComboBoxItem>
+                        <ComboBoxItem>가스</ComboBoxItem>
+                        <ComboBoxItem>test</ComboBoxItem>
+                    </ComboBox>
+                    <WebBrowser x:Name="webBrowser_tab1" Margin="193,39,38,38"/>
+                </Grid>
             </TabItem>
-            <TabItem Header="2번">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem x:Name="tabItem_tab2" Header="2번">
+                <Grid Background="#FFE5E5E5">
+                    <ComboBox x:Name="comboBox_tab2" HorizontalAlignment="Left" Margin="34,65,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
+                        <ComboBoxItem>전력</ComboBoxItem>
+                        <ComboBoxItem>온도</ComboBoxItem>
+                        <ComboBoxItem>가스</ComboBoxItem>
+                        <ComboBoxItem>test</ComboBoxItem>
+                    </ComboBox>
+                    <WebBrowser x:Name="webBrowser_tab2" Margin="193,39,38,38"/>
+                </Grid>
             </TabItem>
-            <TabItem Header="3번">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem x:Name="tabItem_tab3" Header="3번">
+                <Grid Background="#FFE5E5E5">
+                    <ComboBox x:Name="comboBox_tab3" HorizontalAlignment="Left" Margin="34,65,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
+                        <ComboBoxItem>전력</ComboBoxItem>
+                        <ComboBoxItem>온도</ComboBoxItem>
+                        <ComboBoxItem>가스</ComboBoxItem>
+                        <ComboBoxItem>test</ComboBoxItem>
+                    </ComboBox>
+                    <WebBrowser x:Name="webBrowser_tab3" Margin="193,39,38,38"/>
+                </Grid>
             </TabItem>
-            <TabItem Header="4번">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem x:Name="tabItem_tab4" Header="4번">
+                <Grid Background="#FFE5E5E5">
+                    <ComboBox x:Name="comboBox_tab4" HorizontalAlignment="Left" Margin="34,65,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
+                        <ComboBoxItem>전력</ComboBoxItem>
+                        <ComboBoxItem>온도</ComboBoxItem>
+                        <ComboBoxItem>가스</ComboBoxItem>
+                        <ComboBoxItem>test</ComboBoxItem>
+                    </ComboBox>
+                    <WebBrowser x:Name="webBrowser_tab4" Margin="193,39,38,38"/>
+                </Grid>
             </TabItem>
-            <TabItem Header="내역">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem x:Name="tabItem_History" Header="내역">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="dataGrid_History" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="45,29,68,29"/>
+                </Grid>
             </TabItem>
-            <TabItem Header="설정">
+            <TabItem x:Name="tabItem_Settings" Header="설정">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>

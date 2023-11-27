@@ -25,11 +25,34 @@ namespace _threeGuys_HeatDataProgram
             InitializeComponent();
 
 
+
             string filePath = "heatTreatingFactoryData.csv";
 
             FactoryDataReader.FactoryDataReader test = new FactoryDataReader.FactoryDataReader();
 
             test.heatTreatingFactoryDataRead(filePath);
+        }
+
+
+        // 1번 탭 활성화
+        private void _DisplayFirstAreaTab(object sender, RoutedEventArgs e)
+        {
+            tabControl.SelectedIndex = 1;
+        }
+
+        private void _DisplaySecondAreaTab(object sender, RoutedEventArgs e)
+        {
+            tabControl.SelectedIndex = 2;
+        }
+
+        private void _DisplayThirdAreaTab(object sender, RoutedEventArgs e)
+        {
+            tabControl.SelectedIndex = 3;
+        }
+
+        private void _DisplayFourthAreaTab(object sender, RoutedEventArgs e)
+        {
+            tabControl.SelectedIndex = 4;
         }
     }
 }
