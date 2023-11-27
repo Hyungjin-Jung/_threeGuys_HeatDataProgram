@@ -30,6 +30,8 @@ namespace _threeGuys_HeatDataProgram
 
             test.heatTreatingFactoryDataRead(filePath);
 
+            
+            dataGrid_History.ItemsSource = test.heatTreatingFactoryDataRead(filePath);
         }
 
 
