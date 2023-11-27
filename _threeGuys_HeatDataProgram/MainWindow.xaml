@@ -1,0 +1,36 @@
+﻿<Window x:Class="_threeGuys_HeatDataProgram.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_threeGuys_HeatDataProgram"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Main">
+                <Grid Background="#FFE5E5E5"/>
+
+            </TabItem>
+            <TabItem Header="1번">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="2번">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="3번">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="4번">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="내역">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="설정">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
