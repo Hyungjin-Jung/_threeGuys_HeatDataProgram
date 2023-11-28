@@ -16,6 +16,9 @@ using System.Linq;
 
 using ThreadRunner;
 using PySocketHandler;
+using Microsoft.Web.WebView2.WinForms;
+using Microsoft.Web.WebView2.Wpf;
+using Microsoft.Web.WebView2.Core;
 
 namespace _threeGuys_HeatDataProgram
 {
@@ -37,6 +40,7 @@ namespace _threeGuys_HeatDataProgram
             test_list = test.heatTreatingFactoryDataRead(filePath);
 
             InitializeWebView();
+            
 
         }
 
@@ -48,12 +52,24 @@ namespace _threeGuys_HeatDataProgram
             await webView2_tab3.EnsureCoreWebView2Async(null);
             await webView2_tab4.EnsureCoreWebView2Async(null);
 
+            webView2_tab4.CoreWebView2.Settings.IsScriptEnabled = true;
+            webView2_tab4.CoreWebView2.Settings.AreDefaultContextMenusEnabled = true;
+
             // Load a webpage
             webView2_tab1.Source = new Uri("http://127.0.0.1:8050/");
             webView2_tab2.Source = new Uri("http://127.0.0.1:8050/");
             webView2_tab3.Source = new Uri("http://127.0.0.1:8050/");
+
+
+
+            // 이동할 구역의 아이디
+            // 파이썬 부에서 해당 구역이 설정 되어 있어야함.
+            string sectionId = "Graph_temp_1";
+            // 해당 섹션ID를 기준삼아 화면 이동
+            webView2_tab4.CoreWebView2.ExecuteScriptAsync($"document.getElementById('{sectionId}').scrollIntoView();");
             webView2_tab4.Source = new Uri("http://127.0.0.1:8050/");
         }
+
 
         // 1번 탭 활성화
         private void DisplayFirstAreaTab_Click(object sender, RoutedEventArgs e)
@@ -198,21 +214,36 @@ namespace _threeGuys_HeatDataProgram
         // 4번 탭 각 버튼
         private async void radiobutton_tab4_power_Checked(object sender, RoutedEventArgs e)
         {
+
             if (webView2_tab4 != null)
             {
-                // 페이지 로딩 될 때까지 대기
                 await webView2_tab4.EnsureCoreWebView2Async(null);
 
                 // 이동할 구역의 아이디
-                // 파이썬 부에서 해당 구역이 설정 되어 있어야함.
                 string sectionId = "Graph_temp_1";
+
                 // 해당 섹션ID를 기준삼아 화면 이동
                 webView2_tab4.CoreWebView2.ExecuteScriptAsync($"document.getElementById('{sectionId}').scrollIntoView();");
+
+                // 스크롤 막기 위한 JavaScript 코드
+                webView2_tab4.CoreWebView2.ExecuteScriptAsync("document.addEventListener('scroll', function(e) { e.preventDefault(); }, { passive: false });");
+
+                // 웹 페이지 로드
                 webView2_tab4.Source = new Uri("http://127.0.0.1:8050/");
+
+
 
             }
         }
-    
+
+        private void WebView2_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
+        {
+            if (e.IsSuccess)
+            {
+                ((Microsoft.Web.WebView2.Wpf.WebView2)sender).ExecuteScriptAsync("document.querySelector('body').style.overflow='hidden'");
+            }
+        }
+
 
         private async void radiobutton_tab4_temp_Checked(object sender, RoutedEventArgs e)
         {
