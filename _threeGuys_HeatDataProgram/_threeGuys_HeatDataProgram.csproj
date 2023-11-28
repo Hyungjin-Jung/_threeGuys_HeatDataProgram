@@ -18,6 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2151.40" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Resources\Image_GN05.png" />
   </ItemGroup>
 

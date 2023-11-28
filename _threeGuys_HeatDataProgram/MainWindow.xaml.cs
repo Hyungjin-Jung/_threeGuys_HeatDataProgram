@@ -32,11 +32,34 @@ namespace _threeGuys_HeatDataProgram
             string filePath = "heatTreatingFactoryData.csv";
 
             FactoryDataReader.FactoryDataReader test = new FactoryDataReader.FactoryDataReader();
-            
+
             dataGrid_History.ItemsSource = test.heatTreatingFactoryDataRead(filePath);
             test_list = test.heatTreatingFactoryDataRead(filePath);
+
+            // 초기 웹사이트 로드 함수 호출
+            LoadInitialWebsite();
         }
 
+        // 실행하자 마자 사이트 불러옴. 
+        private void LoadInitialWebsite()
+        {
+            if (radiobutton_tab1_power.IsChecked == true)
+            {
+                webBrowser_tab1.Navigate(new Uri("https://www.naver.com"));
+            }
+            if (radiobutton_tab2_power.IsChecked == true)
+            {
+                webBrowser_tab2.Navigate(new Uri("https://www.naver.com"));
+            }
+            if (radiobutton_tab3_power.IsChecked == true)
+            {
+                webBrowser_tab3.Navigate(new Uri("https://www.naver.com"));
+            }
+            if (radiobutton_tab4_power.IsChecked == true)
+            {
+                webBrowser_tab4.Navigate(new Uri("https://www.naver.com"));
+            }
+        }
 
         // 1번 탭 활성화
         private void DisplayFirstAreaTab_Click(object sender, RoutedEventArgs e)
@@ -67,6 +90,106 @@ namespace _threeGuys_HeatDataProgram
         private void listBox_Notice_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        // 1번 탭 각 라디오 버튼
+        private void radiobutton_tab1_power_Checked(object sender, RoutedEventArgs e)
+        {
+            if (webBrowser_tab1 != null)
+            {
+                webBrowser_tab1.Navigate(new Uri("https://www.naver.com"));
+            }
+        }
+
+        private void radiobutton_tab1_temp_Checked(object sender, RoutedEventArgs e)
+        {
+            if (webBrowser_tab1 != null)
+            {
+                webBrowser_tab1.Navigate(new Uri("https://www.daum.net"));
+            }
+        }
+
+        private void radiobutton_tab1_gas_Checked(object sender, RoutedEventArgs e)
+        {
+            if (webBrowser_tab1 != null)
+            {
+                webBrowser_tab1.Navigate(new Uri("https://www.youtube.com"));
+            }
+        }
+
+        // 2번 탭 각 버튼 
+        private void radiobutton_tab2_power_Checked(object sender, RoutedEventArgs e)
+        {
+            if (webBrowser_tab2 != null)
+            {
+                webBrowser_tab2.Navigate(new Uri("https://www.naver.com"));
+            }
+        }
+
+        private void radiobutton_tab2_temp_Checked(object sender, RoutedEventArgs e)
+        {
+            if (webBrowser_tab2 != null)
+            {
+                webBrowser_tab2.Navigate(new Uri("https://www.daum.net"));
+            }
+        }
+
+        private void radiobutton_tab2_gas_Checked(object sender, RoutedEventArgs e)
+        {
+            if (webBrowser_tab2 != null)
+            {
+                webBrowser_tab2.Navigate(new Uri("https://www.youtube.com"));
+            }
+        }
+
+        // 3번 탭 각 버튼
+        private void radiobutton_tab3_power_Checked(object sender, RoutedEventArgs e)
+        {
+            if (webBrowser_tab3 != null)
+            {
+                webBrowser_tab3.Navigate(new Uri("https://www.naver.com"));
+            }
+        }
+
+        private void radiobutton_tab3_temp_Checked(object sender, RoutedEventArgs e)
+        {
+            if (webBrowser_tab3 != null)
+            {
+                webBrowser_tab3.Navigate(new Uri("https://www.daum.net"));
+            }
+        }
+
+        private void radiobutton_tab3_gas_Checked(object sender, RoutedEventArgs e)
+        {
+            if (webBrowser_tab3 != null)
+            {
+                webBrowser_tab3.Navigate(new Uri("https://www.youtube.com"));
+            }
+        }
+
+        // 4번 탭 각 버튼
+        private void radiobutton_tab4_power_Checked(object sender, RoutedEventArgs e)
+        {
+            if (webBrowser_tab4 != null)
+            {
+                webBrowser_tab3.Navigate(new Uri("https://www.naver.com"));
+            }
+        }
+
+        private void radiobutton_tab4_temp_Checked(object sender, RoutedEventArgs e)
+        {
+            if (webBrowser_tab4 != null)
+            {
+                webBrowser_tab4.Navigate(new Uri("https://www.daum.net"));
+            }
+        }
+
+        private void radiobutton_tab4_gas_Checked(object sender, RoutedEventArgs e)
+        {
+            if (webBrowser_tab4 != null)
+            {
+                webBrowser_tab4.Navigate(new Uri("https://www.youtube.com"));
+            }
         }
 
         /* 소켓 통신 임시 함수
