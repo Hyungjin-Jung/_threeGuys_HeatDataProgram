@@ -10,6 +10,9 @@
         <TabControl x:Name="tabControl">
             <TabItem x:Name="tabItem_Main" Header="Main" Margin="4,0,-4,0" Width="50" Height="20">
                 <Grid Background="#FFE5E5E5">
+                    <!--'<TextBox x:Name="textBox_tempSocketSend" TextWrapping="Wrap" Margin="10,157,0,0" Text="소켓 통신 테스트 텍스트 박스" HorizontalAlignment="Left" Width="690" Height="33" VerticalAlignment="Top"/>'-->
+                    <!--'<TextBox x:Name="textBox_tempSocketReceived" TextWrapping="Wrap" Margin="10,195,0,0" Text="소켓 통신 테스트 텍스트 박스" IsReadOnly="True" HorizontalAlignment="Left" Width="690" Height="38" VerticalAlignment="Top"/>'-->
+                    <!--'<Button x:Name="button_tempSocket" Content="소켓 통신&#xD;&#xA;테스트 버튼" Margin="705,157,0,0" Click="button_tempSocket_Click" HorizontalAlignment="Left" Width="79" Height="76" VerticalAlignment="Top"/>'-->
                     <TextBlock x:Name="textBlock_Temp1" HorizontalAlignment="Left" Margin="100,232,0,0" TextWrapping="Wrap" Text="온도 : " VerticalAlignment="Top"/>
                     <TextBlock x:Name="textBlock_Watt1" HorizontalAlignment="Left" Margin="100,203,0,0" TextWrapping="Wrap" Text="전력 : " VerticalAlignment="Top"/>
                     <TextBlock x:Name="textBlock_Temp2" HorizontalAlignment="Left" Margin="250,232,0,0" TextWrapping="Wrap" Text="온도 : " VerticalAlignment="Top"/>
@@ -103,6 +106,5 @@
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
-
     </Grid>
 </Window>
