@@ -100,12 +100,24 @@ namespace _threeGuys_HeatDataProgram
             //}
 
         }
-
+        
+        // 선택한 라디오 버튼으로 이동시키는 함수
         private async Task MoveWebViewToCoordinates(int x, string y)
         {
             await webView2_tab1.EnsureCoreWebView2Async();
 
             string script = $"window.scrollTo({x}, {y});";
+            await webView2_tab1.ExecuteScriptAsync(script);
+
+            await HideScrollBars();
+        }
+
+        // 마우스 스크롤을 숨기는 함수 
+        private async Task HideScrollBars()
+        {
+            await webView2_tab1.EnsureCoreWebView2Async(null);
+
+            string script = "document.documentElement.style.overflow = 'hidden';";
             await webView2_tab1.ExecuteScriptAsync(script);
         }
 
@@ -114,10 +126,16 @@ namespace _threeGuys_HeatDataProgram
         {
             if (webView2_tab1 != null)
             {
+                // 페이지 로딩 될 때까지 대기
                 await webView2_tab1.EnsureCoreWebView2Async(null);
 
+                // 이동할 구역의 아이디
+                // 파이썬 부에서 해당 구역이 설정 되어 있어야함.
+                string sectionId = "live-update-graph-1";
+                // 해당 섹션ID를 기준삼아 화면 이동
+                webView2_tab1.CoreWebView2.ExecuteScriptAsync($"document.getElementById('{sectionId}').scrollIntoView();");
                 webView2_tab1.Source = new Uri("http://127.0.0.1:8050/");
-                await MoveWebViewToCoordinates(0, "live-update-graph-2");
+                await HideScrollBars();
             }
         }
 
@@ -125,9 +143,16 @@ namespace _threeGuys_HeatDataProgram
         {
             if (webView2_tab1 != null)
             {
+                // 페이지 로딩 될 때까지 대기
                 await webView2_tab1.EnsureCoreWebView2Async(null);
 
-                webView2_tab1.Source = new Uri("https://www.naver.com");
+                // 이동할 구역의 아이디
+                // 파이썬 부에서 해당 구역이 설정 되어 있어야함.
+                string sectionId = "live-update-graph-2";
+                // 해당 섹션ID를 기준삼아 화면 이동
+                webView2_tab1.CoreWebView2.ExecuteScriptAsync($"document.getElementById('{sectionId}').scrollIntoView();");
+                webView2_tab1.Source = new Uri("http://127.0.0.1:8050/");
+                await HideScrollBars();
             }
         }
 
@@ -135,9 +160,16 @@ namespace _threeGuys_HeatDataProgram
         {
             if (webView2_tab1 != null)
             {
+                // 페이지 로딩 될 때까지 대기
                 await webView2_tab1.EnsureCoreWebView2Async(null);
 
-                webView2_tab1.Source = new Uri("http://127.0.0.1:8050");
+                // 이동할 구역의 아이디
+                // 파이썬 부에서 해당 구역이 설정 되어 있어야함.
+                string sectionId = "live-update-graph-3";
+                // 해당 섹션ID를 기준삼아 화면 이동
+                webView2_tab1.CoreWebView2.ExecuteScriptAsync($"document.getElementById('{sectionId}').scrollIntoView();");
+                webView2_tab1.Source = new Uri("http://127.0.0.1:8050/");
+                await HideScrollBars();
             }
         }
 
@@ -213,7 +245,7 @@ namespace _threeGuys_HeatDataProgram
 
                 // 이동할 구역의 아이디
                 // 파이썬 부에서 해당 구역이 설정 되어 있어야함.
-                string sectionId = "Graph_temp_1";
+                string sectionId = "live-update-graph-2";
                 // 해당 섹션ID를 기준삼아 화면 이동
                 webView2_tab4.CoreWebView2.ExecuteScriptAsync($"document.getElementById('{sectionId}').scrollIntoView();");
                 webView2_tab4.Source = new Uri("http://127.0.0.1:8050/");
