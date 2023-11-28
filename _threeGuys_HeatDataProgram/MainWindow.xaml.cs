@@ -35,34 +35,28 @@ namespace _threeGuys_HeatDataProgram
 
             dataGrid_History.ItemsSource = test.heatTreatingFactoryDataRead(filePath);
             test_list = test.heatTreatingFactoryDataRead(filePath);
-
-            // 초기 웹사이트 로드 함수 호출
-            LoadInitialWebsite();
+            
+            InitializeWebView();
+            
         }
 
-        // 실행하자 마자 사이트 불러옴. 
-        private void LoadInitialWebsite()
+        private async void InitializeWebView()
         {
-            if (radiobutton_tab1_power.IsChecked == true)
-            {
-                webBrowser_tab1.Navigate(new Uri("https://www.naver.com"));
-            }
-            if (radiobutton_tab2_power.IsChecked == true)
-            {
-                webBrowser_tab2.Navigate(new Uri("https://www.naver.com"));
-            }
-            if (radiobutton_tab3_power.IsChecked == true)
-            {
-                webBrowser_tab3.Navigate(new Uri("https://www.naver.com"));
-            }
-            if (radiobutton_tab4_power.IsChecked == true)
-            {
-                webBrowser_tab4.Navigate(new Uri("https://www.naver.com"));
-            }
+            // Ensure CoreWebView2 is initialized
+            await webView2_tab1.EnsureCoreWebView2Async(null);
+            await webView2_tab2.EnsureCoreWebView2Async(null);
+            await webView2_tab3.EnsureCoreWebView2Async(null);
+            await webView2_tab4.EnsureCoreWebView2Async(null);
+
+            // Load a webpage
+            webView2_tab1.Source = new Uri("http://127.0.0.1:8050/");
+            webView2_tab2.Source = new Uri("http://127.0.0.1:8050/");
+            webView2_tab3.Source = new Uri("http://127.0.0.1:8050/");
+            webView2_tab4.Source = new Uri("http://127.0.0.1:8050/");
         }
 
-        // 1번 탭 활성화
-        private void DisplayFirstAreaTab_Click(object sender, RoutedEventArgs e)
+    // 1번 탭 활성화
+    private void DisplayFirstAreaTab_Click(object sender, RoutedEventArgs e)
         {
             tabControl.SelectedIndex = 1;
         }
@@ -89,8 +83,24 @@ namespace _threeGuys_HeatDataProgram
 
         private void listBox_Notice_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            //if(listBox_Notice.SelectedItem != null)
+            //{
+            //    string selectedTime = listBox_Notice.SelectedItem.ToString();
+
+            //    // DataGridView에서 해당 시간에 대한 행으로 이동
+            //    foreach (DataGrid row in test_list.)
+            //    {
+            //        if (row.Cells["TimeColumn"].Value.ToString() == selectedTime)
+            //        {
+            //            row.Selected = true;
+            //            dataGridView.FirstDisplayedScrollingRowIndex = row.Index;
+            //            break;
+            //        }
+            //    }
+            //}
 
         }
+
 
         // 1번 탭 각 라디오 버튼
         private void radiobutton_tab1_power_Checked(object sender, RoutedEventArgs e)
