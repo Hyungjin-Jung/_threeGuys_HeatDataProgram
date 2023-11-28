@@ -103,102 +103,126 @@ namespace _threeGuys_HeatDataProgram
 
 
         // 1번 탭 각 라디오 버튼
-        private void radiobutton_tab1_power_Checked(object sender, RoutedEventArgs e)
+        private async void radiobutton_tab1_power_Checked(object sender, RoutedEventArgs e)
         {
-            if (webBrowser_tab1 != null)
+            if (webView2_tab1 != null)
             {
-                webBrowser_tab1.Navigate(new Uri("https://www.naver.com"));
+                await webView2_tab1.EnsureCoreWebView2Async(null);
+
+                webView2_tab1.Source = new Uri("http://127.0.0.1:8050/");
             }
         }
 
-        private void radiobutton_tab1_temp_Checked(object sender, RoutedEventArgs e)
+        private async void radiobutton_tab1_temp_Checked(object sender, RoutedEventArgs e)
         {
-            if (webBrowser_tab1 != null)
+            if (webView2_tab1 != null)
             {
-                webBrowser_tab1.Navigate(new Uri("https://www.daum.net"));
+                await webView2_tab1.EnsureCoreWebView2Async(null);
+
+                webView2_tab1.Source = new Uri("https://www.naver.com");
             }
         }
 
-        private void radiobutton_tab1_gas_Checked(object sender, RoutedEventArgs e)
+        private async void radiobutton_tab1_gas_Checked(object sender, RoutedEventArgs e)
         {
-            if (webBrowser_tab1 != null)
+            if (webView2_tab1 != null)
             {
-                webBrowser_tab1.Navigate(new Uri("https://www.youtube.com"));
+                await webView2_tab1.EnsureCoreWebView2Async(null);
+
+                webView2_tab1.Source = new Uri("http://127.0.0.1:8050");
             }
         }
 
         // 2번 탭 각 버튼 
-        private void radiobutton_tab2_power_Checked(object sender, RoutedEventArgs e)
+        private async void radiobutton_tab2_power_Checked(object sender, RoutedEventArgs e)
         {
-            if (webBrowser_tab2 != null)
+            if (webView2_tab2 != null)
             {
-                webBrowser_tab2.Navigate(new Uri("https://www.naver.com"));
+                await webView2_tab2.EnsureCoreWebView2Async(null);
+
+                webView2_tab2.Source = new Uri("http://127.0.0.1:8050/");
             }
         }
 
-        private void radiobutton_tab2_temp_Checked(object sender, RoutedEventArgs e)
+        private async void radiobutton_tab2_temp_Checked(object sender, RoutedEventArgs e)
         {
-            if (webBrowser_tab2 != null)
+            if (webView2_tab2 != null)
             {
-                webBrowser_tab2.Navigate(new Uri("https://www.daum.net"));
+                await webView2_tab2.EnsureCoreWebView2Async(null);
+
+                webView2_tab2.Source = new Uri("http://127.0.0.1:8050/");
             }
         }
 
-        private void radiobutton_tab2_gas_Checked(object sender, RoutedEventArgs e)
+        private async void radiobutton_tab2_gas_Checked(object sender, RoutedEventArgs e)
         {
-            if (webBrowser_tab2 != null)
+            if (webView2_tab2 != null)
             {
-                webBrowser_tab2.Navigate(new Uri("https://www.youtube.com"));
+                await webView2_tab2.EnsureCoreWebView2Async(null);
+
+                webView2_tab2.Source = new Uri("http://127.0.0.1:8050/");
             }
         }
 
         // 3번 탭 각 버튼
-        private void radiobutton_tab3_power_Checked(object sender, RoutedEventArgs e)
+        private async void radiobutton_tab3_power_Checked(object sender, RoutedEventArgs e)
         {
-            if (webBrowser_tab3 != null)
+            if (webView2_tab3 != null)
             {
-                webBrowser_tab3.Navigate(new Uri("https://www.naver.com"));
+                await webView2_tab3.EnsureCoreWebView2Async(null);
+
+                webView2_tab3.Source = new Uri("http://127.0.0.1:8050/");
             }
         }
 
-        private void radiobutton_tab3_temp_Checked(object sender, RoutedEventArgs e)
+        private async void radiobutton_tab3_temp_Checked(object sender, RoutedEventArgs e)
         {
-            if (webBrowser_tab3 != null)
+            if (webView2_tab3 != null)
             {
-                webBrowser_tab3.Navigate(new Uri("https://www.daum.net"));
+                await webView2_tab3.EnsureCoreWebView2Async(null);
+
+                webView2_tab3.Source = new Uri("http://127.0.0.1:8050/");
             }
         }
 
-        private void radiobutton_tab3_gas_Checked(object sender, RoutedEventArgs e)
+        private async void radiobutton_tab3_gas_Checked(object sender, RoutedEventArgs e)
         {
-            if (webBrowser_tab3 != null)
+            if (webView2_tab3 != null)
             {
-                webBrowser_tab3.Navigate(new Uri("https://www.youtube.com"));
+                await webView2_tab3.EnsureCoreWebView2Async(null);
+
+                webView2_tab3.Source = new Uri("http://127.0.0.1:8050/");
             }
         }
 
         // 4번 탭 각 버튼
-        private void radiobutton_tab4_power_Checked(object sender, RoutedEventArgs e)
+        private async void radiobutton_tab4_power_Checked(object sender, RoutedEventArgs e)
         {
-            if (webBrowser_tab4 != null)
+            if (webView2_tab4 != null)
             {
-                webBrowser_tab3.Navigate(new Uri("https://www.naver.com"));
+                await webView2_tab4.EnsureCoreWebView2Async(null);
+
+                webView2_tab4.Source = new Uri("http://127.0.0.1:8050/");
             }
         }
 
-        private void radiobutton_tab4_temp_Checked(object sender, RoutedEventArgs e)
+        private async void radiobutton_tab4_temp_Checked(object sender, RoutedEventArgs e)
         {
-            if (webBrowser_tab4 != null)
+            if (webView2_tab4 != null)
             {
-                webBrowser_tab4.Navigate(new Uri("https://www.daum.net"));
+                await webView2_tab4.EnsureCoreWebView2Async(null);
+
+                webView2_tab4.Source = new Uri("http://127.0.0.1:8050/");
             }
         }
 
-        private void radiobutton_tab4_gas_Checked(object sender, RoutedEventArgs e)
+        private async void radiobutton_tab4_gas_Checked(object sender, RoutedEventArgs e)
         {
-            if (webBrowser_tab4 != null)
+            if (webView2_tab4 != null)
             {
-                webBrowser_tab4.Navigate(new Uri("https://www.youtube.com"));
+                await webView2_tab4.EnsureCoreWebView2Async(null);
+
+                webView2_tab4.Source = new Uri("http://127.0.0.1:8050/");
             }
         }
 
