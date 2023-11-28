@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_threeGuys_HeatDataProgram"
+        xmlns:wv="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -61,7 +62,7 @@
                         <ComboBoxItem>가스</ComboBoxItem>
                         <ComboBoxItem>test</ComboBoxItem>
                     </ComboBox>
-                    <WebBrowser x:Name="webBrowser_tab1" Margin="193,39,38,38"/>
+                    <wv:WebView2 x:Name="webView2_tab1" Margin="193,39,61,41"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem_tab2" Header="2번" Margin="24,0,-24,0" Width="50" Height="20">
@@ -72,7 +73,7 @@
                         <ComboBoxItem>가스</ComboBoxItem>
                         <ComboBoxItem>test</ComboBoxItem>
                     </ComboBox>
-                    <WebBrowser x:Name="webBrowser_tab2" Margin="193,39,38,38"/>
+                    <wv:WebView2 x:Name="webView2_tab2" Margin="193,39,61,41"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem_tab3" Header="3번" Margin="34,0,-34,0" Width="50" Height="20">
@@ -83,7 +84,7 @@
                         <ComboBoxItem>가스</ComboBoxItem>
                         <ComboBoxItem>test</ComboBoxItem>
                     </ComboBox>
-                    <WebBrowser x:Name="webBrowser_tab3" Margin="193,39,38,38"/>
+                    <wv:WebView2 x:Name="webView2_tab3" Margin="193,39,61,41"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem_tab4" Header="4번" Margin="44,0,-44,0" Width="50" Height="20">
@@ -94,7 +95,7 @@
                         <ComboBoxItem>가스</ComboBoxItem>
                         <ComboBoxItem>test</ComboBoxItem>
                     </ComboBox>
-                    <WebBrowser x:Name="webBrowser_tab4" Margin="193,39,38,38"/>
+                    <wv:WebView2 x:Name="webView2_tab4" Margin="193,39,61,41"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem_History" Header="내역" Margin="54,0,-54,0" Width="50" Height="20">

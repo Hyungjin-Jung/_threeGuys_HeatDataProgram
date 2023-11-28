@@ -32,14 +32,32 @@ namespace _threeGuys_HeatDataProgram
             string filePath = "heatTreatingFactoryData.csv";
 
             FactoryDataReader.FactoryDataReader test = new FactoryDataReader.FactoryDataReader();
-            
+
             dataGrid_History.ItemsSource = test.heatTreatingFactoryDataRead(filePath);
             test_list = test.heatTreatingFactoryDataRead(filePath);
+            InitializeWebView();
+            
         }
 
+        private async void InitializeWebView()
+        {
+            // Ensure CoreWebView2 is initialized
+            await webView2_tab1.EnsureCoreWebView2Async(null);
+            await webView2_tab2.EnsureCoreWebView2Async(null);
+            await webView2_tab3.EnsureCoreWebView2Async(null);
+            await webView2_tab4.EnsureCoreWebView2Async(null);
 
-        // 1번 탭 활성화
-        private void DisplayFirstAreaTab_Click(object sender, RoutedEventArgs e)
+            // Load a webpage
+            webView2_tab1.Source = new Uri("http://127.0.0.1:8050/");
+            webView2_tab2.Source = new Uri("http://127.0.0.1:8050/");
+            webView2_tab3.Source = new Uri("http://127.0.0.1:8050/");
+            webView2_tab4.Source = new Uri("http://127.0.0.1:8050/");
+        }
+    
+
+
+    // 1번 탭 활성화
+    private void DisplayFirstAreaTab_Click(object sender, RoutedEventArgs e)
         {
             tabControl.SelectedIndex = 1;
         }
@@ -66,8 +84,24 @@ namespace _threeGuys_HeatDataProgram
 
         private void listBox_Notice_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            //if(listBox_Notice.SelectedItem != null)
+            //{
+            //    string selectedTime = listBox_Notice.SelectedItem.ToString();
+
+            //    // DataGridView에서 해당 시간에 대한 행으로 이동
+            //    foreach (DataGrid row in test_list.)
+            //    {
+            //        if (row.Cells["TimeColumn"].Value.ToString() == selectedTime)
+            //        {
+            //            row.Selected = true;
+            //            dataGridView.FirstDisplayedScrollingRowIndex = row.Index;
+            //            break;
+            //        }
+            //    }
+            //}
 
         }
+
 
         /* 소켓 통신 임시 함수
         private async void button_tempSocket_Click(object sender, RoutedEventArgs e)
