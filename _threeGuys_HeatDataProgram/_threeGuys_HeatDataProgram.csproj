@@ -9,7 +9,32 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="pepe1.png" />
+    <None Remove="Resources\Image_GN02.png" />
+    <None Remove="Resources\Image_GN04.png" />
+    <None Remove="Resources\Image_GN05.png" />
+    <None Remove="Resources\Image_GN07.png" />
+    <None Remove="Resources\pepe1.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Image_GN05.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Image_GN02.png" />
+    <Resource Include="Resources\Image_GN04.png" />
+    <Resource Include="Resources\Image_GN07.png" />
+    <Resource Include="Resources\pepe1.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Resource1.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Resource1.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resource1.resx</DependentUpon>
@@ -18,6 +43,10 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Resource1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
     </EmbeddedResource>

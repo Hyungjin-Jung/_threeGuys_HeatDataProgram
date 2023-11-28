@@ -8,6 +8,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+
+using FactoryDataReader;
+using System.Data;
+using System.Linq;
 
 using ThreadRunner;
 using PySocketHandler;
@@ -18,14 +23,53 @@ namespace _threeGuys_HeatDataProgram
     {
         PySocketHandler.PySocketHandler psh = new PySocketHandler.PySocketHandler();
         ThreadRunner.ThreadRunner thr = new ThreadRunner.ThreadRunner();
-
+        List<FactoryDataReader.DataColumn> test_list = default;
         public MainWindow()
         {
             InitializeComponent();
             psh.prepareSocket();
+
+            string filePath = "heatTreatingFactoryData.csv";
+
+            FactoryDataReader.FactoryDataReader test = new FactoryDataReader.FactoryDataReader();
+            
+            dataGrid_History.ItemsSource = test.heatTreatingFactoryDataRead(filePath);
+            test_list = test.heatTreatingFactoryDataRead(filePath);
         }
 
-        /*
+
+        // 1번 탭 활성화
+        private void DisplayFirstAreaTab_Click(object sender, RoutedEventArgs e)
+        {
+            tabControl.SelectedIndex = 1;
+        }
+
+        private void DisplaySecondAreaTab_Click(object sender, RoutedEventArgs e)
+        {
+            tabControl.SelectedIndex = 2;
+        }
+
+        private void DisplayThirdAreaTab_Click(object sender, RoutedEventArgs e)
+        {
+            tabControl.SelectedIndex = 3;
+        }
+
+        private void DisplayFourthAreaTab_Click(object sender, RoutedEventArgs e)
+        {
+            tabControl.SelectedIndex = 4;
+        }
+
+        private void button_test_Click(object sender, RoutedEventArgs e)
+        {
+            listBox_Notice.Items.Add(test_list[0].Time);
+        }
+
+        private void listBox_Notice_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        /* 소켓 통신 임시 함수
         private async void button_tempSocket_Click(object sender, RoutedEventArgs e)
         {
             string sendString = textBox_tempSocketSend.Text;
@@ -50,6 +94,5 @@ namespace _threeGuys_HeatDataProgram
             textBox_tempSocketReceived.Text = receiveTask.Result;
         }
         */
-
     }
 }
