@@ -35,9 +35,9 @@ namespace _threeGuys_HeatDataProgram
 
             dataGrid_History.ItemsSource = test.heatTreatingFactoryDataRead(filePath);
             test_list = test.heatTreatingFactoryDataRead(filePath);
-            
+
             InitializeWebView();
-            
+
         }
 
         private async void InitializeWebView()
@@ -55,8 +55,8 @@ namespace _threeGuys_HeatDataProgram
             webView2_tab4.Source = new Uri("http://127.0.0.1:8050/");
         }
 
-    // 1번 탭 활성화
-    private void DisplayFirstAreaTab_Click(object sender, RoutedEventArgs e)
+        // 1번 탭 활성화
+        private void DisplayFirstAreaTab_Click(object sender, RoutedEventArgs e)
         {
             tabControl.SelectedIndex = 1;
         }
@@ -208,11 +208,19 @@ namespace _threeGuys_HeatDataProgram
         {
             if (webView2_tab4 != null)
             {
+                // 페이지 로딩 될 때까지 대기
                 await webView2_tab4.EnsureCoreWebView2Async(null);
 
+                // 이동할 구역의 아이디
+                // 파이썬 부에서 해당 구역이 설정 되어 있어야함.
+                string sectionId = "Graph_temp_1";
+                // 해당 섹션ID를 기준삼아 화면 이동
+                webView2_tab4.CoreWebView2.ExecuteScriptAsync($"document.getElementById('{sectionId}').scrollIntoView();");
                 webView2_tab4.Source = new Uri("http://127.0.0.1:8050/");
+
             }
         }
+    
 
         private async void radiobutton_tab4_temp_Checked(object sender, RoutedEventArgs e)
         {
