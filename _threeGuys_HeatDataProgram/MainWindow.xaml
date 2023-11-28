@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <TabControl x:Name="tabControl">
-            <TabItem x:Name="tabItem_Main" Header="Main">
+            <TabItem x:Name="tabItem_Main" Header="Main" Margin="4,0,-4,0" Width="50" Height="20">
                 <Grid Background="#FFE5E5E5">
                     <TextBlock x:Name="textBlock_Temp1" HorizontalAlignment="Left" Margin="100,232,0,0" TextWrapping="Wrap" Text="온도 : " VerticalAlignment="Top"/>
                     <TextBlock x:Name="textBlock_Watt1" HorizontalAlignment="Left" Margin="100,203,0,0" TextWrapping="Wrap" Text="전력 : " VerticalAlignment="Top"/>
@@ -26,30 +26,31 @@
                     <Label Content="Label" HorizontalAlignment="Left" Margin="464,227,0,0" VerticalAlignment="Top"/>
                     <Label Content="Label" HorizontalAlignment="Left" Margin="650,198,0,0" VerticalAlignment="Top"/>
                     <Label Content="Label" HorizontalAlignment="Left" Margin="650,227,0,0" VerticalAlignment="Top"/>
-                    <ListBox x:Name="listBox_Notice" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="50,258,50,44"/>
-                    <Button x:Name="button_GoToTab1"  Content="Button" HorizontalAlignment="Left" Margin="100,81,0,0" VerticalAlignment="Top" Height="98" Width="106" Click="_DisplayFirstAreaTab">
+                    <ListBox x:Name="listBox_Notice" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="50,258,50,10" MouseDoubleClick="listBox_Notice_MouseDoubleClick"/>
+                    <Button x:Name="button_GoToTab1"  Content="Button" HorizontalAlignment="Left" Margin="100,81,0,0" VerticalAlignment="Top" Height="98" Width="106" Click="DisplayFirstAreaTab_Click">
                         <Button.Background>
                             <ImageBrush ImageSource="pack://application:,,,/Resources/pepe1.png"/>
                         </Button.Background>
                     </Button>
-                    <Button x:Name="button_GoToTab2"  Content="Button" HorizontalAlignment="Left" Margin="250,81,0,0" VerticalAlignment="Top" Height="98" Width="106" Click="_DisplaySecondAreaTab">
+                    <Button x:Name="button_GoToTab2"  Content="Button" HorizontalAlignment="Left" Margin="250,81,0,0" VerticalAlignment="Top" Height="98" Width="106" Click="DisplaySecondAreaTab_Click">
                         <Button.Background>
                             <ImageBrush ImageSource="/Resources/pepe1.png"/>
                         </Button.Background>
                     </Button>
-                    <Button x:Name="button_GoToTab3"  Content="Button" HorizontalAlignment="Left" Margin="414,81,0,0" VerticalAlignment="Top" Height="98" Width="106" Click="_DisplayThirdAreaTab">
+                    <Button x:Name="button_GoToTab3"  Content="Button" HorizontalAlignment="Left" Margin="414,81,0,0" VerticalAlignment="Top" Height="98" Width="106" Click="DisplayThirdAreaTab_Click">
                         <Button.Background>
                             <ImageBrush ImageSource="/Resources/pepe1.png"/>
                         </Button.Background>
                     </Button>
-                    <Button x:Name="button_GoToTab4"  Content="Button" HorizontalAlignment="Left" Margin="600,81,0,0" VerticalAlignment="Top" Height="98" Width="106" Click="_DisplayFourthAreaTab">
+                    <Button x:Name="button_GoToTab4"  Content="Button" HorizontalAlignment="Left" Margin="600,81,0,0" VerticalAlignment="Top" Height="98" Width="106" Click="DisplayFourthAreaTab_Click">
                         <Button.Background>
                             <ImageBrush ImageSource="/Resources/pepe1.png"/>
                         </Button.Background>
                     </Button>
+                    <Button x:Name="button_test" Content="임시버튼, 누르면 list의 타임 값만 반환(추후삭제)" HorizontalAlignment="Left" Margin="24,23,0,0" VerticalAlignment="Top" Height="40" Width="279" Click="button_test_Click"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tabItem_tab1" Header="1번">
+            <TabItem x:Name="tabItem_tab1" Header="1번" Margin="14,0,-14,0" Width="50" Height="20">
                 <Grid Background="#FFE5E5E5">
                     <ComboBox x:Name="comboBox_tab1" HorizontalAlignment="Left" Margin="34,65,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
                         <ComboBoxItem>전력</ComboBoxItem>
@@ -60,7 +61,7 @@
                     <WebBrowser x:Name="webBrowser_tab1" Margin="193,39,38,38"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tabItem_tab2" Header="2번">
+            <TabItem x:Name="tabItem_tab2" Header="2번" Margin="24,0,-24,0" Width="50" Height="20">
                 <Grid Background="#FFE5E5E5">
                     <ComboBox x:Name="comboBox_tab2" HorizontalAlignment="Left" Margin="34,65,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
                         <ComboBoxItem>전력</ComboBoxItem>
@@ -71,7 +72,7 @@
                     <WebBrowser x:Name="webBrowser_tab2" Margin="193,39,38,38"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tabItem_tab3" Header="3번">
+            <TabItem x:Name="tabItem_tab3" Header="3번" Margin="34,0,-34,0" Width="50" Height="20">
                 <Grid Background="#FFE5E5E5">
                     <ComboBox x:Name="comboBox_tab3" HorizontalAlignment="Left" Margin="34,65,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
                         <ComboBoxItem>전력</ComboBoxItem>
@@ -82,7 +83,7 @@
                     <WebBrowser x:Name="webBrowser_tab3" Margin="193,39,38,38"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tabItem_tab4" Header="4번">
+            <TabItem x:Name="tabItem_tab4" Header="4번" Margin="44,0,-44,0" Width="50" Height="20">
                 <Grid Background="#FFE5E5E5">
                     <ComboBox x:Name="comboBox_tab4" HorizontalAlignment="Left" Margin="34,65,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
                         <ComboBoxItem>전력</ComboBoxItem>
@@ -93,12 +94,12 @@
                     <WebBrowser x:Name="webBrowser_tab4" Margin="193,39,38,38"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tabItem_History" Header="내역">
+            <TabItem x:Name="tabItem_History" Header="내역" Margin="54,0,-54,0" Width="50" Height="20">
                 <Grid Background="#FFE5E5E5">
                     <DataGrid x:Name="dataGrid_History" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="45,29,68,29"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tabItem_Settings" Header="설정">
+            <TabItem x:Name="tabItem_Settings" Header="설정" Margin="64,0,-64,0" Width="50" Height="20">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
         </TabControl>
