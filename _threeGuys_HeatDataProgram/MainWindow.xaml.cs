@@ -101,6 +101,13 @@ namespace _threeGuys_HeatDataProgram
 
         }
 
+        private async Task MoveWebViewToCoordinates(int x, string y)
+        {
+            await webView2_tab1.EnsureCoreWebView2Async();
+
+            string script = $"window.scrollTo({x}, {y});";
+            await webView2_tab1.ExecuteScriptAsync(script);
+        }
 
         // 1번 탭 각 라디오 버튼
         private async void radiobutton_tab1_power_Checked(object sender, RoutedEventArgs e)
@@ -110,6 +117,7 @@ namespace _threeGuys_HeatDataProgram
                 await webView2_tab1.EnsureCoreWebView2Async(null);
 
                 webView2_tab1.Source = new Uri("http://127.0.0.1:8050/");
+                await MoveWebViewToCoordinates(0, "live-update-graph-2");
             }
         }
 
