@@ -11,6 +11,8 @@ using System.Windows.Shapes;
 using System.IO;
 
 using FactoryDataReader;
+using System.Data;
+using System.Linq;
 
 namespace _threeGuys_HeatDataProgram
 {
@@ -19,7 +21,7 @@ namespace _threeGuys_HeatDataProgram
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        List<FactoryDataReader.DataColumn> test_list = default;
         public MainWindow()
         {
             InitializeComponent();
@@ -31,28 +33,40 @@ namespace _threeGuys_HeatDataProgram
             FactoryDataReader.FactoryDataReader test = new FactoryDataReader.FactoryDataReader();
             
             dataGrid_History.ItemsSource = test.heatTreatingFactoryDataRead(filePath);
+            test_list = test.heatTreatingFactoryDataRead(filePath);
         }
 
 
         // 1번 탭 활성화
-        private void _DisplayFirstAreaTab(object sender, RoutedEventArgs e)
+        private void DisplayFirstAreaTab_Click(object sender, RoutedEventArgs e)
         {
             tabControl.SelectedIndex = 1;
         }
 
-        private void _DisplaySecondAreaTab(object sender, RoutedEventArgs e)
+        private void DisplaySecondAreaTab_Click(object sender, RoutedEventArgs e)
         {
             tabControl.SelectedIndex = 2;
         }
 
-        private void _DisplayThirdAreaTab(object sender, RoutedEventArgs e)
+        private void DisplayThirdAreaTab_Click(object sender, RoutedEventArgs e)
         {
             tabControl.SelectedIndex = 3;
         }
 
-        private void _DisplayFourthAreaTab(object sender, RoutedEventArgs e)
+        private void DisplayFourthAreaTab_Click(object sender, RoutedEventArgs e)
         {
             tabControl.SelectedIndex = 4;
+        }
+
+        private void button_test_Click(object sender, RoutedEventArgs e)
+        {
+            listBox_Notice.Items.Add(test_list[0].Time);
+        }
+
+        private void listBox_Notice_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            
         }
     }
 }
