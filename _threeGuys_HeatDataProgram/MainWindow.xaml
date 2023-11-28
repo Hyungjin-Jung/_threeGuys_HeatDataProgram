@@ -81,7 +81,7 @@
             <TabItem x:Name="tabItem_tab4" Header="4번" Margin="44,0,-44,0" Width="50" Height="20">
                 <Grid Background="#FFE5E5E5">
                     <wv:WebView2 x:Name="webView2_tab4" Margin="193,39,61,41"/>
-                    <RadioButton x:Name="radiobutton_tab4_power" Content="전력" Margin="52,59,0,0" FontSize="16" IsChecked="True" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab4_power_Checked"/>
+                    <RadioButton x:Name="radiobutton_tab4_power" Content="전력" Margin="52,59,0,0" FontSize="16" IsChecked="True" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab4_power_Checked" Loaded="radiobutton_tab4_power_Checked"/>
                     <RadioButton x:Name="radiobutton_tab4_temp" Content="온도" Margin="52,143,0,0" FontSize="16" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab4_temp_Checked"/>
                     <RadioButton x:Name="radiobutton_tab4_gas" Content="가스" Margin="52,224,0,0" FontSize="16" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab4_gas_Checked"/>
                 </Grid>
