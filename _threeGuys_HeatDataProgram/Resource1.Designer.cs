@@ -63,6 +63,46 @@ namespace _threeGuys_HeatDataProgram {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        internal static byte[] Image_GN02 {
+            get {
+                object obj = ResourceManager.GetObject("Image_GN02", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Image_GN04 {
+            get {
+                object obj = ResourceManager.GetObject("Image_GN04", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Image_GN05 {
+            get {
+                object obj = ResourceManager.GetObject("Image_GN05", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Image_GN07 {
+            get {
+                object obj = ResourceManager.GetObject("Image_GN07", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         internal static byte[] temp_image {
             get {
                 object obj = ResourceManager.GetObject("temp_image", resourceCulture);

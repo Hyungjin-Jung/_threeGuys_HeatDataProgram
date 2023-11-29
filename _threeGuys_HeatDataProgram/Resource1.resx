@@ -118,6 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Image_GN02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Image_GN02.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Image_GN04" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Image_GN04.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Image_GN05" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Image_GN05.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Image_GN07" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Image_GN07.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="temp_image" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\pepe1.png;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
