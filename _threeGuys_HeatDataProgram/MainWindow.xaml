@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:_threeGuys_HeatDataProgram"
         xmlns:wv="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
         <TabControl x:Name="tabControl">
             <TabItem x:Name="tabItem_Main" Header="Main" Margin="4,0,-4,0" Width="50" Height="20">
@@ -14,44 +14,43 @@
                     <!--'<TextBox x:Name="textBox_tempSocketSend" TextWrapping="Wrap" Margin="10,157,0,0" Text="소켓 통신 테스트 텍스트 박스" HorizontalAlignment="Left" Width="690" Height="33" VerticalAlignment="Top"/>'-->
                     <!--'<TextBox x:Name="textBox_tempSocketReceived" TextWrapping="Wrap" Margin="10,195,0,0" Text="소켓 통신 테스트 텍스트 박스" IsReadOnly="True" HorizontalAlignment="Left" Width="690" Height="38" VerticalAlignment="Top"/>'-->
                     <!--'<Button x:Name="button_tempSocket" Content="소켓 통신&#xD;&#xA;테스트 버튼" Margin="705,157,0,0" Click="button_tempSocket_Click" HorizontalAlignment="Left" Width="79" Height="76" VerticalAlignment="Top"/>'-->
-                    <TextBlock x:Name="textBlock_Temp1" HorizontalAlignment="Left" Margin="100,232,0,0" TextWrapping="Wrap" Text="온도 : " VerticalAlignment="Top"/>
-                    <TextBlock x:Name="textBlock_Watt1" HorizontalAlignment="Left" Margin="100,203,0,0" TextWrapping="Wrap" Text="전력 : " VerticalAlignment="Top"/>
-                    <TextBlock x:Name="textBlock_Temp2" HorizontalAlignment="Left" Margin="250,232,0,0" TextWrapping="Wrap" Text="온도 : " VerticalAlignment="Top"/>
-                    <TextBlock x:Name="textBlock_Watt2" HorizontalAlignment="Left" Margin="250,203,0,0" TextWrapping="Wrap" Text="전력 : " VerticalAlignment="Top"/>
-                    <TextBlock x:Name="textBlock_Temp3" HorizontalAlignment="Left" Margin="414,232,0,0" TextWrapping="Wrap" Text="온도 : " VerticalAlignment="Top"/>
-                    <TextBlock x:Name="textBlock_Watt3" HorizontalAlignment="Left" Margin="414,203,0,0" TextWrapping="Wrap" Text="전력 : " VerticalAlignment="Top"/>
-                    <TextBlock x:Name="textBlock_Temp4" HorizontalAlignment="Left" Margin="600,232,0,0" TextWrapping="Wrap" Text="온도 : " VerticalAlignment="Top"/>
-                    <TextBlock x:Name="textBlock_Watt4" HorizontalAlignment="Left" Margin="600,203,0,0" TextWrapping="Wrap" Text="전력 : " VerticalAlignment="Top"/>
-                    <Label Content="Label" HorizontalAlignment="Left" Margin="150,198,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Label" HorizontalAlignment="Left" Margin="150,227,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Label" HorizontalAlignment="Left" Margin="300,198,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Label" HorizontalAlignment="Left" Margin="300,227,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Label" HorizontalAlignment="Left" Margin="464,198,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Label" HorizontalAlignment="Left" Margin="464,227,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Label" HorizontalAlignment="Left" Margin="650,198,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Label" HorizontalAlignment="Left" Margin="650,227,0,0" VerticalAlignment="Top"/>
-                    <ListBox x:Name="listBox_Notice" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="50,258,50,10" MouseDoubleClick="listBox_Notice_MouseDoubleClick"/>
-                    <Button x:Name="button_GoToTab1"  Content="Button" HorizontalAlignment="Left" Margin="100,81,0,0" VerticalAlignment="Top" Height="98" Width="106" Click="DisplayFirstAreaTab_Click">
+                    <TextBlock x:Name="textBlock_Temp1" Margin="100,232,0,0" TextWrapping="Wrap" Text="온도 : " HorizontalAlignment="Left" Width="35" Height="16" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Watt1" Margin="100,203,0,0" TextWrapping="Wrap" Text="전력 : " Height="16" VerticalAlignment="Top" HorizontalAlignment="Left" Width="35"/>
+                    <TextBlock x:Name="textBlock_Temp2" Margin="250,232,0,0" TextWrapping="Wrap" Text="온도 : " Height="16" VerticalAlignment="Top" HorizontalAlignment="Left" Width="35"/>
+                    <TextBlock x:Name="textBlock_Watt2" Margin="250,203,0,0" TextWrapping="Wrap" Text="전력 : " Height="16" VerticalAlignment="Top" HorizontalAlignment="Left" Width="35"/>
+                    <TextBlock x:Name="textBlock_Temp3" Margin="414,232,0,0" TextWrapping="Wrap" Text="온도 : " HorizontalAlignment="Left" Width="35" Height="16" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Watt3" Margin="414,203,0,0" TextWrapping="Wrap" Text="전력 : " HorizontalAlignment="Left" Width="35" Height="16" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Temp4" Margin="583,232,0,0" TextWrapping="Wrap" Text="온도 : " HorizontalAlignment="Left" Width="35" Height="16" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Watt4" Margin="583,203,0,0" TextWrapping="Wrap" Text="전력 : " HorizontalAlignment="Left" Width="35" Height="16" VerticalAlignment="Top"/>
+                    <Label x:Name="label_Watt1" Content="Label" Margin="150,198,0,0" Height="26" VerticalAlignment="Top" Width="80" HorizontalAlignment="Left"/>
+                    <Label x:Name="label_Temp1" Content="Label" Margin="150,227,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
+                    <Label x:Name="label_Watt2" Content="Label" Margin="300,198,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="80"/>
+                    <Label x:Name="label_Temp2" Content="Label" Margin="300,227,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
+                    <Label x:Name="label_Watt3" Content="Label" Margin="464,198,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
+                    <Label x:Name="label_Temp3" Content="Label" Margin="464,227,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
+                    <Label x:Name="label_Watt4" Content="Label" Margin="633,198,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
+                    <Label x:Name="label_Temp4" Content="Label" Margin="633,227,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
+                    <ListBox x:Name="listBox_Notice" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,258,50,10" MouseDoubleClick="listBox_Notice_MouseDoubleClick" HorizontalAlignment="Right" Width="694"/>
+                    <Button x:Name="button_GoToTab1"  Content="Button" Margin="0,81,588,0" Click="DisplayFirstAreaTab_Click" Height="98" VerticalAlignment="Top" HorizontalAlignment="Right" Width="106">
                         <Button.Background>
-                            <ImageBrush ImageSource="pack://application:,,,/Resources/pepe1.png"/>
+                            <ImageBrush ImageSource="pack://application:,,,/Resources/Image_GN02.png"/>
                         </Button.Background>
                     </Button>
-                    <Button x:Name="button_GoToTab2"  Content="Button" HorizontalAlignment="Left" Margin="250,81,0,0" VerticalAlignment="Top" Height="98" Width="106" Click="DisplaySecondAreaTab_Click">
+                    <Button x:Name="button_GoToTab2"  Content="Button" Margin="0,81,438,0" Click="DisplaySecondAreaTab_Click" Height="98" VerticalAlignment="Top" HorizontalAlignment="Right" Width="106">
                         <Button.Background>
-                            <ImageBrush ImageSource="/Resources/pepe1.png"/>
+                            <ImageBrush ImageSource="/Resources/Image_GN04.png"/>
                         </Button.Background>
                     </Button>
-                    <Button x:Name="button_GoToTab3"  Content="Button" HorizontalAlignment="Left" Margin="414,81,0,0" VerticalAlignment="Top" Height="98" Width="106" Click="DisplayThirdAreaTab_Click">
+                    <Button x:Name="button_GoToTab3"  Content="Button" Margin="0,81,274,0" Click="DisplayThirdAreaTab_Click" HorizontalAlignment="Right" Width="106" Height="98" VerticalAlignment="Top">
                         <Button.Background>
-                            <ImageBrush ImageSource="/Resources/pepe1.png"/>
+                            <ImageBrush ImageSource="/Resources/Image_GN05.png"/>
                         </Button.Background>
                     </Button>
-                    <Button x:Name="button_GoToTab4"  Content="Button" HorizontalAlignment="Left" Margin="600,81,0,0" VerticalAlignment="Top" Height="98" Width="106" Click="DisplayFourthAreaTab_Click">
+                    <Button x:Name="button_GoToTab4"  Content="Button" Margin="0,81,105,0" Click="DisplayFourthAreaTab_Click" Height="98" VerticalAlignment="Top" HorizontalAlignment="Right" Width="106">
                         <Button.Background>
-                            <ImageBrush ImageSource="/Resources/pepe1.png"/>
+                            <ImageBrush ImageSource="/Resources/Image_GN07.png"/>
                         </Button.Background>
                     </Button>
-                    <Button x:Name="button_test" Content="임시버튼, 누르면 list의 타임 값만 반환(추후삭제)" HorizontalAlignment="Left" Margin="24,23,0,0" VerticalAlignment="Top" Height="40" Width="279" Click="button_test_Click"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem_tab1" Header="1번" Margin="14,0,-14,0" Width="50" Height="20">
