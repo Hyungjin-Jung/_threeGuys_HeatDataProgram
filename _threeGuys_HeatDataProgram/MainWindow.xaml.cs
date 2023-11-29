@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using System.IO;
 
 using FactoryDataReader;
+using Setting;
 using System.Data;
 using System.Linq;
 
@@ -27,8 +28,10 @@ namespace _threeGuys_HeatDataProgram
     {
         PySocketHandler.PySocketHandler psh = new PySocketHandler.PySocketHandler();
         ThreadRunner.ThreadRunner thr = new ThreadRunner.ThreadRunner();
-        // CSV 파일 열어서 저장할 리스트 선언
+        // FactoryDataCSV 파일 열어서 저장할 리스트 선언
         List<FactoryDataReader.DataColumn> test_list = default;
+        // DataGrid에 넣기위한 csv list
+        List<Setting.SettingDataColumn> set_list = default;
         // 1초마다 작업을 하기위한 Timer 이용하기 위해 선언
         private DispatcherTimer timer = new DispatcherTimer();
         private int currentRow = 0;
@@ -38,6 +41,10 @@ namespace _threeGuys_HeatDataProgram
             psh.prepareSocket();
 
             string filePath = "heatTreatingFactoryData.csv";
+            string setfilePath = "HeatDataAlarmFilter.csv";
+
+            Setting.SetData setData = new Setting.SetData();
+            setData.LoadDataFromCSV(dataGrid_Settings, setfilePath);
 
             FactoryDataReader.FactoryDataReader test = new FactoryDataReader.FactoryDataReader();
 
@@ -47,8 +54,13 @@ namespace _threeGuys_HeatDataProgram
             test_list = test.heatTreatingFactoryDataRead(filePath);
 
             InitializeWebView();
+            PerformRadiobuttonTab1PowerChecked();
+        }
 
-            
+        private void PerformRadiobuttonTab1PowerChecked()
+        {
+            // 라디오 버튼 체크용 - 추후 
+            radiobutton_tab1_power_Checked(null, null);
             // 1초마다 TimerTick 메서드 호출
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += TimerTick;
@@ -108,8 +120,6 @@ namespace _threeGuys_HeatDataProgram
             webView2_tab1.Source = new Uri("http://127.0.0.1:8050/");
             webView2_tab2.Source = new Uri("http://127.0.0.1:8050/");
             webView2_tab3.Source = new Uri("http://127.0.0.1:8050/");
-
-
 
             // 이동할 구역의 아이디
             // 파이썬 부에서 해당 구역이 설정 되어 있어야함.
@@ -211,6 +221,8 @@ namespace _threeGuys_HeatDataProgram
             if (int.Parse(filterMin) >= inputValue)
                 listBox_Notice.Items.Add($"{filterAreaNum}번 구역의 {option}이(가) {inputValue}로, 설정한 {filterMin} 값 보다 낮습니다.");
         }
+        
+        // 리스트 더블 클릭하면 알림창 -> datagrid 
         private void listBox_Notice_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             //if(listBox_Notice.SelectedItem != null)
@@ -416,6 +428,25 @@ namespace _threeGuys_HeatDataProgram
                 await webView2_tab4.EnsureCoreWebView2Async(null);
 
                 webView2_tab4.Source = new Uri("http://127.0.0.1:8050/");
+            }
+        }
+
+        private void button_set_add_Click(object sender, RoutedEventArgs e)
+        {
+            Setting.SetData setData = new Setting.SetData();
+
+            set_list = setData.settingData(TextBox_set_error_name.Text, TextBox_set_column_name.Text, float.Parse(TextBox_set_value_above.Text), float.Parse(TextBox_set_value_below.Text), TextBox_set_etc.Text);
+            dataGrid_Settings.Items.Add(set_list);
+
+            //setData.SaveDataToCSV(dataGrid_Settings, filePath);
+
+        }
+
+        private void button_set_delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid_Settings.SelectedItem != null)
+            {
+                dataGrid_Settings.Items.Remove(dataGrid_Settings.SelectedItem);
             }
         }
 

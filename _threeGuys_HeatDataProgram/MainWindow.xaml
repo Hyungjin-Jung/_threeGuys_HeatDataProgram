@@ -85,13 +85,44 @@
                     <RadioButton x:Name="radiobutton_tab4_gas" Content="가스" Margin="52,224,0,0" FontSize="16" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab4_gas_Checked"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tabItem_History" Header="내역" Margin="54,0,-54,0" Width="50" Height="20">
+            <TabItem x:Name="tabItem_History" Header="내역" Margin="54,0,-54,0" Width="50" Height="20" VerticalAlignment="Bottom">
                 <Grid Background="#FFE5E5E5">
                     <DataGrid x:Name="dataGrid_History" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="45,29,68,29"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem_Settings" Header="설정" Margin="64,0,-64,0" Width="50" Height="20">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="dataGrid_Settings" Margin="21,172,0,29" HorizontalAlignment="Left" Width="590" AutoGenerateColumns="False" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridCheckBoxColumn Header="선택" Binding="{Binding IsCheck}" Width="40"/>
+                            <DataGridTextColumn Header="경고명" Binding="{Binding Path=set_error_name}" Width="100"/>
+                            <DataGridTextColumn Header="항목명" Binding="{Binding Path=set_column_name}" Width="100"/>
+                            <DataGridTextColumn Header="최소값 (이상)" Binding="{Binding Path=set_value_above}" Width="120"/>
+                            <DataGridTextColumn Header="최대값 (이하)" Binding="{Binding Path=set_value_below}" Width="120"/>
+                            <DataGridTextColumn Header="비고" Binding="{Binding Path=set_etc}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="button_set_add" Content="추가" Margin="643,25,0,0" FontSize="16" HorizontalAlignment="Left" Width="124" Height="44" VerticalAlignment="Top" Click="button_set_add_Click"/>
+                    <Button x:Name="button_set_delete" Content="삭제" Margin="643,110,0,0" FontSize="16" HorizontalAlignment="Left" Width="124" Height="44" VerticalAlignment="Top" Click="button_set_delete_Click"/>
+                    <GroupBox Header="" Margin="21,10,0,0" HorizontalAlignment="Left" Width="590" Height="144" VerticalAlignment="Top">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="357*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="경고명" Margin="10,10,478,80" RenderTransformOrigin="0.5,0.5" FontSize="14" Grid.ColumnSpan="2" TextAlignment="Center"/>
+                            <TextBlock Text="항목명" Margin="97,10,372,80" RenderTransformOrigin="0.5,0.5" FontSize="14" Grid.Column="1" TextAlignment="Center"/>
+                            <TextBlock Text="최소값 (이상)" Margin="210,10,256,80" RenderTransformOrigin="0.5,0.5" FontSize="14" Grid.Column="1" TextAlignment="Center"/>
+                            <TextBlock Text="최대값 (이하)" Margin="332,10,130,80" RenderTransformOrigin="0.5,0.5" FontSize="14" Grid.Column="1" TextAlignment="Center"/>
+                            <TextBlock Text="비고" Margin="462,10,21,80" RenderTransformOrigin="0.5,0.5" FontSize="14" Grid.Column="1" TextAlignment="Center"/>
+                        </Grid>
+                    </GroupBox>
+                    <TextBox x:Name="TextBox_set_error_name" Margin="36,91,0,0" TextWrapping="Wrap" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91"/>
+                    <TextBox x:Name="TextBox_set_column_name" Margin="142,91,0,0" TextWrapping="Wrap" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91"/>
+                    <TextBox x:Name="TextBox_set_value_above" Margin="249,91,0,0" TextWrapping="Wrap" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="102"/>
+                    <TextBox x:Name="TextBox_set_value_below" Margin="372,91,0,0" TextWrapping="Wrap" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="106"/>
+                    <TextBox x:Name="TextBox_set_etc" Margin="494,91,0,0" TextWrapping="Wrap" RenderTransformOrigin="0.216,0.586" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="104"/>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>
