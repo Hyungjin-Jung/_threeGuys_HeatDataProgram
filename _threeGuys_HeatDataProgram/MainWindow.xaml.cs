@@ -41,15 +41,13 @@ namespace _threeGuys_HeatDataProgram
         {
             InitializeComponent();
             psh.prepareSocket();
-
             string filePath = "heatTreatingFactoryData.csv";
             string setfilePath = "HeatDataAlarmFilter.csv";
-
             Setting.SetData setData = new Setting.SetData();
+            //dataGrid_Settings.ItemsSource = setData.LoadDataFromCSV(setfilePath); // 초기 데이터 불러와지지만 DataGrid에 데이터 추가 불가
+            ///dataGrid_Settings.Items.Add(setData.LoadDataFromCSV(setfilePath));   // 초기 데이터 한 줄만 불러오고, 데이터 추가 가능
             setData.LoadDataFromCSV(dataGrid_Settings, setfilePath);
-
             FactoryDataReader.FactoryDataReader test = new FactoryDataReader.FactoryDataReader();
-
             // CSV 파일 열어서 DataGrid에 저장
             dataGrid_History.ItemsSource = test.heatTreatingFactoryDataRead(filePath);
             // CSV 파일 열어서 리스트에 저장
@@ -439,11 +437,11 @@ namespace _threeGuys_HeatDataProgram
         private void button_set_add_Click(object sender, RoutedEventArgs e)
         {
             Setting.SetData setData = new Setting.SetData();
-
             set_list = setData.settingData(TextBox_set_error_name.Text, TextBox_set_column_name.Text, float.Parse(TextBox_set_value_above.Text), float.Parse(TextBox_set_value_below.Text), TextBox_set_etc.Text);
             dataGrid_Settings.Items.Add(set_list);
-
-            //setData.SaveDataToCSV(dataGrid_Settings, filePath);
+            string setfilePath = "HeatDataAlarmFilter.csv";
+            // 저장 오류 수정 필요
+            //setData.SaveDataToCSV(dataGrid_Settings, setfilePath);
 
         }
 
