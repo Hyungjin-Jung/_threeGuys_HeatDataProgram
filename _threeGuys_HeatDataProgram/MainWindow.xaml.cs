@@ -20,6 +20,7 @@ using Microsoft.Web.WebView2.WinForms;
 using Microsoft.Web.WebView2.Wpf;
 using Microsoft.Web.WebView2.Core;
 using System.Windows.Threading;
+using static Setting.SettingDataColumn;
 
 namespace _threeGuys_HeatDataProgram
 {
@@ -42,7 +43,7 @@ namespace _threeGuys_HeatDataProgram
             string filePath = "heatTreatingFactoryData.csv";
             string setfilePath = "HeatDataAlarmFilter.csv";
 
-            Setting.setFilterData setData = new Setting.setFilterData();
+            Setting.setFilterData setData= new Setting.setFilterData();
 
             setData.LoadDataFromCSV(dataGrid_Settings, setfilePath);
             FactoryDataReader.FactoryDataReader test = new FactoryDataReader.FactoryDataReader();
