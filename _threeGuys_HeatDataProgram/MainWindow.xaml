@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:_threeGuys_HeatDataProgram"
         xmlns:wv="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize">
+        Title="MainWindow" Height="450" Width="800" ResizeMode="CanMinimize">
     <Grid>
         <TabControl x:Name="tabControl">
             <TabItem x:Name="tabItem_Main" Header="Main" Margin="4,0,-4,0" Width="50" Height="20">
@@ -55,39 +55,43 @@
             </TabItem>
             <TabItem x:Name="tabItem_tab1" Header="1번" Margin="14,0,-14,0" Width="50" Height="20">
                 <Grid Background="#FFE5E5E5">
-                    <wv:WebView2 x:Name="webView2_tab1" Margin="193,39,61,41"/>
-                    <RadioButton x:Name="radiobutton_tab1_power" Content="전력" Margin="52,59,0,0" FontSize="16" Checked="radiobutton_tab1_power_Checked" IsChecked="True" HorizontalAlignment="Left" Width="81" Height="41" VerticalAlignment="Top"/>
-                    <RadioButton x:Name="radiobutton_tab1_temp" Content="온도" Margin="52,143,0,0" FontSize="16" Checked="radiobutton_tab1_temp_Checked" HorizontalAlignment="Left" Width="81" Height="43" VerticalAlignment="Top"/>
-                    <RadioButton x:Name="radiobutton_tab1_gas" Content="가스" Margin="52,224,0,0" FontSize="16" Checked="radiobutton_tab1_gas_Checked" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="27*"/>
+                        <ColumnDefinition Width="767*"/>
+                    </Grid.ColumnDefinitions>
+                    <wv:WebView2 x:Name="webView2_tab1" Source="http://127.0.0.1:56790" Margin="166,39,61,41" Grid.Column="1"/>
+                    <RadioButton x:Name="radiobutton_tab1_power" Content="전력" Margin="25,59,0,0" FontSize="16" Checked="radiobutton_tab1_power_Checked" IsChecked="False" HorizontalAlignment="Left" Width="81" Height="41" VerticalAlignment="Top" Grid.Column="1"/>
+                    <RadioButton x:Name="radiobutton_tab1_temp" Content="온도" Margin="25,143,0,0" FontSize="16" Checked="radiobutton_tab1_temp_Checked" HorizontalAlignment="Left" Width="81" Height="43" VerticalAlignment="Top" Grid.Column="1"/>
+                    <RadioButton x:Name="radiobutton_tab1_gas" Content="가스" Margin="25,224,0,0" FontSize="16" Checked="radiobutton_tab1_gas_Checked" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Grid.Column="1"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem_tab2" Header="2번" Margin="24,0,-24,0" Width="50" Height="20">
                 <Grid Background="#FFE5E5E5">
-                    <wv:WebView2 x:Name="webView2_tab2" Margin="193,39,61,41"/>
-                    <RadioButton x:Name="radiobutton_tab2_power" Content="전력" Margin="52,59,0,0" FontSize="16" IsChecked="True" Checked="radiobutton_tab2_power_Checked" HorizontalAlignment="Left" Width="81" Height="41" VerticalAlignment="Top"/>
+                    <wv:WebView2 x:Name="webView2_tab2" Source="http://127.0.0.1:56791" Margin="193,39,61,41"/>
+                    <RadioButton x:Name="radiobutton_tab2_power" Content="전력" Margin="52,59,0,0" FontSize="16" IsChecked="False" Checked="radiobutton_tab2_power_Checked" HorizontalAlignment="Left" Width="81" Height="41" VerticalAlignment="Top"/>
                     <RadioButton x:Name="radiobutton_tab2_temp" Content="온도" Margin="52,143,0,0" FontSize="16" Checked="radiobutton_tab2_temp_Checked" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81"/>
                     <RadioButton x:Name="radiobutton_tab2_gas" Content="가스" Margin="52,224,0,0" FontSize="16" Checked="radiobutton_tab2_gas_Checked" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81"/>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tabItem_tab3" Header="3번" Margin="34,0,-34,0" Width="50" Height="20">
+            <TabItem x:Name="tabItem_tab3"  Header="3번" Margin="34,0,-34,0" Width="50" Height="20">
                 <Grid Background="#FFE5E5E5">
-                    <wv:WebView2 x:Name="webView2_tab3" Margin="193,39,61,41"/>
-                    <RadioButton x:Name="radiobutton_tab3_power" Content="전력" Margin="52,59,0,0" FontSize="16" IsChecked="True" HorizontalAlignment="Left" Width="81" Height="41" VerticalAlignment="Top" Checked="radiobutton_tab3_power_Checked"/>
+                    <wv:WebView2 x:Name="webView2_tab3" Source="http://127.0.0.1:56792" Margin="193,39,61,41"/>
+                    <RadioButton x:Name="radiobutton_tab3_power" Content="전력" Margin="52,59,0,0" FontSize="16" IsChecked="False" HorizontalAlignment="Left" Width="81" Height="41" VerticalAlignment="Top" Checked="radiobutton_tab3_power_Checked"/>
                     <RadioButton x:Name="radiobutton_tab3_temp" Content="온도" Margin="52,143,0,0" FontSize="16" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab3_temp_Checked"/>
                     <RadioButton x:Name="radiobutton_tab3_gas" Content="가스" Margin="52,224,0,0" FontSize="16" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab3_gas_Checked"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem_tab4" Header="4번" Margin="44,0,-44,0" Width="50" Height="20">
                 <Grid Background="#FFE5E5E5">
-                    <wv:WebView2 x:Name="webView2_tab4" Margin="193,39,61,41"/>
-                    <RadioButton x:Name="radiobutton_tab4_power" Content="전력" Margin="52,59,0,0" FontSize="16" IsChecked="True" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab4_power_Checked" Loaded="radiobutton_tab4_power_Checked"/>
+                    <wv:WebView2 x:Name="webView2_tab4" Source="http://127.0.0.1:56793" Margin="193,39,61,41"/>
+                    <RadioButton x:Name="radiobutton_tab4_power" Content="전력" Margin="52,59,0,0" FontSize="16" IsChecked="False" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab4_power_Checked"/>
                     <RadioButton x:Name="radiobutton_tab4_temp" Content="온도" Margin="52,143,0,0" FontSize="16" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab4_temp_Checked"/>
                     <RadioButton x:Name="radiobutton_tab4_gas" Content="가스" Margin="52,224,0,0" FontSize="16" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab4_gas_Checked"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem_History" Header="내역" Margin="54,0,-54,0" Width="50" Height="20" VerticalAlignment="Bottom">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="dataGrid_History" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="45,29,68,29"/>
+                    <DataGrid x:Name="dataGrid_History" Margin="45,29,68,29"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem_Settings" Header="설정" Margin="64,0,-64,0" Width="50" Height="20">
@@ -124,5 +128,6 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <Rectangle x:Name="rectangle_Rectangle" HorizontalAlignment="Left" Height="519" Margin="-49,-44,0,0" Stroke="Black" VerticalAlignment="Top" Width="978" Fill="#FCE5E5E5" d:IsHidden="True"/>
     </Grid>
 </Window>
