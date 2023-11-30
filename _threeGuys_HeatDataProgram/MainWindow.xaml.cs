@@ -38,15 +38,14 @@ namespace _threeGuys_HeatDataProgram
         public MainWindow()
         {
             InitializeComponent();
-
+            
             string filePath = "heatTreatingFactoryData.csv";
             string setfilePath = "HeatDataAlarmFilter.csv";
 
             Setting.setFilterData setData = new Setting.setFilterData();
+
             setData.LoadDataFromCSV(dataGrid_Settings, setfilePath);
-
             FactoryDataReader.FactoryDataReader test = new FactoryDataReader.FactoryDataReader();
-
             // CSV 파일 열어서 DataGrid에 저장
             dataGrid_History.ItemsSource = test.heatTreatingFactoryDataRead(filePath);
             // CSV 파일 열어서 리스트에 저장
@@ -429,9 +428,11 @@ namespace _threeGuys_HeatDataProgram
             Setting.setFilterData setData = new Setting.setFilterData();
 
             set_list = setData.getFilterData(TextBox_set_error_name.Text, TextBox_set_column_name.Text, float.Parse(TextBox_set_value_above.Text), float.Parse(TextBox_set_value_below.Text), TextBox_set_etc.Text);
-            dataGrid_Settings.Items.Add(set_list);
 
-            //setData.SaveDataToCSV(dataGrid_Settings, filePath);
+            dataGrid_Settings.Items.Add(set_list);
+            string setfilePath = "HeatDataAlarmFilter.csv";
+            // 저장 오류 수정 필요
+            //setData.SaveDataToCSV(dataGrid_Settings, setfilePath);
 
         }
 
