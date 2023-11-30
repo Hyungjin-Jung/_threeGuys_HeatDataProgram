@@ -138,8 +138,9 @@ namespace FactoryDataReader
                 MessageBox.Show(ex.Message);
                 
             }
-
             return new List<DataColumn>();
         }
+
+
     }
 }

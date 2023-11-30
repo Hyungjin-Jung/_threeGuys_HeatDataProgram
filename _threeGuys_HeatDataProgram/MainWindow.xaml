@@ -30,7 +30,7 @@
                     <Label x:Name="label_Temp3" Content="Label" Margin="464,227,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
                     <Label x:Name="label_Watt4" Content="Label" Margin="633,198,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
                     <Label x:Name="label_Temp4" Content="Label" Margin="633,227,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
-                    <ListBox x:Name="listBox_Notice" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,258,50,10" MouseDoubleClick="listBox_Notice_MouseDoubleClick" HorizontalAlignment="Right" Width="694"/>
+                    <ListBox x:Name="listBox_Notice" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,258,50,10" MouseDoubleClick="listBoxNoticeMouseDouble_Click" HorizontalAlignment="Right" Width="694"/>
                     <Button x:Name="button_GoToTab1"  Content="Button" Margin="0,81,588,0" Click="DisplayFirstAreaTab_Click" Height="98" VerticalAlignment="Top" HorizontalAlignment="Right" Width="106">
                         <Button.Background>
                             <ImageBrush ImageSource="pack://application:,,,/Resources/Image_GN02.png"/>

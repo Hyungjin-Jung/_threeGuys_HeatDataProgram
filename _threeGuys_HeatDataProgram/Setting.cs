@@ -21,9 +21,9 @@ namespace Setting
         public string set_etc { get; set; }
     }
 
-    class SetData
+    public class setFilterData
     {
-        public List<SettingDataColumn> settingData(string TextBox_set_error_name, string TextBox_set_column_name, float TextBox_set_value_above, float TextBox_set_value_below, string TextBox_set_etc)
+        public List<SettingDataColumn> getFilterData(string TextBox_set_error_name, string TextBox_set_column_name, float TextBox_set_value_above, float TextBox_set_value_below, string TextBox_set_etc)
         {
             try
             {
