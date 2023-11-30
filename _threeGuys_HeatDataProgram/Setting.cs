@@ -20,9 +20,11 @@ namespace Setting
         public float set_value_above { get; set; }
         public float set_value_below { get; set; }
         public string set_etc { get; set; }
-      
+    }
+
     public class setFilterData
     {
+        List<SettingDataColumn> setlist = new List<SettingDataColumn>();
         public List<SettingDataColumn> getFilterData(string TextBox_set_error_name, string TextBox_set_column_name, float TextBox_set_value_above, float TextBox_set_value_below, string TextBox_set_etc)
         {
             try
