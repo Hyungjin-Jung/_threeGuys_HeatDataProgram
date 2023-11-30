@@ -20,14 +20,10 @@ namespace Setting
         public float set_value_above { get; set; }
         public float set_value_below { get; set; }
         public string set_etc { get; set; }
-
-    }
-    class SetData
+      
+    public class setFilterData
     {
-        List<SettingDataColumn> setlist = new List<SettingDataColumn>();
-
-        // dataGrid_Settings라는 Datagrid에 추가하는 함수
-        public List<SettingDataColumn> settingData(string TextBox_set_error_name, string TextBox_set_column_name, float TextBox_set_value_above, float TextBox_set_value_below, string TextBox_set_etc)
+        public List<SettingDataColumn> getFilterData(string TextBox_set_error_name, string TextBox_set_column_name, float TextBox_set_value_above, float TextBox_set_value_below, string TextBox_set_etc)
         {
             try
             {

@@ -15,7 +15,6 @@ using Setting;
 using System.Data;
 using System.Linq;
 
-using ThreadRunner;
 using PySocketHandler;
 using Microsoft.Web.WebView2.WinForms;
 using Microsoft.Web.WebView2.Wpf;
@@ -27,7 +26,6 @@ namespace _threeGuys_HeatDataProgram
     public partial class MainWindow : Window
     {
         PySocketHandler.PySocketHandler psh = new PySocketHandler.PySocketHandler();
-        ThreadRunner.ThreadRunner thr = new ThreadRunner.ThreadRunner();
         // FactoryDataCSV 파일 열어서 저장할 리스트 선언
         List<FactoryDataReader.DataColumn> test_list = default;
         // 설정 DataGrid에 넣기위한 csv list
@@ -40,12 +38,12 @@ namespace _threeGuys_HeatDataProgram
         public MainWindow()
         {
             InitializeComponent();
-            psh.prepareSocket();
+            
             string filePath = "heatTreatingFactoryData.csv";
             string setfilePath = "HeatDataAlarmFilter.csv";
-            Setting.SetData setData = new Setting.SetData();
-            //dataGrid_Settings.ItemsSource = setData.LoadDataFromCSV(setfilePath); // 초기 데이터 불러와지지만 DataGrid에 데이터 추가 불가
-            ///dataGrid_Settings.Items.Add(setData.LoadDataFromCSV(setfilePath));   // 초기 데이터 한 줄만 불러오고, 데이터 추가 가능
+
+            Setting.setFilterData setData = new Setting.setFilterData();
+
             setData.LoadDataFromCSV(dataGrid_Settings, setfilePath);
             FactoryDataReader.FactoryDataReader test = new FactoryDataReader.FactoryDataReader();
             // CSV 파일 열어서 DataGrid에 저장
@@ -60,7 +58,7 @@ namespace _threeGuys_HeatDataProgram
 
             // 1초마다 TimerTick 메서드 호출 -> 1초마다 CSV 알림 받아오는 용도로 설정
             timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += TimerTick;
+            timer.Tick += showTemperatureAndPower;
             timer.Start();
         }
 
@@ -77,7 +75,7 @@ namespace _threeGuys_HeatDataProgram
             rectangle_Rectangle.Visibility = Visibility.Collapsed;
         }
         // 1초마다 작업 실행 - 필터 및 알림 용도
-        private void TimerTick(object sender, EventArgs e)
+        private void showTemperatureAndPower(object sender, EventArgs e)
         {
             // 1초마다 수행할 작업을 여기에 구현
             float value_Watt1 = test_list[currentRow].GN02N_MAIN_POWER; 
@@ -93,18 +91,18 @@ namespace _threeGuys_HeatDataProgram
             string timer = test_list[currentRow].Time;
 
             // 가져온 값에 대한 작업 수행
-            label_Watt1.Content = value_Watt1.ToString() + " (W)";
-            label_Watt2.Content = value_Watt2.ToString() + " (W)";
-            label_Watt3.Content = value_Watt3.ToString() + " (W)";
-            label_Watt4.Content = value_Watt4.ToString() + " (W)";
+            label_Watt1.Content = value_Watt1.ToString() + " [W]";
+            label_Watt2.Content = value_Watt2.ToString() + " [W]";
+            label_Watt3.Content = value_Watt3.ToString() + " [W]";
+            label_Watt4.Content = value_Watt4.ToString() + " [W]";
 
-            label_Temp1.Content = value_Temp1.ToString() + "( °C)";
-            label_Temp2.Content = value_Temp2.ToString() +"( °C)";
-            label_Temp3.Content = value_Temp3.ToString() +"( °C)";
-            label_Temp4.Content = value_Temp4.ToString() +"( °C)";
+            label_Temp1.Content = value_Temp1.ToString() + " [°C]";
+            label_Temp2.Content = value_Temp2.ToString() +" [°C]";
+            label_Temp3.Content = value_Temp3.ToString() +" [°C]";
+            label_Temp4.Content = value_Temp4.ToString() + " [°C]";
 
             // if( 필터체크 통과 못했으면 ) 아래 함수 실행
-            ShowAlertOnDangerousLevels(timer, value_Watt1, value_Watt2, value_Watt3, value_Watt4, value_Temp1, value_Temp2, value_Temp3, value_Temp4, currentRow);
+            showAlertOnDangerousLevels(timer, value_Watt1, value_Watt2, value_Watt3, value_Watt4, value_Temp1, value_Temp2, value_Temp3, value_Temp4);
 
             // 다음 행으로 이동
             currentRow++;
@@ -152,7 +150,7 @@ namespace _threeGuys_HeatDataProgram
         }
 
         // 필터 CSV 체크
-        private void ShowAlertOnDangerousLevels(string timer, float valueWatt1, float valueWatt2, float valueWatt3, float valueWatt4, float valueTemp1, float valueTemp2, float valueTemp3, float valueTemp4, int currentRow)
+        private void showAlertOnDangerousLevels(string timer, float valueWatt1, float valueWatt2, float valueWatt3, float valueWatt4, float valueTemp1, float valueTemp2, float valueTemp3, float valueTemp4)
         {
             // Filter CSV 파일 열어서
             string[] lines = File.ReadAllLines("HeatDataAlarmFilter.csv");
@@ -182,28 +180,28 @@ namespace _threeGuys_HeatDataProgram
                 switch (filterName)
                 {
                     case "GN02N_MAIN_POWER":
-                        Check_Filter_CSV(timer, 1, filterName, "전력", valueWatt1, filterMax, filterMin);
+                        appendListBoxNotice(timer, 1, filterName, "전력", valueWatt1, filterMax, filterMin);
                         break;
                     case "GN04N_MAIN_POWER":
-                        Check_Filter_CSV(timer, 2, filterName, "전력", valueWatt2, filterMax, filterMin);
+                        appendListBoxNotice(timer, 2, filterName, "전력", valueWatt2, filterMax, filterMin);
                         break;
                     case "GN05N_MAIN_POWER":
-                        Check_Filter_CSV(timer, 3, filterName, "전력", valueWatt3, filterMax, filterMin);
+                        appendListBoxNotice(timer, 3, filterName, "전력", valueWatt3, filterMax, filterMin);
                         break;
                     case "GN07N_MAIN_POWER":
-                        Check_Filter_CSV(timer, 4, filterName, "전력", valueWatt4, filterMax, filterMin);
+                        appendListBoxNotice(timer, 4, filterName, "전력", valueWatt4, filterMax, filterMin);
                         break;
                     case "GN02N_TEMP":
-                        Check_Filter_CSV(timer, 1, filterName, "온도", valueTemp1, filterMax, filterMin);
+                        appendListBoxNotice(timer, 1, filterName, "온도", valueTemp1, filterMax, filterMin);
                         break;
                     case "GN04M_TEMP":
-                        Check_Filter_CSV(timer, 2, filterName, "온도", valueTemp2, filterMax, filterMin);
+                        appendListBoxNotice(timer, 2, filterName, "온도", valueTemp2, filterMax, filterMin);
                         break;
                     case "GN05M_TEMP":
-                        Check_Filter_CSV(timer, 3, filterName, "온도", valueTemp3, filterMax, filterMin);
+                        appendListBoxNotice(timer, 3, filterName, "온도", valueTemp3, filterMax, filterMin);
                         break;
                     case "GN07N_TEMP":
-                        Check_Filter_CSV(timer, 4, filterName, "온도", valueTemp4, filterMax, filterMin);
+                        appendListBoxNotice(timer, 4, filterName, "온도", valueTemp4, filterMax, filterMin);
                         break;
                 }
             }
@@ -218,7 +216,7 @@ namespace _threeGuys_HeatDataProgram
         /// <param name="inputValue">현재 값(CSV에서 읽은 값)</param>
         /// <param name="filterMax">필터에서 설정한 최댓값</param>
         /// <param name="filterMin">필터에서 설정한 최솟값</param>
-        private void Check_Filter_CSV(string timer, int filterAreaNum, string filterName, string option,float inputValue, string filterMax, string filterMin)
+        private void appendListBoxNotice(string timer, int filterAreaNum, string filterName, string option,float inputValue, string filterMax, string filterMin)
         {
             string[] alarmInfo = new string[4];
             
@@ -248,7 +246,7 @@ namespace _threeGuys_HeatDataProgram
         }
         
         // 리스트 더블 클릭하면 알림창 -> datagrid 
-        private void listBox_Notice_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void listBoxNoticeMouseDouble_Click(object sender, MouseButtonEventArgs e)
         {
             if (listBox_Notice.SelectedItem != null)
             {
@@ -273,16 +271,7 @@ namespace _threeGuys_HeatDataProgram
 
                     }
                 }
-
             }
-
-        }
-
-        // 마우스 스크롤을 숨기는 함수 
-        private async Task HideScrollBars()
-        {
-            string script = "document.documentElement.style.overflow = 'hidden';";
-            await webView2_tab1.ExecuteScriptAsync(script);
         }
 
         // 1번 탭 각 라디오 버튼
@@ -436,8 +425,10 @@ namespace _threeGuys_HeatDataProgram
 
         private void button_set_add_Click(object sender, RoutedEventArgs e)
         {
-            Setting.SetData setData = new Setting.SetData();
-            set_list = setData.settingData(TextBox_set_error_name.Text, TextBox_set_column_name.Text, float.Parse(TextBox_set_value_above.Text), float.Parse(TextBox_set_value_below.Text), TextBox_set_etc.Text);
+            Setting.setFilterData setData = new Setting.setFilterData();
+
+            set_list = setData.getFilterData(TextBox_set_error_name.Text, TextBox_set_column_name.Text, float.Parse(TextBox_set_value_above.Text), float.Parse(TextBox_set_value_below.Text), TextBox_set_etc.Text);
+
             dataGrid_Settings.Items.Add(set_list);
             string setfilePath = "HeatDataAlarmFilter.csv";
             // 저장 오류 수정 필요
