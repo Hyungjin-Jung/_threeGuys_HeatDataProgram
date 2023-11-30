@@ -94,7 +94,6 @@
                 <Grid Background="#FFE5E5E5">
                     <DataGrid x:Name="dataGrid_Settings" Margin="21,172,0,29" HorizontalAlignment="Left" Width="590" AutoGenerateColumns="False" CanUserAddRows="False">
                         <DataGrid.Columns>
-                            <DataGridCheckBoxColumn Header="선택" Binding="{Binding IsCheck}" Width="40"/>
                             <DataGridTextColumn Header="경고명" Binding="{Binding Path=set_error_name}" Width="100"/>
                             <DataGridTextColumn Header="항목명" Binding="{Binding Path=set_column_name}" Width="100"/>
                             <DataGridTextColumn Header="최소값 (이상)" Binding="{Binding Path=set_value_above}" Width="120"/>
