@@ -1,26 +1,10 @@
-﻿using System.Text;
+﻿
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO;
-
-using FactoryDataReader;
-using Setting;
-using System.Data;
-using System.Linq;
-
-using PySocketHandler;
-using Microsoft.Web.WebView2.WinForms;
-using Microsoft.Web.WebView2.Wpf;
-using Microsoft.Web.WebView2.Core;
 using System.Windows.Threading;
-using static Setting.SettingDataColumn;
+using Setting;
 
 namespace _threeGuys_HeatDataProgram
 {
@@ -261,19 +245,32 @@ namespace _threeGuys_HeatDataProgram
                     if (text[0] == selectedIndex)
                     {
                         tabControl.SelectedIndex = 5;
-
-                        var filteredItemsIndex = test_list.FindIndex(item => item.GN04N_MAIN_POWER == float.Parse(alaram_to_Datagrid_list[int.Parse(selectedIndex)][2])
+                        if (alaram_to_Datagrid_list[int.Parse(selectedIndex)][1] == "GN04N_MAIN_POWER")
+                        {
+                            var filteredItemsIndex = test_list.FindIndex(item => item.GN04N_MAIN_POWER == float.Parse(alaram_to_Datagrid_list[int.Parse(selectedIndex)][2])
                         && item.Time == alaram_to_Datagrid_list[int.Parse(selectedIndex)][3]);
 
-                        dataGrid_History.SelectedIndex = filteredItemsIndex;
+                            dataGrid_History.SelectedIndex = filteredItemsIndex;
 
-                        DataGridRow row = (DataGridRow)dataGrid_History.ItemContainerGenerator.ContainerFromIndex(filteredItemsIndex);
-                        row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                            DataGridRow row = (DataGridRow)dataGrid_History.ItemContainerGenerator.ContainerFromIndex(filteredItemsIndex);
+                            row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                        }
+                        else if(alaram_to_Datagrid_list[int.Parse(selectedIndex)][1] == "GN02N_TEMP")
+                        {
+                            var filteredItemsIndex = test_list.FindIndex(item => item.GN02N_TEMP == float.Parse(alaram_to_Datagrid_list[int.Parse(selectedIndex)][2])
+&& item.Time == alaram_to_Datagrid_list[int.Parse(selectedIndex)][3]);
 
+                            dataGrid_History.SelectedIndex = filteredItemsIndex;
+
+                            DataGridRow row = (DataGridRow)dataGrid_History.ItemContainerGenerator.ContainerFromIndex(filteredItemsIndex);
+                            row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+
+                        }
                     }
                 }
             }
         }
+
 
         // 1번 탭 각 라디오 버튼
         private async void radiobutton_tab1_power_Checked(object sender, RoutedEventArgs e)
@@ -428,14 +425,74 @@ namespace _threeGuys_HeatDataProgram
         {
             Setting.setFilterData setData = new Setting.setFilterData();
 
-            set_list = setData.getFilterData(TextBox_set_error_name.Text, TextBox_set_column_name.Text, float.Parse(TextBox_set_value_above.Text), float.Parse(TextBox_set_value_below.Text), TextBox_set_etc.Text);
+            //string selectedComboBoxItem = ((ComboBoxItem)comboBox_test.SelectedItem)?.Content.ToString();
+            try
+            {
+                //setData.setlist = setData.getFilterData(comboBox_test.Text, TextBox_set_column_name.Text, float.Parse(TextBox_set_value_above.Text), float.Parse(TextBox_set_value_below.Text), TextBox_set_etc.Text);
 
-            dataGrid_Settings.Items.Add(set_list);
-            string setfilePath = "HeatDataAlarmFilter.csv";
-            // 저장 오류 수정 필요
-            //setData.SaveDataToCSV(dataGrid_Settings, setfilePath);
+                //dataGrid_Settings.Items.Add(setData.setlist);
+                //string setfilePath = "HeatDataAlarmFilter.csv";
+                // 저장 오류 수정 필요
+                //setData.SaveDataToCSV(dataGrid_Settings, setfilePath);
 
+                setData.setlist = setData.getFilterData(comboBox_test.Text, TextBox_set_column_name.Text, float.Parse(TextBox_set_value_above.Text), float.Parse(TextBox_set_value_below.Text), TextBox_set_etc.Text);
+                dataGrid_Settings.Items.Add(setData.setlist);
+
+                // 데이터 세팅
+                Setting.SettingDataColumn setData2 = new SettingDataColumn
+                {
+                    set_error_name = comboBox_test.Text,
+                    set_column_name = TextBox_set_column_name.Text,
+                    set_value_above = float.Parse(TextBox_set_value_above.Text),
+                    set_value_below = float.Parse(TextBox_set_value_below.Text),
+                    set_etc = TextBox_set_etc.Text
+                };
+                // 파일 경로 설정
+                string setfilePath = "HeatDataAlarmFilter.csv";
+                // 데이터 읽어옴
+                List<SettingDataColumn> existingData = setData.ReadCSV(setfilePath);
+                // 데이터 병합
+                existingData.Add(setData2);
+                // 데이터 새로 쓰기
+                setData.WriteToCsv(existingData, setfilePath);
+
+
+
+            }
+            catch
+            {
+                TextBox_set_value_above.Text = "0";
+                TextBox_set_value_below.Text = "0";
+                setData.setlist = setData.getFilterData(comboBox_test.Text, TextBox_set_column_name.Text, float.Parse(TextBox_set_value_above.Text), float.Parse(TextBox_set_value_below.Text), TextBox_set_etc.Text);
+                dataGrid_Settings.Items.Add(setData.setlist);
+
+                // 데이터 세팅
+                Setting.SettingDataColumn setData2 = new SettingDataColumn
+                {
+                    set_error_name = comboBox_test.Text,
+                    set_column_name = TextBox_set_column_name.Text,
+                    set_value_above = float.Parse(TextBox_set_value_above.Text),
+                    set_value_below = float.Parse(TextBox_set_value_below.Text),
+                    set_etc = TextBox_set_etc.Text
+                };
+                // 파일 경로 설정
+                string setfilePath = "HeatDataAlarmFilter.csv";
+                // 데이터 읽어옴
+                List<SettingDataColumn> existingData = setData.ReadCSV(setfilePath);
+                // 데이터 병합
+                existingData.Add(setData2);
+                // 데이터 새로 쓰기
+                setData.WriteToCsv(existingData, setfilePath);
+
+                // 저장 오류 수정 필요
+                //setData.SaveDataToCSV(dataGrid_Settings, setfilePath);
+
+            }
         }
+
+
+        
+
 
         private void button_set_delete_Click(object sender, RoutedEventArgs e)
         {
