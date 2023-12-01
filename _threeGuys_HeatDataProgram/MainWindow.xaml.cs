@@ -4,30 +4,36 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.IO;
 using System.Windows.Threading;
-using Setting;
+using setFilterData;
 
 namespace _threeGuys_HeatDataProgram
 {
     public partial class MainWindow : Window
     {
-        PySocketHandler.PySocketHandler psh = new PySocketHandler.PySocketHandler();
+        PySocketHandler.PySocketHandler PySocket = new PySocketHandler.PySocketHandler();
+        setFilterData.SettingDataColumn filterList = new SettingDataColumn();
         // FactoryDataCSV 파일 열어서 저장할 리스트 선언
         List<FactoryDataReader.DataColumn> test_list = default;
         // 설정 DataGrid에 넣기위한 csv list
-        List<Setting.SettingDataColumn> set_list = default;
+        List<setFilterData.SettingDataColumn> set_list = default;
         // 알림창에 문제가 생긴 부분만 모아놓은 List
         List<string[]> alaram_to_Datagrid_list = new List<string[]>();
+        // 필터 모아놓는곳
+
+
         // 1초마다 작업을 하기위한 Timer 이용하기 위해 선언
         private DispatcherTimer timer = new DispatcherTimer();
         private int currentRow = 0;
         public MainWindow()
         {
+            PySocket.prepareSocket();
             InitializeComponent();
-            
-            string filePath = "heatTreatingFactoryData.csv";
-            string setfilePath = "HeatDataAlarmFilter.csv";
 
-            Setting.setFilterData setData= new Setting.setFilterData();
+           
+            string filePath = Directory.GetCurrentDirectory() + "/heatTreatingFactoryData.csv";
+            string setfilePath = Directory.GetCurrentDirectory() + "/HeatDataAlarmFilter.csv";
+
+            setFilterData.setFilterData setData= new setFilterData.setFilterData();
 
             setData.LoadDataFromCSV(dataGrid_Settings, setfilePath);
             FactoryDataReader.FactoryDataReader test = new FactoryDataReader.FactoryDataReader();
@@ -137,8 +143,13 @@ namespace _threeGuys_HeatDataProgram
         // 필터 CSV 체크
         private void showAlertOnDangerousLevels(string timer, float valueWatt1, float valueWatt2, float valueWatt3, float valueWatt4, float valueTemp1, float valueTemp2, float valueTemp3, float valueTemp4)
         {
+            setFilterData.SettingDataColumn setData2 = new SettingDataColumn();
+        
+
+
+
             // Filter CSV 파일 열어서
-            string[] lines = File.ReadAllLines("HeatDataAlarmFilter.csv");
+            string[] lines = File.ReadAllLines(Directory.GetCurrentDirectory() + "/HeatDataAlarmFilter.csv");
             
             List<string[]> filter_list = new List<string[]>();
             for (int i = 1; i < lines.Length; i++)  // 첫째 줄(스키마) 건너 뜀
@@ -245,9 +256,9 @@ namespace _threeGuys_HeatDataProgram
                     if (text[0] == selectedIndex)
                     {
                         tabControl.SelectedIndex = 5;
-                        if (alaram_to_Datagrid_list[int.Parse(selectedIndex)][1] == "GN04N_MAIN_POWER")
+                        if (alaram_to_Datagrid_list[int.Parse(selectedIndex)][1] == "GN02N_MAIN_POWER")
                         {
-                            var filteredItemsIndex = test_list.FindIndex(item => item.GN04N_MAIN_POWER == float.Parse(alaram_to_Datagrid_list[int.Parse(selectedIndex)][2])
+                            var filteredItemsIndex = test_list.FindIndex(item => item.GN02N_MAIN_POWER == float.Parse(alaram_to_Datagrid_list[int.Parse(selectedIndex)][2])
                         && item.Time == alaram_to_Datagrid_list[int.Parse(selectedIndex)][3]);
 
                             dataGrid_History.SelectedIndex = filteredItemsIndex;
@@ -255,16 +266,75 @@ namespace _threeGuys_HeatDataProgram
                             DataGridRow row = (DataGridRow)dataGrid_History.ItemContainerGenerator.ContainerFromIndex(filteredItemsIndex);
                             row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
                         }
-                        else if(alaram_to_Datagrid_list[int.Parse(selectedIndex)][1] == "GN02N_TEMP")
+                        else if (alaram_to_Datagrid_list[int.Parse(selectedIndex)][1] == "GN04N_MAIN_POWER")
                         {
-                            var filteredItemsIndex = test_list.FindIndex(item => item.GN02N_TEMP == float.Parse(alaram_to_Datagrid_list[int.Parse(selectedIndex)][2])
-&& item.Time == alaram_to_Datagrid_list[int.Parse(selectedIndex)][3]);
+                            var filteredItemsIndex = test_list.FindIndex(item => item.GN04N_MAIN_POWER == float.Parse(alaram_to_Datagrid_list[int.Parse(selectedIndex)][2])
+                            && item.Time == alaram_to_Datagrid_list[int.Parse(selectedIndex)][3]);
 
                             dataGrid_History.SelectedIndex = filteredItemsIndex;
 
                             DataGridRow row = (DataGridRow)dataGrid_History.ItemContainerGenerator.ContainerFromIndex(filteredItemsIndex);
                             row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                        }
+                        else if (alaram_to_Datagrid_list[int.Parse(selectedIndex)][1] == "GN05N_MAIN_POWER")
+                        {
+                            var filteredItemsIndex = test_list.FindIndex(item => item.GN05N_MAIN_POWER == float.Parse(alaram_to_Datagrid_list[int.Parse(selectedIndex)][2])
+                            && item.Time == alaram_to_Datagrid_list[int.Parse(selectedIndex)][3]);
 
+                            dataGrid_History.SelectedIndex = filteredItemsIndex;
+
+                            DataGridRow row = (DataGridRow)dataGrid_History.ItemContainerGenerator.ContainerFromIndex(filteredItemsIndex);
+                            row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                        }
+                        else if (alaram_to_Datagrid_list[int.Parse(selectedIndex)][1] == "GN07N_MAIN_POWER")
+                        {
+                            var filteredItemsIndex = test_list.FindIndex(item => item.GN07N_MAIN_POWER == float.Parse(alaram_to_Datagrid_list[int.Parse(selectedIndex)][2])
+                            && item.Time == alaram_to_Datagrid_list[int.Parse(selectedIndex)][3]);
+
+                            dataGrid_History.SelectedIndex = filteredItemsIndex;
+
+                            DataGridRow row = (DataGridRow)dataGrid_History.ItemContainerGenerator.ContainerFromIndex(filteredItemsIndex);
+                            row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                        }
+                        else if (alaram_to_Datagrid_list[int.Parse(selectedIndex)][1] == "GN02N_TEMP")
+                        {
+                            var filteredItemsIndex = test_list.FindIndex(item => item.GN02N_TEMP == float.Parse(alaram_to_Datagrid_list[int.Parse(selectedIndex)][2])
+                            && item.Time == alaram_to_Datagrid_list[int.Parse(selectedIndex)][3]);
+
+                            dataGrid_History.SelectedIndex = filteredItemsIndex;
+
+                            DataGridRow row = (DataGridRow)dataGrid_History.ItemContainerGenerator.ContainerFromIndex(filteredItemsIndex);
+                            row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                        }
+                        else if (alaram_to_Datagrid_list[int.Parse(selectedIndex)][1] == "GN04M_TEMP")
+                        {
+                            var filteredItemsIndex = test_list.FindIndex(item => item.GN04M_TEMP == float.Parse(alaram_to_Datagrid_list[int.Parse(selectedIndex)][2])
+                            && item.Time == alaram_to_Datagrid_list[int.Parse(selectedIndex)][3]);
+
+                            dataGrid_History.SelectedIndex = filteredItemsIndex;
+
+                            DataGridRow row = (DataGridRow)dataGrid_History.ItemContainerGenerator.ContainerFromIndex(filteredItemsIndex);
+                            row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                        }
+                        else if (alaram_to_Datagrid_list[int.Parse(selectedIndex)][1] == "GN05M_TEMP")
+                        {
+                            var filteredItemsIndex = test_list.FindIndex(item => item.GN05M_TEMP == float.Parse(alaram_to_Datagrid_list[int.Parse(selectedIndex)][2])
+                            && item.Time == alaram_to_Datagrid_list[int.Parse(selectedIndex)][3]);
+
+                            dataGrid_History.SelectedIndex = filteredItemsIndex;
+
+                            DataGridRow row = (DataGridRow)dataGrid_History.ItemContainerGenerator.ContainerFromIndex(filteredItemsIndex);
+                            row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                        }
+                        else if (alaram_to_Datagrid_list[int.Parse(selectedIndex)][1] == "GN07N_TEMP")
+                        {
+                            var filteredItemsIndex = test_list.FindIndex(item => item.GN07N_TEMP == float.Parse(alaram_to_Datagrid_list[int.Parse(selectedIndex)][2])
+                            && item.Time == alaram_to_Datagrid_list[int.Parse(selectedIndex)][3]);
+
+                            dataGrid_History.SelectedIndex = filteredItemsIndex;
+
+                            DataGridRow row = (DataGridRow)dataGrid_History.ItemContainerGenerator.ContainerFromIndex(filteredItemsIndex);
+                            row.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
                         }
                     }
                 }
@@ -273,7 +343,7 @@ namespace _threeGuys_HeatDataProgram
 
 
         // 1번 탭 각 라디오 버튼
-        private async void radiobutton_tab1_power_Checked(object sender, RoutedEventArgs e)
+        private async void firstTabRadioButtonPower_Checked(object sender, RoutedEventArgs e)
         {
             if(webView2_tab1.Visibility == Visibility.Hidden)
             {
@@ -285,7 +355,7 @@ namespace _threeGuys_HeatDataProgram
             await webView2_tab1.CoreWebView2.ExecuteScriptAsync("window.scrollTo(0, 0);");
         }
 
-        private async void radiobutton_tab1_temp_Checked(object sender, RoutedEventArgs e)
+        private async void firstTabRadioButtonTemp_Checked(object sender, RoutedEventArgs e)
         {
             if (webView2_tab1.Visibility == Visibility.Hidden)
             {
@@ -297,7 +367,7 @@ namespace _threeGuys_HeatDataProgram
             await webView2_tab1.CoreWebView2.ExecuteScriptAsync("window.scrollTo(0, 430);");
         }
 
-        private async void radiobutton_tab1_gas_Checked(object sender, RoutedEventArgs e)
+        private async void firstTabRadioButtonGas_Checked(object sender, RoutedEventArgs e)
         {
             if (webView2_tab1.Visibility == Visibility.Hidden)
             {
@@ -310,7 +380,7 @@ namespace _threeGuys_HeatDataProgram
         }
 
         // 2번 탭 각 버튼 
-        private async void radiobutton_tab2_power_Checked(object sender, RoutedEventArgs e)
+        private async void secondTabRadioButtonPower_Checked(object sender, RoutedEventArgs e)
         {
             if (webView2_tab2.Visibility == Visibility.Hidden)
             {
@@ -322,7 +392,7 @@ namespace _threeGuys_HeatDataProgram
             await webView2_tab2.CoreWebView2.ExecuteScriptAsync("window.scrollTo(0, 0);");
         }
 
-        private async void radiobutton_tab2_temp_Checked(object sender, RoutedEventArgs e)
+        private async void secondTabRadioButtonTemp_Checked(object sender, RoutedEventArgs e)
         {
             if (webView2_tab2.Visibility == Visibility.Hidden)
             {
@@ -334,7 +404,7 @@ namespace _threeGuys_HeatDataProgram
             await webView2_tab2.CoreWebView2.ExecuteScriptAsync("window.scrollTo(0, 430);");
         }
 
-        private async void radiobutton_tab2_gas_Checked(object sender, RoutedEventArgs e)
+        private async void secondTabRadioButtonGas_Checked(object sender, RoutedEventArgs e)
         {
             if (webView2_tab2.Visibility == Visibility.Hidden)
             {
@@ -347,7 +417,7 @@ namespace _threeGuys_HeatDataProgram
         }
 
         // 3번 탭 각 버튼
-        private async void radiobutton_tab3_power_Checked(object sender, RoutedEventArgs e)
+        private async void thirdTabRadioButtonPower_Checked(object sender, RoutedEventArgs e)
         {
             if (webView2_tab3.Visibility == Visibility.Hidden)
             {
@@ -359,7 +429,7 @@ namespace _threeGuys_HeatDataProgram
             await webView2_tab3.CoreWebView2.ExecuteScriptAsync("window.scrollTo(0, 0);");
         }
 
-        private async void radiobutton_tab3_temp_Checked(object sender, RoutedEventArgs e)
+        private async void thirdTabRadioButtonTemp_Checked(object sender, RoutedEventArgs e)
         {
             if (webView2_tab3.Visibility == Visibility.Hidden)
             {
@@ -371,7 +441,7 @@ namespace _threeGuys_HeatDataProgram
             await webView2_tab3.CoreWebView2.ExecuteScriptAsync("window.scrollTo(0, 430);");
         }
 
-        private async void radiobutton_tab3_gas_Checked(object sender, RoutedEventArgs e)
+        private async void thirdTabRadioButtonGas_Checked(object sender, RoutedEventArgs e)
         {
             if (webView2_tab3.Visibility == Visibility.Hidden)
             {
@@ -384,7 +454,7 @@ namespace _threeGuys_HeatDataProgram
         }
 
         // 4번 탭 각 버튼
-        private async void radiobutton_tab4_power_Checked(object sender, RoutedEventArgs e)
+        private async void fourthTabRadioButtonPower_Checked(object sender, RoutedEventArgs e)
         {
             if (webView2_tab4.Visibility == Visibility.Hidden)
             {
@@ -396,7 +466,7 @@ namespace _threeGuys_HeatDataProgram
             await webView2_tab4.CoreWebView2.ExecuteScriptAsync("window.scrollTo(0, 0);");
         }
 
-        private async void radiobutton_tab4_temp_Checked(object sender, RoutedEventArgs e)
+        private async void fourthTabRadioButtonTemp_Checked(object sender, RoutedEventArgs e)
         {
             if (webView2_tab4.Visibility == Visibility.Hidden)
             {
@@ -408,7 +478,7 @@ namespace _threeGuys_HeatDataProgram
             await webView2_tab4.CoreWebView2.ExecuteScriptAsync("window.scrollTo(0, 430);");
         }
 
-        private async void radiobutton_tab4_gas_Checked(object sender, RoutedEventArgs e)
+        private async void fourthTabRadioButtonGas_Checked(object sender, RoutedEventArgs e)
         {
             if (webView2_tab4.Visibility == Visibility.Hidden)
             {
@@ -421,9 +491,9 @@ namespace _threeGuys_HeatDataProgram
             await webView2_tab4.CoreWebView2.ExecuteScriptAsync("window.scrollTo(0, 1000);");
         }
 
-        private void button_set_add_Click(object sender, RoutedEventArgs e)
+        private void appendSetFilterDataButton_Click(object sender, RoutedEventArgs e)
         {
-            Setting.setFilterData setData = new Setting.setFilterData();
+            setFilterData.setFilterData setData = new setFilterData.setFilterData();
 
             //string selectedComboBoxItem = ((ComboBoxItem)comboBox_test.SelectedItem)?.Content.ToString();
             try
@@ -439,7 +509,7 @@ namespace _threeGuys_HeatDataProgram
                 dataGrid_Settings.Items.Add(setData.setlist);
 
                 // 데이터 세팅
-                Setting.SettingDataColumn setData2 = new SettingDataColumn
+                setFilterData.SettingDataColumn setData2 = new SettingDataColumn
                 {
                     set_error_name = comboBox_test.Text,
                     set_column_name = TextBox_set_column_name.Text,
@@ -448,7 +518,7 @@ namespace _threeGuys_HeatDataProgram
                     set_etc = TextBox_set_etc.Text
                 };
                 // 파일 경로 설정
-                string setfilePath = "HeatDataAlarmFilter.csv";
+                string setfilePath = Directory.GetCurrentDirectory() + "/HeatDataAlarmFilter.csv";
                 // 데이터 읽어옴
                 List<SettingDataColumn> existingData = setData.ReadCSV(setfilePath);
                 // 데이터 병합
@@ -467,7 +537,7 @@ namespace _threeGuys_HeatDataProgram
                 dataGrid_Settings.Items.Add(setData.setlist);
 
                 // 데이터 세팅
-                Setting.SettingDataColumn setData2 = new SettingDataColumn
+                setFilterData.SettingDataColumn setData2 = new SettingDataColumn
                 {
                     set_error_name = comboBox_test.Text,
                     set_column_name = TextBox_set_column_name.Text,
@@ -476,7 +546,7 @@ namespace _threeGuys_HeatDataProgram
                     set_etc = TextBox_set_etc.Text
                 };
                 // 파일 경로 설정
-                string setfilePath = "HeatDataAlarmFilter.csv";
+                string setfilePath = Directory.GetCurrentDirectory() + "/HeatDataAlarmFilter.csv";
                 // 데이터 읽어옴
                 List<SettingDataColumn> existingData = setData.ReadCSV(setfilePath);
                 // 데이터 병합
@@ -489,12 +559,10 @@ namespace _threeGuys_HeatDataProgram
 
             }
         }
-
-
         
 
 
-        private void button_set_delete_Click(object sender, RoutedEventArgs e)
+        private void deleteSetFilterDataButton_Click(object sender, RoutedEventArgs e)
         {
             if (dataGrid_Settings.SelectedItem != null)
             {
@@ -502,30 +570,5 @@ namespace _threeGuys_HeatDataProgram
             }
         }
 
-        /* 소켓 통신 임시 함수
-        private async void button_tempSocket_Click(object sender, RoutedEventArgs e)
-        {
-            string sendString = textBox_tempSocketSend.Text;
-
-            // 비동기로 데이터 보내기
-            await Task.Run(() =>
-            {
-                psh.sendSocketString(sendString);
-            });
-
-            textBox_tempSocketSend.Text = "";
-
-            // 비동기로 데이터 받기
-            Task<string> receiveTask = Task.Run(() => psh.receivedSocketString());
-
-            // UI 스레드 차단하지 않고 받은 데이터를 기다림
-            while (!receiveTask.IsCompleted)
-            {
-                await Task.Delay(1); // 100ms 마다 체크
-            }
-
-            textBox_tempSocketReceived.Text = receiveTask.Result;
-        }
-        */
     }
 }

@@ -68,36 +68,36 @@
                         <ColumnDefinition Width="767*"/>
                     </Grid.ColumnDefinitions>
                     <wv:WebView2 x:Name="webView2_tab1" Source="http://127.0.0.1:56790" Margin="166,39,61,41" Grid.Column="1"/>
-                    <RadioButton x:Name="radiobutton_tab1_power" Content="전력" Margin="25,59,0,0" FontSize="16" Checked="radiobutton_tab1_power_Checked" IsChecked="False" HorizontalAlignment="Left" Width="81" Height="41" VerticalAlignment="Top" Grid.Column="1"/>
-                    <RadioButton x:Name="radiobutton_tab1_temp" Content="온도" Margin="25,143,0,0" FontSize="16" Checked="radiobutton_tab1_temp_Checked" HorizontalAlignment="Left" Width="81" Height="43" VerticalAlignment="Top" Grid.Column="1"/>
-                    <RadioButton x:Name="radiobutton_tab1_gas" Content="가스" Margin="25,224,0,0" FontSize="16" Checked="radiobutton_tab1_gas_Checked" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Grid.Column="1"/>
+                    <RadioButton x:Name="radiobutton_tab1_power" Content="전력" Margin="25,59,0,0" FontSize="16" Checked="firstTabRadioButtonPower_Checked" IsChecked="False" HorizontalAlignment="Left" Width="81" Height="41" VerticalAlignment="Top" Grid.Column="1"/>
+                    <RadioButton x:Name="radiobutton_tab1_temp" Content="온도" Margin="25,143,0,0" FontSize="16" Checked="firstTabRadioButtonTemp_Checked" HorizontalAlignment="Left" Width="81" Height="43" VerticalAlignment="Top" Grid.Column="1"/>
+                    <RadioButton x:Name="radiobutton_tab1_gas" Content="가스" Margin="25,224,0,0" FontSize="16" Checked="firstTabRadioButtonGas_Checked" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Grid.Column="1"/>
                     <Label x:Name="label_Nametab1" Content="1번 구역" HorizontalAlignment="Left" Margin="21,6,0,0" VerticalAlignment="Top" Height="48" Width="112" FontWeight="Bold" FontSize="22" Grid.ColumnSpan="2"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem_tab2" Header="2번" Margin="24,0,-24,0" Width="50" Height="20">
                 <Grid Background="#FFE5E5E5">
                     <wv:WebView2 x:Name="webView2_tab2" Source="http://127.0.0.1:56791" Margin="193,39,61,41"/>
-                    <RadioButton x:Name="radiobutton_tab2_power" Content="전력" Margin="52,59,0,0" FontSize="16" IsChecked="False" Checked="radiobutton_tab2_power_Checked" HorizontalAlignment="Left" Width="81" Height="41" VerticalAlignment="Top"/>
-                    <RadioButton x:Name="radiobutton_tab2_temp" Content="온도" Margin="52,143,0,0" FontSize="16" Checked="radiobutton_tab2_temp_Checked" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81"/>
-                    <RadioButton x:Name="radiobutton_tab2_gas" Content="가스" Margin="52,224,0,0" FontSize="16" Checked="radiobutton_tab2_gas_Checked" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81"/>
+                    <RadioButton x:Name="radiobutton_tab2_power" Content="전력" Margin="52,59,0,0" FontSize="16" IsChecked="False" Checked="secondTabRadioButtonPower_Checked" HorizontalAlignment="Left" Width="81" Height="41" VerticalAlignment="Top"/>
+                    <RadioButton x:Name="radiobutton_tab2_temp" Content="온도" Margin="52,143,0,0" FontSize="16" Checked="secondTabRadioButtonTemp_Checked" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81"/>
+                    <RadioButton x:Name="radiobutton_tab2_gas" Content="가스" Margin="52,224,0,0" FontSize="16" Checked="secondTabRadioButtonGas_Checked" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81"/>
                     <Label x:Name="label_Nametab2" Content="2번 구역" HorizontalAlignment="Left" Margin="21,6,0,0" VerticalAlignment="Top" Height="48" Width="112" FontWeight="Bold" FontSize="22"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem_tab3"  Header="3번" Margin="34,0,-34,0" Width="50" Height="20">
                 <Grid Background="#FFE5E5E5">
                     <wv:WebView2 x:Name="webView2_tab3" Source="http://127.0.0.1:56792" Margin="193,39,61,41"/>
-                    <RadioButton x:Name="radiobutton_tab3_power" Content="전력" Margin="52,59,0,0" FontSize="16" IsChecked="False" HorizontalAlignment="Left" Width="81" Height="41" VerticalAlignment="Top" Checked="radiobutton_tab3_power_Checked"/>
-                    <RadioButton x:Name="radiobutton_tab3_temp" Content="온도" Margin="52,143,0,0" FontSize="16" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab3_temp_Checked"/>
-                    <RadioButton x:Name="radiobutton_tab3_gas" Content="가스" Margin="52,224,0,0" FontSize="16" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab3_gas_Checked"/>
+                    <RadioButton x:Name="radiobutton_tab3_power" Content="전력" Margin="52,59,0,0" FontSize="16" IsChecked="False" HorizontalAlignment="Left" Width="81" Height="41" VerticalAlignment="Top" Checked="thirdTabRadioButtonPower_Checked"/>
+                    <RadioButton x:Name="radiobutton_tab3_temp" Content="온도" Margin="52,143,0,0" FontSize="16" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="thirdTabRadioButtonTemp_Checked"/>
+                    <RadioButton x:Name="radiobutton_tab3_gas" Content="가스" Margin="52,224,0,0" FontSize="16" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="thirdTabRadioButtonGas_Checked"/>
                     <Label x:Name="label_Nametab3" Content="3번 구역" HorizontalAlignment="Left" Margin="21,6,0,0" VerticalAlignment="Top" Height="48" Width="112" FontWeight="Bold" FontSize="22"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem_tab4" Header="4번" Margin="44,0,-44,0" Width="50" Height="20">
                 <Grid Background="#FFE5E5E5">
                     <wv:WebView2 x:Name="webView2_tab4" Source="http://127.0.0.1:56793" Margin="193,39,61,41"/>
-                    <RadioButton x:Name="radiobutton_tab4_power" Content="전력" Margin="52,59,0,0" FontSize="16" IsChecked="False" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab4_power_Checked"/>
-                    <RadioButton x:Name="radiobutton_tab4_temp" Content="온도" Margin="52,143,0,0" FontSize="16" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab4_temp_Checked"/>
-                    <RadioButton x:Name="radiobutton_tab4_gas" Content="가스" Margin="52,224,0,0" FontSize="16" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab4_gas_Checked"/>
+                    <RadioButton x:Name="radiobutton_tab4_power" Content="전력" Margin="52,59,0,0" FontSize="16" IsChecked="False" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="fourthTabRadioButtonPower_Checked"/>
+                    <RadioButton x:Name="radiobutton_tab4_temp" Content="온도" Margin="52,143,0,0" FontSize="16" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="fourthTabRadioButtonTemp_Checked"/>
+                    <RadioButton x:Name="radiobutton_tab4_gas" Content="가스" Margin="52,224,0,0" FontSize="16" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="fourthTabRadioButtonGas_Checked"/>
                     <Label x:Name="label_Nametab4" Content="4번 구역" HorizontalAlignment="Left" Margin="21,6,0,0" VerticalAlignment="Top" Height="48" Width="112" FontWeight="Bold" FontSize="22"/>
                 </Grid>
             </TabItem>
@@ -117,8 +117,8 @@
                             <DataGridTextColumn Header="비고" Binding="{Binding Path=set_etc}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="button_set_add" Content="추가" Margin="643,25,0,0" FontSize="16" HorizontalAlignment="Left" Width="124" Height="44" VerticalAlignment="Top" Click="button_set_add_Click"/>
-                    <Button x:Name="button_set_delete" Content="삭제" Margin="643,110,0,0" FontSize="16" HorizontalAlignment="Left" Width="124" Height="44" VerticalAlignment="Top" Click="button_set_delete_Click"/>
+                    <Button x:Name="button_set_add" Content="추가" Margin="643,25,0,0" FontSize="16" HorizontalAlignment="Left" Width="124" Height="44" VerticalAlignment="Top" Click="appendSetFilterDataButton_Click"/>
+                    <Button x:Name="button_set_delete" Content="삭제" Margin="643,110,0,0" FontSize="16" HorizontalAlignment="Left" Width="124" Height="44" VerticalAlignment="Top" Click="deleteSetFilterDataButton_Click"/>
                     <GroupBox Header="" Margin="21,10,0,0" HorizontalAlignment="Left" Width="590" Height="144" VerticalAlignment="Top">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -130,7 +130,7 @@
                             <TextBlock Text="최소값 (이상)" Margin="210,10,256,80" RenderTransformOrigin="0.5,0.5" FontSize="14" Grid.Column="1" TextAlignment="Center"/>
                             <TextBlock Text="최대값 (이하)" Margin="332,10,130,80" RenderTransformOrigin="0.5,0.5" FontSize="14" Grid.Column="1" TextAlignment="Center"/>
                             <TextBlock Text="비고" Margin="462,10,21,80" RenderTransformOrigin="0.5,0.5" FontSize="14" Grid.Column="1" TextAlignment="Center"/>
-                            <ComboBox x:Name="comboBox_test" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" Width="91" Height="41" Grid.ColumnSpan="2">
+                            <ComboBox x:Name="comboBox_test" HorizontalAlignment="Left" Margin="9,61,0,0" VerticalAlignment="Top" Width="91" Height="41" Grid.ColumnSpan="2">
                                 <ComboBoxItem Content="GN02N_MAIN_POWER"/>
                                 <ComboBoxItem Content="GN04N_MAIN_POWER"/>
                                 <ComboBoxItem Content="GN05N_MAIN_POWER"/>
@@ -142,7 +142,6 @@
                             </ComboBox>
                         </Grid>
                     </GroupBox>
-                    <TextBox x:Name="TextBox_set_error_name" Margin="36,91,0,0" TextWrapping="Wrap" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91"/>
                     <TextBox x:Name="TextBox_set_column_name" Margin="142,91,0,0" TextWrapping="Wrap" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91"/>
                     <TextBox x:Name="TextBox_set_value_above" Margin="249,91,0,0" TextWrapping="Wrap" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="102"/>
                     <TextBox x:Name="TextBox_set_value_below" Margin="372,91,0,0" TextWrapping="Wrap" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="106"/>

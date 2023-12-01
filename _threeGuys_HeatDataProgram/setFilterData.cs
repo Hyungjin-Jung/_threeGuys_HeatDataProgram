@@ -16,7 +16,7 @@ using System.Diagnostics.Contracts;
 using CsvHelper.Configuration;
 using System.Linq.Expressions;
 
-namespace Setting
+namespace setFilterData
 {
     public class SettingDataColumn
     {
