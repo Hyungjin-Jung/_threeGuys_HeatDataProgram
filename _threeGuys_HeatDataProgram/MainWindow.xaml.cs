@@ -10,6 +10,7 @@ namespace _threeGuys_HeatDataProgram
 {
     public partial class MainWindow : Window
     {
+        //
         PySocketHandler.PySocketHandler PySocket = new PySocketHandler.PySocketHandler();
         setFilterData.SettingDataColumn filterList = new SettingDataColumn();
         // FactoryDataCSV 파일 열어서 저장할 리스트 선언
