@@ -5,48 +5,56 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_threeGuys_HeatDataProgram"
         xmlns:wv="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" ResizeMode="CanMinimize">
+        Title="MainWindow" Height="450" Width="800"
+        WindowStyle="SingleBorderWindow" ResizeMode="CanMinimize" >
     <Grid>
-        <TabControl x:Name="tabControl">
+        <TabControl x:Name="tabControl" >
             <TabItem x:Name="tabItem_Main" Header="Main" Margin="4,0,-4,0" Width="50" Height="20">
                 <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="61"/>
+                        <RowDefinition Height="200"/>
+                    </Grid.RowDefinitions>
+
                     <!--'<TextBox x:Name="textBox_tempSocketSend" TextWrapping="Wrap" Margin="10,157,0,0" Text="소켓 통신 테스트 텍스트 박스" HorizontalAlignment="Left" Width="690" Height="33" VerticalAlignment="Top"/>'-->
                     <!--'<TextBox x:Name="textBox_tempSocketReceived" TextWrapping="Wrap" Margin="10,195,0,0" Text="소켓 통신 테스트 텍스트 박스" IsReadOnly="True" HorizontalAlignment="Left" Width="690" Height="38" VerticalAlignment="Top"/>'-->
                     <!--'<Button x:Name="button_tempSocket" Content="소켓 통신&#xD;&#xA;테스트 버튼" Margin="705,157,0,0" Click="button_tempSocket_Click" HorizontalAlignment="Left" Width="79" Height="76" VerticalAlignment="Top"/>'-->
-                    <TextBlock x:Name="textBlock_Temp1" Margin="100,232,0,0" TextWrapping="Wrap" Text="온도 : " HorizontalAlignment="Left" Width="35" Height="16" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="textBlock_Watt1" Margin="100,203,0,0" TextWrapping="Wrap" Text="전력 : " Height="16" VerticalAlignment="Top" HorizontalAlignment="Left" Width="35"/>
-                    <TextBlock x:Name="textBlock_Temp2" Margin="250,232,0,0" TextWrapping="Wrap" Text="온도 : " Height="16" VerticalAlignment="Top" HorizontalAlignment="Left" Width="35"/>
-                    <TextBlock x:Name="textBlock_Watt2" Margin="250,203,0,0" TextWrapping="Wrap" Text="전력 : " Height="16" VerticalAlignment="Top" HorizontalAlignment="Left" Width="35"/>
-                    <TextBlock x:Name="textBlock_Temp3" Margin="414,232,0,0" TextWrapping="Wrap" Text="온도 : " HorizontalAlignment="Left" Width="35" Height="16" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="textBlock_Watt3" Margin="414,203,0,0" TextWrapping="Wrap" Text="전력 : " HorizontalAlignment="Left" Width="35" Height="16" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="textBlock_Temp4" Margin="583,232,0,0" TextWrapping="Wrap" Text="온도 : " HorizontalAlignment="Left" Width="35" Height="16" VerticalAlignment="Top"/>
-                    <TextBlock x:Name="textBlock_Watt4" Margin="583,203,0,0" TextWrapping="Wrap" Text="전력 : " HorizontalAlignment="Left" Width="35" Height="16" VerticalAlignment="Top"/>
-                    <Label x:Name="label_Watt1" Content="Label" Margin="150,198,0,0" Height="26" VerticalAlignment="Top" Width="80" HorizontalAlignment="Left"/>
-                    <Label x:Name="label_Temp1" Content="Label" Margin="150,227,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
-                    <Label x:Name="label_Watt2" Content="Label" Margin="300,198,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="80"/>
-                    <Label x:Name="label_Temp2" Content="Label" Margin="300,227,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
-                    <Label x:Name="label_Watt3" Content="Label" Margin="464,198,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
-                    <Label x:Name="label_Temp3" Content="Label" Margin="464,227,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
-                    <Label x:Name="label_Watt4" Content="Label" Margin="633,198,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
-                    <Label x:Name="label_Temp4" Content="Label" Margin="633,227,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
-                    <ListBox x:Name="listBox_Notice" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,258,50,10" MouseDoubleClick="listBoxNoticeMouseDouble_Click" HorizontalAlignment="Right" Width="694"/>
-                    <Button x:Name="button_GoToTab1"  Content="Button" Margin="0,81,588,0" Click="DisplayFirstAreaTab_Click" Height="98" VerticalAlignment="Top" HorizontalAlignment="Right" Width="106">
+                    <TextBlock x:Name="textBlock_Watt1" Grid.Row="1" Margin="47,10,0,0" TextWrapping="Wrap" Text="전력 : " Height="16" VerticalAlignment="Top" HorizontalAlignment="Left" Width="35"/>
+                    <TextBlock x:Name="textBlock_Temp1" Grid.Row="1" Margin="47,35,0,0" TextWrapping="Wrap" Text="온도 : " HorizontalAlignment="Left" Width="35" Height="16" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Watt2" Grid.Row="1" Margin="237,10,0,0" TextWrapping="Wrap" Text="전력 : " Height="16" VerticalAlignment="Top" HorizontalAlignment="Left" Width="35"/>
+                    <TextBlock x:Name="textBlock_Temp2" Grid.Row="1" Margin="237,35,0,0" TextWrapping="Wrap" Text="온도 : " Height="16" VerticalAlignment="Top" HorizontalAlignment="Left" Width="35"/>
+                    <TextBlock x:Name="textBlock_Watt3" Grid.Row="1" Margin="431,10,0,0" TextWrapping="Wrap" Text="전력 : " HorizontalAlignment="Left" Width="35" Height="16" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Temp3" Grid.Row="1" Margin="431,35,0,0" TextWrapping="Wrap" Text="온도 : " HorizontalAlignment="Left" Width="35" Height="16" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Watt4" Grid.Row="1" Margin="644,10,0,0" TextWrapping="Wrap" Text="전력 : " HorizontalAlignment="Left" Width="35" Height="16" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Temp4" Grid.Row="1" Margin="644,35,0,0" TextWrapping="Wrap" Text="온도 : " HorizontalAlignment="Left" Width="35" Height="16" VerticalAlignment="Top"/>
+                    <Label x:Name="label_Watt1" Grid.Row="1" Content="Label" Margin="97,3,0,0" Height="26" VerticalAlignment="Top" Width="80" HorizontalAlignment="Left"/>
+                    <Label x:Name="label_Temp1" Grid.Row="1" Content="Label" Margin="97,32,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
+                    <Label x:Name="label_Watt2" Grid.Row="1" Content="Label" Margin="287,3,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="80"/>
+                    <Label x:Name="label_Temp2" Grid.Row="1" Content="Label" Margin="287,32,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
+                    <Label x:Name="label_Watt3" Grid.Row="1" Content="Label" Margin="481,3,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
+                    <Label x:Name="label_Temp3" Grid.Row="1" Content="Label" Margin="481,32,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
+                    <Label x:Name="label_Watt4" Grid.Row="1" Content="Label" Margin="694,3,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
+                    <Label x:Name="label_Temp4" Grid.Row="1" Content="Label" Margin="694,32,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
+                    <ListBox x:Name="listBox_Notice" Grid.Row="2" Margin="0,0,0,68" MouseDoubleClick="listBoxNoticeMouseDouble_Click" HorizontalAlignment="Center" Width="774"/>
+                    <Button x:Name="button_GoToTab1" Template="{StaticResource NoMouseOverButtonTemplate}"  Margin="47,0,0,0" Click="DisplayFirstAreaTab_Click" Height="132" VerticalAlignment="Center" HorizontalAlignment="Left" Width="142">
                         <Button.Background>
                             <ImageBrush ImageSource="pack://application:,,,/Resources/Image_GN02.png"/>
                         </Button.Background>
                     </Button>
-                    <Button x:Name="button_GoToTab2"  Content="Button" Margin="0,81,438,0" Click="DisplaySecondAreaTab_Click" Height="98" VerticalAlignment="Top" HorizontalAlignment="Right" Width="106">
+                    <Button x:Name="button_GoToTab2"  Template="{StaticResource NoMouseOverButtonTemplate}"  Margin="237,0,0,0" Click="DisplaySecondAreaTab_Click" Height="132" VerticalAlignment="Center" HorizontalAlignment="Left" Width="142">
                         <Button.Background>
                             <ImageBrush ImageSource="/Resources/Image_GN04.png"/>
                         </Button.Background>
                     </Button>
-                    <Button x:Name="button_GoToTab3"  Content="Button" Margin="0,81,274,0" Click="DisplayThirdAreaTab_Click" HorizontalAlignment="Right" Width="106" Height="98" VerticalAlignment="Top">
+                    <Button x:Name="button_GoToTab3"  Template="{StaticResource NoMouseOverButtonTemplate}"  Margin="431,0,0,0" Click="DisplayThirdAreaTab_Click" HorizontalAlignment="Left" Width="142" Height="132" VerticalAlignment="Center">
                         <Button.Background>
                             <ImageBrush ImageSource="/Resources/Image_GN05.png"/>
                         </Button.Background>
                     </Button>
-                    <Button x:Name="button_GoToTab4"  Content="Button" Margin="0,81,105,0" Click="DisplayFourthAreaTab_Click" Height="98" VerticalAlignment="Top" HorizontalAlignment="Right" Width="106">
+                    <Button x:Name="button_GoToTab4"  Template="{StaticResource NoMouseOverButtonTemplate}"  Margin="632,0,0,0" Click="DisplayFourthAreaTab_Click" Height="132" VerticalAlignment="Center" HorizontalAlignment="Left" Width="142">
                         <Button.Background>
                             <ImageBrush ImageSource="/Resources/Image_GN07.png"/>
                         </Button.Background>
@@ -63,6 +71,7 @@
                     <RadioButton x:Name="radiobutton_tab1_power" Content="전력" Margin="25,59,0,0" FontSize="16" Checked="radiobutton_tab1_power_Checked" IsChecked="False" HorizontalAlignment="Left" Width="81" Height="41" VerticalAlignment="Top" Grid.Column="1"/>
                     <RadioButton x:Name="radiobutton_tab1_temp" Content="온도" Margin="25,143,0,0" FontSize="16" Checked="radiobutton_tab1_temp_Checked" HorizontalAlignment="Left" Width="81" Height="43" VerticalAlignment="Top" Grid.Column="1"/>
                     <RadioButton x:Name="radiobutton_tab1_gas" Content="가스" Margin="25,224,0,0" FontSize="16" Checked="radiobutton_tab1_gas_Checked" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Grid.Column="1"/>
+                    <Label x:Name="label_Nametab1" Content="1번 구역" HorizontalAlignment="Left" Margin="21,6,0,0" VerticalAlignment="Top" Height="48" Width="112" FontWeight="Bold" FontSize="22" Grid.ColumnSpan="2"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem_tab2" Header="2번" Margin="24,0,-24,0" Width="50" Height="20">
@@ -71,6 +80,7 @@
                     <RadioButton x:Name="radiobutton_tab2_power" Content="전력" Margin="52,59,0,0" FontSize="16" IsChecked="False" Checked="radiobutton_tab2_power_Checked" HorizontalAlignment="Left" Width="81" Height="41" VerticalAlignment="Top"/>
                     <RadioButton x:Name="radiobutton_tab2_temp" Content="온도" Margin="52,143,0,0" FontSize="16" Checked="radiobutton_tab2_temp_Checked" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81"/>
                     <RadioButton x:Name="radiobutton_tab2_gas" Content="가스" Margin="52,224,0,0" FontSize="16" Checked="radiobutton_tab2_gas_Checked" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81"/>
+                    <Label x:Name="label_Nametab2" Content="2번 구역" HorizontalAlignment="Left" Margin="21,6,0,0" VerticalAlignment="Top" Height="48" Width="112" FontWeight="Bold" FontSize="22"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem_tab3"  Header="3번" Margin="34,0,-34,0" Width="50" Height="20">
@@ -79,6 +89,7 @@
                     <RadioButton x:Name="radiobutton_tab3_power" Content="전력" Margin="52,59,0,0" FontSize="16" IsChecked="False" HorizontalAlignment="Left" Width="81" Height="41" VerticalAlignment="Top" Checked="radiobutton_tab3_power_Checked"/>
                     <RadioButton x:Name="radiobutton_tab3_temp" Content="온도" Margin="52,143,0,0" FontSize="16" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab3_temp_Checked"/>
                     <RadioButton x:Name="radiobutton_tab3_gas" Content="가스" Margin="52,224,0,0" FontSize="16" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab3_gas_Checked"/>
+                    <Label x:Name="label_Nametab3" Content="3번 구역" HorizontalAlignment="Left" Margin="21,6,0,0" VerticalAlignment="Top" Height="48" Width="112" FontWeight="Bold" FontSize="22"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem_tab4" Header="4번" Margin="44,0,-44,0" Width="50" Height="20">
@@ -87,6 +98,7 @@
                     <RadioButton x:Name="radiobutton_tab4_power" Content="전력" Margin="52,59,0,0" FontSize="16" IsChecked="False" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab4_power_Checked"/>
                     <RadioButton x:Name="radiobutton_tab4_temp" Content="온도" Margin="52,143,0,0" FontSize="16" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab4_temp_Checked"/>
                     <RadioButton x:Name="radiobutton_tab4_gas" Content="가스" Margin="52,224,0,0" FontSize="16" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" Checked="radiobutton_tab4_gas_Checked"/>
+                    <Label x:Name="label_Nametab4" Content="4번 구역" HorizontalAlignment="Left" Margin="21,6,0,0" VerticalAlignment="Top" Height="48" Width="112" FontWeight="Bold" FontSize="22"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItem_History" Header="내역" Margin="54,0,-54,0" Width="50" Height="20" VerticalAlignment="Bottom">
@@ -118,6 +130,16 @@
                             <TextBlock Text="최소값 (이상)" Margin="210,10,256,80" RenderTransformOrigin="0.5,0.5" FontSize="14" Grid.Column="1" TextAlignment="Center"/>
                             <TextBlock Text="최대값 (이하)" Margin="332,10,130,80" RenderTransformOrigin="0.5,0.5" FontSize="14" Grid.Column="1" TextAlignment="Center"/>
                             <TextBlock Text="비고" Margin="462,10,21,80" RenderTransformOrigin="0.5,0.5" FontSize="14" Grid.Column="1" TextAlignment="Center"/>
+                            <ComboBox x:Name="comboBox_test" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" Width="91" Height="41" Grid.ColumnSpan="2">
+                                <ComboBoxItem Content="GN02N_MAIN_POWER"/>
+                                <ComboBoxItem Content="GN04N_MAIN_POWER"/>
+                                <ComboBoxItem Content="GN05N_MAIN_POWER"/>
+                                <ComboBoxItem Content="GN07N_MAIN_POWER"/>
+                                <ComboBoxItem Content="GN02N_TEMP"/>
+                                <ComboBoxItem Content="GN04M_TEMP"/>
+                                <ComboBoxItem Content="GN05M_TEMP"/>
+                                <ComboBoxItem Content="GN07N_TEMP"/>
+                            </ComboBox>
                         </Grid>
                     </GroupBox>
                     <TextBox x:Name="TextBox_set_error_name" Margin="36,91,0,0" TextWrapping="Wrap" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="91"/>
@@ -128,6 +150,7 @@
                 </Grid>
             </TabItem>
         </TabControl>
+
         <Rectangle x:Name="rectangle_Rectangle" HorizontalAlignment="Left" Height="519" Margin="-49,-44,0,0" Stroke="Black" VerticalAlignment="Top" Width="978" Fill="#FCE5E5E5" d:IsHidden="True"/>
     </Grid>
 </Window>

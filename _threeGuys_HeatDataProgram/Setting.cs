@@ -8,6 +8,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.IO;
 using System.Collections;
+using System.Security.Cryptography;
+using CsvHelper;
+using System.Globalization;
+using System.Runtime.InteropServices;
+using System.Diagnostics.Contracts;
+using CsvHelper.Configuration;
+using System.Linq.Expressions;
 
 namespace Setting
 {
@@ -24,7 +31,43 @@ namespace Setting
 
     public class setFilterData
     {
-        List<SettingDataColumn> setlist = new List<SettingDataColumn>();
+        public List<SettingDataColumn> setlist = new List<SettingDataColumn>();
+
+
+        public List<SettingDataColumn> ReadCSV(string filePath)
+        {
+            using (var reader = new StreamReader(filePath))
+            using (var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)))
+            try
+            {
+                return csv.GetRecords<SettingDataColumn>().ToList();
+            }
+            catch (Exception ex)
+            {
+                    Console.WriteLine($"Error reading csv file");
+                    return new List<SettingDataColumn>();
+            }
+        }
+
+        public void WriteToCsv(List<SettingDataColumn> data, string filePath)
+        {
+            using (var writer = new StreamWriter(filePath))
+            using (var csv = new CsvWriter(writer, new CsvConfiguration(CultureInfo.InvariantCulture)))
+                try
+                {
+
+                    csv.WriteRecords(data);
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error writing csv file : (ex.Message)");
+                }
+        }
+
+
+
+
         public List<SettingDataColumn> getFilterData(string TextBox_set_error_name, string TextBox_set_column_name, float TextBox_set_value_above, float TextBox_set_value_below, string TextBox_set_etc)
         {
             try
@@ -116,6 +159,7 @@ namespace Setting
             {
                 MessageBox.Show("CSV 파일을 저장하는 중 오류가 발생했습니다: " + ex.Message);
             }
+
         }
     }
 }
