@@ -9,15 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Fonts\GothicA1-Black.ttf" />
-    <None Remove="Fonts\GothicA1-Bold.ttf" />
-    <None Remove="Fonts\GothicA1-ExtraBold.ttf" />
-    <None Remove="Fonts\GothicA1-ExtraLight.ttf" />
-    <None Remove="Fonts\GothicA1-Light.ttf" />
-    <None Remove="Fonts\GothicA1-Medium.ttf" />
-    <None Remove="Fonts\GothicA1-Regular.ttf" />
-    <None Remove="Fonts\GothicA1-SemiBold.ttf" />
-    <None Remove="Fonts\GothicA1-Thin.ttf" />
     <None Remove="pepe1.png" />
     <None Remove="Resources\Image_GN02.png" />
     <None Remove="Resources\Image_GN04.png" />
@@ -33,15 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Fonts\GothicA1-Black.ttf" />
-    <Resource Include="Fonts\GothicA1-Bold.ttf" />
-    <Resource Include="Fonts\GothicA1-ExtraBold.ttf" />
-    <Resource Include="Fonts\GothicA1-ExtraLight.ttf" />
-    <Resource Include="Fonts\GothicA1-Light.ttf" />
-    <Resource Include="Fonts\GothicA1-Medium.ttf" />
-    <Resource Include="Fonts\GothicA1-Regular.ttf" />
-    <Resource Include="Fonts\GothicA1-SemiBold.ttf" />
-    <Resource Include="Fonts\GothicA1-Thin.ttf" />
     <Resource Include="Resources\Image_GN05.png" />
   </ItemGroup>
 
