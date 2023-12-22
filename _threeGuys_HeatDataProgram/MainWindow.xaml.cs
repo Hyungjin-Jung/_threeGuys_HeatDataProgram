@@ -10,6 +10,7 @@ using System;
 using System.IO;
 using System.Windows.Controls;
 using _threeGuys_HeatDataProgram.Views.Pages;    // Directory(현재 주소위치 파악) 사용을 위해 필요.
+using PLCSocketHandler;
 
 namespace _threeGuys_HeatDataProgram
 {
@@ -20,7 +21,24 @@ namespace _threeGuys_HeatDataProgram
         _3_LiveHistoryPage LiveHistoryPage = new _3_LiveHistoryPage();
         _4_SetFilterPage SetFilterPageTest = new _4_SetFilterPage();
 
+        /*****************************************************************************************
+        ******************************** PLC 통신부 (임시) *****************************************
+        *******************************************************************************************/
 
+        PLCSocketHandler.PLCSocketManager PLCSocket = new PLCSocketHandler.PLCSocketManager();
+        private bool isPLCConnected = false;
+
+        string PLCIPAddress = "192.168.1.20";
+        string PLCPortNumber = "2004";
+
+        char PLCMemoryLocation = 'M';
+        char PLCMemoryAccessSize = 'X';
+        long PLCMemoryByteOffset = 8000;
+        long PLCMemoryBitOffset = 16;
+
+        /*****************************************************************************************
+        ******************************** PLC 통신부 (임시) *****************************************
+        *******************************************************************************************/
 
         PySocketHandler.PySocketHandler PySocket = new PySocketHandler.PySocketHandler();
         setFilterData.SettingDataColumn filterList = new SettingDataColumn();
@@ -41,15 +59,23 @@ namespace _threeGuys_HeatDataProgram
 
             PySocket.prepareSocket();
 
-
-
-
             InitializeComponent();
 
+            /*****************************************************************************************
+            ******************************** PLC 통신부 (임시) *****************************************
+            *******************************************************************************************/
 
+            /*isPLCConnected = PLCConnect();
 
+            // 만약 PLC와의 연결이 실패했을 경우에만 실행. (재연결 시도는 안함)
+            if (isPLCConnected == false)
+            {
+                MessageBox.Show($"PLC 연결 실패!! (IP: {PLCIPAddress}, Port: {PLCPortNumber})");
+            }*/
 
-
+            /*****************************************************************************************
+            ******************************** PLC 통신부 (임시) *****************************************
+            *******************************************************************************************/
 
             string filePath = Directory.GetCurrentDirectory() + "/heatTreatingFactoryData.csv";
             string setfilePath = Directory.GetCurrentDirectory() + "/HeatDataAlarmFilter.csv";
@@ -507,5 +533,146 @@ namespace _threeGuys_HeatDataProgram
              bottom: 0
 );
         }
+
+        /*****************************************************************************************
+        ******************************** PLC 통신부 (임시) *****************************************
+        *******************************************************************************************/
+
+        private void PLCConnectButton_Click()
+        {
+            // 이미 PLC에 연결되어 있는 경우
+            if (isPLCConnected == true)
+            {
+                MessageBox.Show($"PLC와 이미 연결상태 입니다...");
+                return;
+            }
+            else
+            {
+                isPLCConnected = PLCConnect();
+            }
+
+            // PLC 연결 성공 여부에 따라 메시지 박스를 표시
+            if (isPLCConnected == true)
+            {
+                MessageBox.Show($"PLC 연결 성공... (IP: {PLCIPAddress}, Port: {PLCPortNumber})");
+            }
+            else
+            {
+                MessageBox.Show($"PLC 연결 실패!! (IP: {PLCIPAddress}, Port: {PLCPortNumber})");
+            }
+        }
+
+
+        private void PLCDisconnectButton_Click()
+        {
+            uint isPLCDisconnect = PLCSocket.Disconnect();
+
+            // PLC 연결 끊기 성공 여부에 따라 메시지 박스를 표시
+            if (isPLCDisconnect == (uint)XGCOMM_FUNC_RESULT.RT_XGCOMM_SUCCESS)
+            {
+                MessageBox.Show($"PLC 연결 끊기 성공... (IP: {PLCIPAddress}, Port: {PLCPortNumber})");
+                isPLCConnected = false;
+            }
+            else
+            {
+                MessageBox.Show($"PLC 연결 끊기 실패!! (IP: {PLCIPAddress}, Port: {PLCPortNumber})");
+            }
+        }
+
+        private void PLCWriteButton_Click()
+        {
+            // PLC 쓰기 결과 변수 초기화
+            uint PLCWriteResult;
+            string PLCWrite = "";
+
+            // PLC 데이터 쓰기
+            PLCWriteResult = PLCSocket.WriteData(PLCMemoryLocation, PLCMemoryAccessSize, PLCMemoryByteOffset, PLCMemoryBitOffset, PLCWrite);
+
+            // PLC 쓰기 결과에 따라 메시지 박스 표시
+            if (PLCWriteResult == (uint)XGCOMM_FUNC_RESULT.RT_XGCOMM_SUCCESS)
+            {
+                MessageBox.Show($"PLC 쓰기 성공...");
+            }
+            else
+            {
+                MessageBox.Show($"PLC 쓰기 실패!! 에러 코드: {PLCSocket.getResultCodeString(PLCWriteResult)}");
+            }
+        }
+
+
+        private void PLCReadButton_Click()
+        {
+            // PLC에서 읽은 데이터를 저장할 변수 및 초기화
+            uint PLCReadResult = 0;
+            string PLCReadText = string.Empty;
+            UInt16[] bufRead = new UInt16[PLCMemoryBitOffset];
+            string PLCRead;
+
+            // PLC에서 데이터 읽기
+            PLCReadResult = PLCSocket.ReadData(PLCMemoryLocation, PLCMemoryAccessSize, PLCMemoryByteOffset, PLCMemoryBitOffset, bufRead);
+
+            if (PLCReadResult == (uint)XGCOMM_FUNC_RESULT.RT_XGCOMM_SUCCESS)
+            {
+                // 읽은 데이터를 텍스트로 변환하여 표시
+                for (int i = 0; i < PLCMemoryBitOffset; i++)
+                {
+                    PLCReadText += PLCMemoryAccessSize switch
+                    {
+                        DEF_DATA_TYPE.DATA_TYPE_BIT => $" {bufRead[i]:X1}",
+                        DEF_DATA_TYPE.DATA_TYPE_BYTE => $" {bufRead[i]:X2}",
+                        DEF_DATA_TYPE.DATA_TYPE_WORD => $" {bufRead[i]:X4}",
+                        _ => string.Empty,
+                    };
+                }
+                PLCRead = PLCReadText.Trim();
+            }
+            else
+            {
+                // 실패한 경우 오류 메시지 표시
+                MessageBox.Show($"PLC 쓰기 실패!! 에러 코드: {PLCSocket.getResultCodeString(PLCReadResult)}");
+            }
+        }
+
+
+        private bool PLCConnect()
+        {
+            // PLC 소켓 연결 시도
+            uint PLCConnectResult = PLCSocket.Connect(PLCIPAddress, Convert.ToInt32(PLCPortNumber));
+
+            // 연결 실패 시 메시지를 표시하고 함수 종료
+            if (PLCConnectResult != (uint)XGCOMM_FUNC_RESULT.RT_XGCOMM_SUCCESS)
+            {
+                return false;
+            }
+
+            // 유지 스레드가 이미 실행 중이지 않고, 연결 유지 플래그가 false인 경우
+            if (!isPLCConnected)
+            {
+                // 연결 유지를 확인하는 스레드 시작
+                Thread updateKeepAliveThread = new Thread(() =>
+                {
+                    // 연결 유지 스레드 루프
+                    while (PLCSocket.UpdateKeepAlive() == (uint)XGCOMM_FUNC_RESULT.RT_XGCOMM_SUCCESS)
+                    {
+                        isPLCConnected = true;
+                        Thread.Sleep(1000);
+                    }
+
+                    // 연결 유지 실패 시 메시지 표시 및 플래그 설정
+                    MessageBox.Show($"PLC와 연결이 끊겼습니다!! (IP: {PLCIPAddress}, Port: {PLCPortNumber})");
+                    isPLCConnected = false;
+                });
+
+                // 스레드 시작
+                updateKeepAliveThread.IsBackground = true;
+                updateKeepAliveThread.Start();
+            }
+            return true;
+        }
+
+        /*****************************************************************************************
+        ******************************** PLC 통신부 (임시) *****************************************
+        *******************************************************************************************/
+
     }
 }
