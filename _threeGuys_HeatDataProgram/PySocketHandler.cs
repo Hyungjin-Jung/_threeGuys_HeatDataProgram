@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
+﻿using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace PySocketHandler
 {
@@ -51,7 +44,7 @@ namespace PySocketHandler
 
         public string checkReceivedString(string checkString)
         {
-            string[] strings = checkString.Split( );
+            string[] strings = checkString.Split();
             if (strings[0] == "1")
             {
                 return "1";

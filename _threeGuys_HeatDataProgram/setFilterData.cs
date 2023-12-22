@@ -1,20 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
+﻿using CsvHelper;
+using CsvHelper.Configuration;
+using System.Globalization;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.IO;
-using System.Collections;
-using System.Security.Cryptography;
-using CsvHelper;
-using System.Globalization;
-using System.Runtime.InteropServices;
-using System.Diagnostics.Contracts;
-using CsvHelper.Configuration;
-using System.Linq.Expressions;
 
 namespace setFilterData
 {
@@ -38,15 +27,15 @@ namespace setFilterData
         {
             using (var reader = new StreamReader(filePath))
             using (var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture)))
-            try
-            {
-                return csv.GetRecords<SettingDataColumn>().ToList();
-            }
-            catch (Exception ex)
-            {
+                try
+                {
+                    return csv.GetRecords<SettingDataColumn>().ToList();
+                }
+                catch (Exception ex)
+                {
                     Console.WriteLine($"Error reading csv file");
                     return new List<SettingDataColumn>();
-            }
+                }
         }
 
         public void WriteToCsv(List<SettingDataColumn> data, string filePath)

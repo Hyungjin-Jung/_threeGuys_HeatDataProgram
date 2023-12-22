@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using System.Data;
+﻿using System.IO;
 using System.Windows;
 
 namespace FactoryDataReader
@@ -136,7 +130,7 @@ namespace FactoryDataReader
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                
+
             }
             return new List<DataColumn>();
         }
