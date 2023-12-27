@@ -13,28 +13,17 @@
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="38"/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition />
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TabControl x:Name="tabControl" Grid.Row="0" Grid.ColumnSpan="3" >
-                <TabItem x:Name="tabItem_tab1" Header="GN__02"/>
-                <TabItem x:Name="tabItem_tab2" Header="GN__04"/>
-                <TabItem x:Name="tabItem_tab3" Header="GN__05"/>
-                <TabItem x:Name="tabItem_tab4" Header="GN__07"/>
-        </TabControl>
-        
-            <wv2:WebView2 x:Name="webView2_tab1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="3" Source="http://127.0.0.1:56790"/>
+
+            <wv2:WebView2 x:Name="webView2_tab1" Grid.Row="0"  Grid.ColumnSpan="3" Source="http://127.0.0.1:8050" />
             <!-- 하나의 webView로 공유 하는 방식으로 -->
-            <ui:Button Grid.Row="3" Grid.Column="0" Content="작동 시작&#10;중지 버튼" Icon="Fluent24" Width="166" Height="64" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <ui:Button Grid.Row="3" Grid.Column="1" Content="가스 벨브&#10;개폐 버튼" Icon="Fluent24" Width="166" Height="64" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <ui:Button Grid.Row="3" Grid.Column="2" Content="화로 문&#10;개폐 버튼" Icon="Fluent24" Width="166" Height="64" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            
         </Grid>
     </Grid>
 </Page>

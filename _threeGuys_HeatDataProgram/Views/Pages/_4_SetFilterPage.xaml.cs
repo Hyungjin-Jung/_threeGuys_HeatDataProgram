@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 
+
 namespace _threeGuys_HeatDataProgram.Views.Pages
 {
     /// <summary>

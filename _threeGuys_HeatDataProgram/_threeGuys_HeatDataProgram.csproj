@@ -11,6 +11,8 @@
 
   <ItemGroup>
     <None Remove="pepe1.png" />
+    <None Remove="Resources\HeatDataProgram_Icon.png" />
+    <None Remove="Resources\HeatDataProgram_Icon_invert.png" />
     <None Remove="Resources\Image_GN02.png" />
     <None Remove="Resources\Image_GN04.png" />
     <None Remove="Resources\Image_GN05.png" />
@@ -37,6 +39,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\HeatDataProgram_Icon.png" />
+    <Resource Include="Resources\HeatDataProgram_Icon_invert.png" />
     <Resource Include="Resources\Image_GN05.png" />
   </ItemGroup>
 

@@ -2,15 +2,16 @@
 using setFilterData;
 using System.Windows;
 using System.Windows.Threading;
+using System.Windows.Controls;
 using Wpf.Ui.Appearance;
 using Wpf.Ui.Common;
 using Wpf.Ui.Controls.Interfaces;
 using System.Collections.Generic;
 using System;
 using System.IO;
-using System.Windows.Controls;
 using _threeGuys_HeatDataProgram.Views.Pages;    // Directory(현재 주소위치 파악) 사용을 위해 필요.
 using PLCSocketHandler;
+using System.Windows.Navigation;
 
 namespace _threeGuys_HeatDataProgram
 {
@@ -42,8 +43,8 @@ namespace _threeGuys_HeatDataProgram
 
         PySocketHandler.PySocketHandler PySocket = new PySocketHandler.PySocketHandler();
         setFilterData.SettingDataColumn filterList = new SettingDataColumn();
-        // FactoryDataCSV 파일 열어서 저장할 리스트 선언
-        List<FactoryDataReader.DataColumn> test_list = default;
+        // FactoryDataCSV 파일 열어서 저장할 리스트 선언 -> 1초마다 데이터를 보여주게 하기 위해
+        static public List<FactoryDataReader.DataColumn>  factoryData_list= default;
         // 설정 DataGrid에 넣기위한 csv list
         List<setFilterData.SettingDataColumn> set_list = default;
         // 알림창에 문제가 생긴 부분만 모아놓은 List
@@ -82,77 +83,67 @@ namespace _threeGuys_HeatDataProgram
 
             setFilterData.setFilterData setData = new setFilterData.setFilterData();
 
-            setData.LoadDataFromCSV(SetFilterPageTest.listBox_SetFilter, setfilePath);
-            FactoryDataReader.FactoryDataReader test = new FactoryDataReader.FactoryDataReader();
+            setData.LoadDataFromCSV(SetFilterPageTest.DataGrid_SetFilter, setfilePath);
+            FactoryDataReader.FactoryDataReader factoryDataReader = new FactoryDataReader.FactoryDataReader();
+           
             // CSV 파일 열어서 DataGrid에 저장
-            LiveHistoryPage.dataGrid_History.ItemsSource = test.heatTreatingFactoryDataRead(filePath);
+            LiveHistoryPage.dataGrid_History.ItemsSource = factoryDataReader.heatTreatingFactoryDataRead(filePath);
+            
             // CSV 파일 열어서 리스트에 저장
-            test_list = test.heatTreatingFactoryDataRead(filePath);
+            factoryData_list = factoryDataReader.heatTreatingFactoryDataRead(filePath);
+
+            LiveHistoryPage.dataGrid_History.Items.Refresh();
+
+
 
             // 로딩 끝나면 탭들을 1~4 탭을 한번씩 활성화 시켜서 안의 그래프가 그려지게 만듬
 
             InitializeAsync();
-            //testUI.Loaded += ResetTab;
+
 
             // 1초마다 TimerTick 메서드 호출 -> 1초마다 CSV 알림 받아오는 용도로 설정
             timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += showTemperatureAndPower;
+            //timer.Tick += showTemperatureAndPower;
             timer.Start();
         }
 
-
-
-
-        //// 로딩용 눈속임. Loaded 핸들러(생성자의 로딩이 다 끝났을때)에 담아서 실행.
-        ///  tab -> navigation 으로 바꿔서 사용 안함
-        //private async void ResetTab(object sender, RoutedEventArgs e)
-        //{
-        //    // 탭 5를 활성화. 확실하게 활성화 시키기 위해 딜레이
-        //    for (int i = 5; i >= 0; i--)
-        //    {
-        //        tabControl.SelectedIndex = i;
-        //        await Task.Delay(100);
-        //    }
-        //    // 다 끝나면 최전방의 사각형 제거
-        //    rectangle_Rectangle.Visibility = Visibility.Collapsed;
-        //}
         // 1초마다 작업 실행 - 필터 및 알림 용도
-        private void showTemperatureAndPower(object sender, EventArgs e)
-        {
-            // 1초마다 수행할 작업을 여기에 구현
-            float value_Watt1 = test_list[currentRow].GN02N_MAIN_POWER;
-            float value_Watt2 = test_list[currentRow].GN04N_MAIN_POWER;
-            float value_Watt3 = test_list[currentRow].GN05N_MAIN_POWER;
-            float value_Watt4 = test_list[currentRow].GN07N_MAIN_POWER;
+        //private void showTemperatureAndPower(object sender, EventArgs e)
+        //{
+        //    // 1초마다 수행할 작업을 여기에 구현
+        //    float value_Watt1 = test_list[currentRow].GN02N_MAIN_POWER;
+        //    float value_Watt2 = test_list[currentRow].GN04N_MAIN_POWER;
+        //    float value_Watt3 = test_list[currentRow].GN05N_MAIN_POWER;
+        //    float value_Watt4 = test_list[currentRow].GN07N_MAIN_POWER;
 
-            float value_Temp1 = test_list[currentRow].GN02N_TEMP;
-            float value_Temp2 = test_list[currentRow].GN04M_TEMP;
-            float value_Temp3 = test_list[currentRow].GN05M_TEMP;
-            float value_Temp4 = test_list[currentRow].GN07N_TEMP;
+        //    float value_Temp1 = test_list[currentRow].GN02N_TEMP;
+        //    float value_Temp2 = test_list[currentRow].GN04M_TEMP;
+        //    float value_Temp3 = test_list[currentRow].GN05M_TEMP;
+        //    float value_Temp4 = test_list[currentRow].GN07N_TEMP;
 
-            string timer = test_list[currentRow].Time;
+        //    string timer = test_list[currentRow].Time;
 
-            // 가져온 값에 대한 작업 수행
-            DashBoardPage.label_Watt1.Content = value_Watt1.ToString() + " [W]";
-            DashBoardPage.label_Watt2.Content = value_Watt2.ToString() + " [W]";
-            DashBoardPage.label_Watt3.Content = value_Watt3.ToString() + " [W]";
-            DashBoardPage.label_Watt4.Content = value_Watt4.ToString() + " [W]";
+        //    // 가져온 값에 대한 작업 수행
+        //    DashBoardPage.label_Watt1.Content = value_Watt1.ToString() + " [W]";
+        //    DashBoardPage.label_Watt2.Content = value_Watt2.ToString() + " [W]";
+        //    DashBoardPage.label_Watt3.Content = value_Watt3.ToString() + " [W]";
+        //    DashBoardPage.label_Watt4.Content = value_Watt4.ToString() + " [W]";
 
-            DashBoardPage.label_Temp1.Content = value_Temp1.ToString() + " [°C]";
-            DashBoardPage.label_Temp2.Content = value_Temp2.ToString() + " [°C]";
-            DashBoardPage.label_Temp3.Content = value_Temp3.ToString() + " [°C]";
-            DashBoardPage.label_Temp4.Content = value_Temp4.ToString() + " [°C]";
+        //    DashBoardPage.label_Temp1.Content = value_Temp1.ToString() + " [°C]";
+        //    DashBoardPage.label_Temp2.Content = value_Temp2.ToString() + " [°C]";
+        //    DashBoardPage.label_Temp3.Content = value_Temp3.ToString() + " [°C]";
+        //    DashBoardPage.label_Temp4.Content = value_Temp4.ToString() + " [°C]";
 
-            // if( 필터체크 통과 못했으면 ) 아래 함수 실행
-            showAlertOnDangerousLevels(timer, value_Watt1, value_Watt2, value_Watt3, value_Watt4, value_Temp1, value_Temp2, value_Temp3, value_Temp4);
+        //    // if( 필터체크 통과 못했으면 ) 아래 함수 실행
+        //    showAlertOnDangerousLevels(timer, value_Watt1, value_Watt2, value_Watt3, value_Watt4, value_Temp1, value_Temp2, value_Temp3, value_Temp4);
 
-            // 다음 행으로 이동
-            currentRow++;
-            if (currentRow >= test_list.Count)
-            {
-                currentRow = 0;  // 리스트의 끝에 도달하면 처음으로 돌아감
-            }
-        }
+        //    // 다음 행으로 이동
+        //    currentRow++;
+        //    if (currentRow >= test_list.Count)
+        //    {
+        //        currentRow = 0;  // 리스트의 끝에 도달하면 처음으로 돌아감
+        //    }
+        //}
         //port : 56790
 
 
@@ -176,7 +167,7 @@ namespace _threeGuys_HeatDataProgram
             setFilterData.SettingDataColumn setData2 = new SettingDataColumn();
 
 
-
+            
 
             // Filter CSV 파일 열어서
             string[] lines = File.ReadAllLines(Directory.GetCurrentDirectory() + "/HeatDataAlarmFilter.csv");
@@ -249,8 +240,8 @@ namespace _threeGuys_HeatDataProgram
 
             if (int.Parse(filterMax) <= inputValue)
             {
-                DashBoardPage.listBox_Notice.Items.Add($"{filterAreaNum}번 구역의 {option}이(가) {inputValue}로, 설정한 {filterMax} 값 보다 높습니다.");
-                alarmInfo[0] = DashBoardPage.listBox_Notice.Items.Count.ToString();
+                DashBoardPage.listView_Notice.Items.Add($"{filterAreaNum}번 구역의 {option}이(가) {inputValue}로, 설정한 {filterMax} 값 보다 높습니다.");
+                alarmInfo[0] = DashBoardPage.listView_Notice.Items.Count.ToString();
                 alarmInfo[1] = filterName;
                 alarmInfo[2] = inputValue.ToString();
                 alarmInfo[3] = timer;
@@ -261,8 +252,8 @@ namespace _threeGuys_HeatDataProgram
 
             if (int.Parse(filterMin) >= inputValue)
             {
-                DashBoardPage.listBox_Notice.Items.Add($"{filterAreaNum}번 구역의 {option}이(가) {inputValue}로, 설정한 {filterMin} 값 보다 낮습니다.");
-                alarmInfo[0] = DashBoardPage.listBox_Notice.Items.Count.ToString();
+                DashBoardPage.listView_Notice.Items.Add($"{filterAreaNum}번 구역의 {option}이(가) {inputValue}로, 설정한 {filterMin} 값 보다 낮습니다.");
+                alarmInfo[0] = DashBoardPage.listView_Notice.Items.Count.ToString();
                 alarmInfo[1] = filterName;
                 alarmInfo[2] = inputValue.ToString();
                 alarmInfo[3] = timer;
@@ -487,18 +478,9 @@ namespace _threeGuys_HeatDataProgram
         {
             System.Diagnostics.Debug.WriteLine(
                 $"DEBUG | WPF UI Navigated to: {sender?.Current ?? null}",
-                "Wpf.Ui.Demo"
-        );
+                "Wpf.Ui.Demo");
 
-            // This funky solution allows us to impose a negative
-            // margin for Frame only for the Dashboard page, thanks
-            // to which the banner will cover the entire page nicely.
-            //RootFrame.Margin = new Thickness(
-            //    left: 0,
-            //    top: sender?.Current?.PageTag == "dashboard" ? -69 : 0,
-            //    right: 0,
-            //    bottom: 0
-            //);
+
         }
 
         private void NavigationButtonTheme_OnClick(object sender, RoutedEventArgs e)
@@ -510,29 +492,34 @@ namespace _threeGuys_HeatDataProgram
 
         }
 
-        private void NavigationButtonDashboard_OnClick(object sender, RoutedEventArgs e)
+        private void NavigationPage_OnClick(object sender, RoutedEventArgs e)
         {
-            if (Wpf.Ui.Controls.NavigationView.MouseLeftButtonDownEvent.ToString() != "0")
+            MenuItem input = (MenuItem)sender;
+
+            switch (input.Header)
             {
-
+                case "DashBoard":
+                    RootNavigation.Navigate(0);
+                    break;
+                case "Details":
+                    RootNavigation.Navigate(1);
+                    break;
+                case "LiveHistory":
+                    RootNavigation.Navigate(2);
+                    break;
+                case "SetFilter":
+                    RootNavigation.Navigate(3);
+                    break;
+                case "Exit":
+                    this.Close();
+                    break;
+                default:
+                    break;
             }
-
-
         }
 
-        private void navigation_Loaded(INavigation sender, RoutedNavigationEventArgs e)
-        {
-            System.Diagnostics.Debug.WriteLine(
-                $"DEBUG | WPF UI Navigated to: {sender?.Current ?? null}",
-                "Wpf.Ui.Demo"
-);
-            RootFrame.Margin = new Thickness(
-             left: 0,
-              top: sender?.Current?.PageTag == "dashboard" ? -69 : 0,
-             right: 0,
-             bottom: 0
-);
-        }
+
+
 
         /*****************************************************************************************
         ******************************** PLC 통신부 (임시) *****************************************
@@ -554,7 +541,7 @@ namespace _threeGuys_HeatDataProgram
             // PLC 연결 성공 여부에 따라 메시지 박스를 표시
             if (isPLCConnected == true)
             {
-                MessageBox.Show($"PLC 연결 성공... (IP: {PLCIPAddress}, Port: {PLCPortNumber})");
+                System.Windows.MessageBox.Show($"PLC 연결 성공... (IP: {PLCIPAddress}, Port: {PLCPortNumber})");
             }
             else
             {
@@ -669,6 +656,8 @@ namespace _threeGuys_HeatDataProgram
             }
             return true;
         }
+
+
 
         /*****************************************************************************************
         ******************************** PLC 통신부 (임시) *****************************************

@@ -117,12 +117,14 @@
     <Color x:Key="SolidBackgroundFillColorBaseAlt">#DADADA</Color>
 
     <Color x:Key="SystemFillColorSuccess">#0F7B0F</Color>
+    <Color x:Key="SystemFillColorSuccess2">#00FFFF</Color>
     <Color x:Key="SystemFillColorCaution">#9D5D00</Color>
     <Color x:Key="SystemFillColorCritical">#C42B1C</Color>
     <Color x:Key="SystemFillColorNeutral">#72000000</Color>
     <Color x:Key="SystemFillColorSolidNeutral">#8A8A8A</Color>
     <Color x:Key="SystemFillColorAttentionBackground">#80F6F6F6</Color>
     <Color x:Key="SystemFillColorSuccessBackground">#DFF6DD</Color>
+    <Color x:Key="SystemFillColorSuccess2Background">#DFF6DD</Color>
     <Color x:Key="SystemFillColorCautionBackground">#FFF4CE</Color>
     <Color x:Key="SystemFillColorCriticalBackground">#FDE7E9</Color>
     <Color x:Key="SystemFillColorNeutralBackground">#06000000</Color>
@@ -223,12 +225,16 @@
     <SolidColorBrush x:Key="SolidBackgroundFillColorBaseAltBrush" Color="{StaticResource SolidBackgroundFillColorBaseAlt}" />
 
     <SolidColorBrush x:Key="SystemFillColorSuccessBrush" Color="{StaticResource SystemFillColorSuccess}" />
+    <SolidColorBrush x:Key="SystemFillColorSuccess2Brush" Color="{StaticResource SystemFillColorSuccess2}" />
+
     <SolidColorBrush x:Key="SystemFillColorCautionBrush" Color="{StaticResource SystemFillColorCaution}" />
     <SolidColorBrush x:Key="SystemFillColorCriticalBrush" Color="{StaticResource SystemFillColorCritical}" />
     <SolidColorBrush x:Key="SystemFillColorNeutralBrush" Color="{StaticResource SystemFillColorNeutral}" />
     <SolidColorBrush x:Key="SystemFillColorSolidNeutralBrush" Color="{StaticResource SystemFillColorSolidNeutral}" />
     <SolidColorBrush x:Key="SystemFillColorAttentionBackgroundBrush" Color="{StaticResource SystemFillColorAttentionBackground}" />
     <SolidColorBrush x:Key="SystemFillColorSuccessBackgroundBrush" Color="{StaticResource SystemFillColorSuccessBackground}" />
+    <SolidColorBrush x:Key="SystemFillColorSuccess2BackgroundBrush" Color="{StaticResource SystemFillColorSuccess2Background}" />
+
     <SolidColorBrush x:Key="SystemFillColorCautionBackgroundBrush" Color="{StaticResource SystemFillColorCautionBackground}" />
     <SolidColorBrush x:Key="SystemFillColorCriticalBackgroundBrush" Color="{StaticResource SystemFillColorCriticalBackground}" />
     <SolidColorBrush x:Key="SystemFillColorNeutralBackgroundBrush" Color="{StaticResource SystemFillColorNeutralBackground}" />

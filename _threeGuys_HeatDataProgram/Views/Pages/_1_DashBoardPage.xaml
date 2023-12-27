@@ -5,6 +5,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       xmlns:local="clr-namespace:_threeGuys_HeatDataProgram.Views.Pages"
       mc:Ignorable="d" 
       d:DesignWidth="900"
@@ -18,46 +19,70 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="200" />
 
         </Grid.ColumnDefinitions>
 
-        <TextBlock x:Name="textBlock_Watt1" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Text="전력 : " Width="35" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        <TextBlock x:Name="textBlock_Temp1" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Text="온도 : " Width="35" Height="16" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,140,0,0" />
-        <TextBlock x:Name="textBlock_Watt2" Grid.Row="0" Grid.Column="3" TextWrapping="Wrap" Text="전력 : " Width="35" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        <TextBlock x:Name="textBlock_Temp2" Grid.Row="0" Grid.Column="3" TextWrapping="Wrap" Text="온도 : " Width="35" Height="16" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,140,0,0" />
-        <TextBlock x:Name="textBlock_Watt3" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="전력 : " Width="35" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        <TextBlock x:Name="textBlock_Temp3" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="온도 : " Width="35" Height="16" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,140,0,0" />
-        <TextBlock x:Name="textBlock_Watt4" Grid.Row="1" Grid.Column="3" TextWrapping="Wrap" Text="전력 : " Width="35" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        <TextBlock x:Name="textBlock_Temp4" Grid.Row="1" Grid.Column="3" TextWrapping="Wrap" Text="온도 : " Width="35" Height="16" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,140,0,0" />
+        <TextBlock x:Name="textBlock_Watt1" Grid.Column="1" TextWrapping="Wrap" Text="전력 : " Width="36" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <TextBlock x:Name="textBlock_Temp1" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Text="온도 : " Width="36" Height="16" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,140,0,0" />
+        <TextBlock x:Name="textBlock_Watt2" Grid.Column="3" TextWrapping="Wrap" Text="전력 : " Width="36" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <TextBlock x:Name="textBlock_Temp2" Grid.Row="0" Grid.Column="3" TextWrapping="Wrap" Text="온도 : " Width="36" Height="16" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,140,0,0" />
+        <TextBlock x:Name="textBlock_Watt3" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="전력 : " Width="36" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <TextBlock x:Name="textBlock_Temp3" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="온도 : " Width="36" Height="16" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,140,0,0" />
+        <TextBlock x:Name="textBlock_Watt4" Grid.Row="1" Grid.Column="3" TextWrapping="Wrap" Text="전력 : " Width="36" Height="16" VerticalAlignment="Center" HorizontalAlignment="Center" />
+        <TextBlock x:Name="textBlock_Temp4" Grid.Row="1" Grid.Column="3" TextWrapping="Wrap" Text="온도 : " Width="36" Height="16" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,140,0,0" />
+
+        <!-- 라벨, 전력 수정해야함 -->
+
         <Label x:Name="label_Watt1" Grid.Row="1" Content="Label" Margin="97,3,0,0" Height="26" VerticalAlignment="Top" Width="80" HorizontalAlignment="Left"/>
         <Label x:Name="label_Temp1" Grid.Row="1" Content="Label" Margin="97,32,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
-        <Label x:Name="label_Watt2" Grid.Row="1" Content="Label" Margin="287,3,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="80"/>
-        <Label x:Name="label_Temp2" Grid.Row="1" Content="Label" Margin="287,32,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
-        <Label x:Name="label_Watt3" Grid.Row="1" Content="Label" Margin="481,3,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
-        <Label x:Name="label_Temp3" Grid.Row="1" Content="Label" Margin="481,32,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
-        <Label x:Name="label_Watt4" Grid.Row="1" Content="Label" Margin="694,3,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
-        <Label x:Name="label_Temp4" Grid.Row="1" Content="Label" Margin="694,32,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top"/>
-        <ListBox x:Name="listBox_Notice" Grid.Row="2" Grid.ColumnSpan="4" Margin="62,34,64,34" MouseDoubleClick="listBoxNoticeMouseDouble_Click" />
-        <Button x:Name="button_GoToTab1" Grid.Row="0" Grid.Column="0"  Click="DisplayFirstAreaTab_Click" Height="200" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200">
+        <Label x:Name="label_Watt2" Grid.Row="1" Content="Label" Margin="0,3,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Center" Width="80" Grid.Column="1"/>
+        <Label x:Name="label_Temp2" Grid.Row="1" Content="Label" Margin="0,32,0,0" HorizontalAlignment="Center" Width="80" Height="26" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="label_Watt3" Grid.Row="1" Content="Label" Margin="31,3,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top" Grid.Column="2"/>
+        <Label x:Name="label_Temp3" Grid.Row="1" Content="Label" Margin="31,32,0,0" HorizontalAlignment="Left" Width="80" Height="26" VerticalAlignment="Top" Grid.Column="2"/>
+        <Label x:Name="label_Watt4" Grid.Row="1" Content="Label" Margin="0,3,0,0" HorizontalAlignment="Center" Width="80" Height="26" VerticalAlignment="Top" Grid.Column="3"/>
+        <Label x:Name="label_Temp4" Grid.Row="1" Content="Label" Margin="0,32,0,0" HorizontalAlignment="Center" Width="80" Height="26" VerticalAlignment="Top" Grid.Column="3"/>
+
+
+        <!-- 1번 기계 버튼-->
+        <ui:Button x:Name="button_Machine1_Green" Grid.Column="1" Icon="Fluent24" Content="가동 버튼" FontSize="20" HorizontalAlignment="Center" Appearance="Success" Height="55" Width="190" Margin="0,-150,0,0" VerticalAlignment="Center" Click="button_Machine1_Green_Click" />
+        <ui:Button x:Name="button_Machine1_Yellow"  Grid.Column="1" Icon="Fluent24" Content="경고 버튼" FontSize="20" HorizontalAlignment="Center" Appearance="Caution" Height="55" Width="190" VerticalAlignment="Center"/>
+        <ui:Button x:Name="button_Machine1_Red" Grid.Column="1" Icon="Fluent24" Content="중지 버튼" FontSize="20" HorizontalAlignment="Center" Appearance="Danger" Height="55" Width="190" Margin="0,150,0,0" VerticalAlignment="Center"/>
+        <!-- 2번 기계 버튼-->
+        <ui:Button x:Name="button_Machine2_Green" Grid.Column="3" Icon="Fluent24" Content="가동 버튼" FontSize="20" HorizontalAlignment="Center" Appearance="Success" Height="55" Width="190" Margin="0,-150,0,0" VerticalAlignment="Center" />
+        <ui:Button x:Name="button_Machine2_Yellow"  Grid.Column="3" Icon="Fluent24" Content="경고 버튼" FontSize="20" HorizontalAlignment="Center" Appearance="Caution" Height="55" Width="190" VerticalAlignment="Center"/>
+        <ui:Button x:Name="button_Machine2_Red" Grid.Column="3" Icon="Fluent24" Content="중지 버튼" FontSize="20" HorizontalAlignment="Center" Appearance="Danger" Height="55" Width="190" Margin="0,150,0,0" VerticalAlignment="Center"/>
+        <!-- 3번 기계 버튼-->
+        <ui:Button x:Name="button_Machine3_Green" Grid.Row="1" Grid.Column="1" Icon="Fluent24" Content="가동 버튼" FontSize="20" HorizontalAlignment="Center" Appearance="Success" Height="55" Width="190" Margin="0,-150,0,0" VerticalAlignment="Center" />
+        <ui:Button x:Name="button_Machine3_Yellow" Grid.Row="1" Grid.Column="1" Icon="Fluent24" Content="경고 버튼" FontSize="20" HorizontalAlignment="Center" Appearance="Caution" Height="55" Width="190" VerticalAlignment="Center"/>
+        <ui:Button x:Name="button_Machine3_Red" Grid.Row="1" Grid.Column="1" Icon="Fluent24" Content="중지 버튼" FontSize="20" HorizontalAlignment="Center" Appearance="Danger" Height="55" Width="190" Margin="0,150,0,0" VerticalAlignment="Center"/>
+        <!-- 4번 기계 버튼-->
+        <ui:Button x:Name="button_Machine4_Green" Grid.Row="1" Grid.Column="3" Icon="Fluent24" Content="가동 버튼" FontSize="20" HorizontalAlignment="Center" Appearance="Success" Height="55" Width="190" Margin="0,-150,0,0" VerticalAlignment="Center" />
+        <ui:Button x:Name="button_Machine4_Yellow" Grid.Row="1" Grid.Column="3" Icon="Fluent24" Content="경고 버튼" FontSize="20" HorizontalAlignment="Center" Appearance="Caution" Height="55" Width="190" VerticalAlignment="Center"/>
+        <ui:Button x:Name="button_Machine4_Red" Grid.Row="1" Grid.Column="3" Icon="Fluent24" Content="중지 버튼" FontSize="20" HorizontalAlignment="Center" Appearance="Danger" Height="55" Width="190" Margin="0,150,0,0" VerticalAlignment="Center"/>
+
+
+
+        <ListView x:Name="listView_Notice" Grid.Row="2" Grid.ColumnSpan="3" Margin="62,34,1,34" MouseDoubleClick="listViewNoticeMouseDouble_Click" />
+        <Button x:Name="button_GoToTab1"  Click="DisplayFirstAreaTab_Click" Height="200" HorizontalAlignment="Center" Width="200">
             <Button.Background>
                 <ImageBrush ImageSource="pack://application:,,,/Resources/Image_GN02.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="button_GoToTab2" Grid.Row="0" Grid.Column="2"   Click="DisplaySecondAreaTab_Click" Height="200" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200">
+        <Button x:Name="button_GoToTab2" Grid.Column="2"   Click="DisplaySecondAreaTab_Click" Height="200" HorizontalAlignment="Center" Width="200">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/Image_GN04.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="button_GoToTab3" Grid.Row="1" Grid.Column="0"  Click="DisplayThirdAreaTab_Click" HorizontalAlignment="Center" Width="200" Height="200" VerticalAlignment="Center">
+        <Button x:Name="button_GoToTab3" Grid.Row="1"  Click="DisplayThirdAreaTab_Click" HorizontalAlignment="Center" Width="200" Height="200">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/Image_GN05.png"/>
             </Button.Background>
         </Button>
-        <Button x:Name="button_GoToTab4" Grid.Row="1" Grid.Column="2" Click="DisplayFourthAreaTab_Click" Height="200" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200">
+        <Button x:Name="button_GoToTab4" Grid.Row="1" Grid.Column="2" Click="DisplayFourthAreaTab_Click" Height="200" HorizontalAlignment="Center" Width="200">
             <Button.Background>
                 <ImageBrush ImageSource="/Resources/Image_GN07.png"/>
             </Button.Background>
