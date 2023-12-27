@@ -7,7 +7,8 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="_3_LiveHistoryPage">
+      Title="_3_LiveHistoryPage"
+      Loaded="Button_Click">
 
     <Grid>
             <Grid.RowDefinitions>
@@ -23,12 +24,21 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ComboBox x:Name="comboBox_DataGridMachineName"  Grid.Column="0"/>
-        <ComboBox x:Name="comboBox_DataGridOption" Grid.Column="1"/>
-        <TextBox x:Name="textBox_DataGridStartDate"  Grid.Column="2"/>
-        <TextBox x:Name="textBox_DataGridEndDate" Grid.Column="3"/>
-        <ui:Button x:Name="button_DataGridSearch" Content="검색" Grid.Column="4" Height="50" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center"
+        <ComboBox x:Name="comboBox_DataGridMachineName"  Grid.Column="0">
+            <ComboBoxItem x:Name="comboBoxItem_DataGrid_Machine1" Content="GN02N"/>
+            <ComboBoxItem x:Name="comboBoxItem_DataGrid_Machine2" Content="GM04M"/>
+            <ComboBoxItem x:Name="comboBoxItem_DataGrid_Machine3" Content="GM05M"/>
+            <ComboBoxItem x:Name="comboBoxItem_DataGrid_Machine4" Content="GN07N"/>
+        </ComboBox>
+        <ComboBox x:Name="comboBox_DataGridOption" Grid.Column="1">
+            <ComboBoxItem x:Name="comboBoxItem_DataGrid_OptionWatt" Content="전력"/>
+            <ComboBoxItem x:Name="comboBoxItem_DataGrid_OptionTemp" Content="온도"/>
+            <ComboBoxItem x:Name="comboBoxItem_DataGrid_OptionGas" Content="가스"/>
+        </ComboBox>
+        <TextBox x:Name="textBox_DataGridStartDate" Height="40" Grid.Column="2"/>
+        <TextBox x:Name="textBox_DataGridEndDate" Height="40" Grid.Column="3"/>
+        <ui:Button x:Name="button_DataGridSearch" Content="검색" Grid.Column="4" Height="50" Width="150" VerticalAlignment="Center" HorizontalAlignment="Center" Click="button_DataGridSearch_Click"
 />
-        <DataGrid x:Name="dataGrid_History" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="5"></DataGrid>
+        <DataGrid x:Name="dataGrid_History" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="5" AutoGeneratingColumn="dataGrid_History_AutoGeneratingColumn"/>
     </Grid>
 </Page>

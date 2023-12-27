@@ -32,7 +32,7 @@
         >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -44,7 +44,6 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
             <ui:NavigationStore
                 x:Name="RootNavigation"
                 Grid.Column="0"
@@ -59,6 +58,7 @@
                 <!-- 이름이 RootFrame 인 곳에 Navigate 설정-->
                 <ui:NavigationStore.Items >
                     <ui:NavigationItem
+                        
                         Width="120" Height="120"
                         Content="대시보드"
                         PageTag="DashBoard"
@@ -118,5 +118,55 @@
                 </Grid>
             </Border>
         </Grid>
+        <ui:TitleBar
+            Title="열처리 기기 이상탐지 프로그램 _threeguys"
+            Grid.Row="0"
+            Icon="pack://application:,,,/Resources/HeatDataProgram_Icon.png"
+            FontSize="16">
+            <ui:TitleBar.Tray>
+                <ui:NotifyIcon  
+                    x:Name="TrayIcon"
+                    Icon="pack://application:,,,/Resources/HeatDataProgram_Icon.png"
+                    TooltipText="열처리 기기 이상탐지 프로그램 _threeguys"
+                    MenuOnRightClick="True">
+                    <ui:NotifyIcon.Menu>
+                        <ContextMenu x:Name="cm">
+                            <ui:MenuItem
+                                x:Name="DashBoard"
+                                Click="NavigationPage_OnClick"
+                                Header="DashBoard"
+                                SymbolIcon="Library28"
+                                Tag="DashBoard" />
+                            <ui:MenuItem
+                                x:Name="Details"
+                                Click="NavigationPage_OnClick"
+                                Header="Details"
+                                SymbolIcon="Save24"
+                                Tag="Details" />
+                            <ui:MenuItem
+                                x:Name="LiveHistory"
+                                Click="NavigationPage_OnClick"
+                                Header="LiveHistory"
+                                SymbolIcon="Save24"
+                                Tag="LiveHistory" />
+                            <ui:MenuItem
+                                x:Name="SetFilter"
+                                Click="NavigationPage_OnClick"
+                                Header="SetFilter"
+                                SymbolIcon="Save24"
+                                Tag="SetFilter" />
+                            <ui:MenuItem
+                                x:Name="Exit"
+                                Click="NavigationPage_OnClick"
+                                Header="Exit"
+                                SymbolIcon="ArrowExit20"
+                                Tag="Exit" />
+
+                        </ContextMenu>
+                    </ui:NotifyIcon.Menu>
+                </ui:NotifyIcon>
+            </ui:TitleBar.Tray>
+        </ui:TitleBar>
     </Grid>
+
 </ui:UiWindow>

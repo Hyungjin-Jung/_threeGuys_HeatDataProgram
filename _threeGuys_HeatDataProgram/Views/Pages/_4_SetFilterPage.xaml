@@ -23,13 +23,26 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-            <ComboBox x:Name="comboBox_SetFilterMachineName"  Grid.Column="0"/>
-            <ComboBox x:Name="comboBox_SetFilterOption" Grid.Column="1"/>
-            <ComboBox x:Name="comboBox_SetFilterMaxMin"  Grid.Column="2"/>
-            <TextBox x:Name="textBox_SetFilterValue" Grid.Column="3"/>
-            <ui:Button x:Name="button_SetFilterApply" Content="적용" Grid.Column="4" Height="50" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center"
+        <ComboBox x:Name="comboBox_SetFilterMachineName"  Grid.Column="0">
+            <ComboBoxItem x:Name="comboBoxItem_SetFilter_Machine1" Content="GN02N"/>
+            <ComboBoxItem x:Name="comboBoxItem_SetFilter_Machine2" Content="GM04M"/>
+            <ComboBoxItem x:Name="comboBoxItem_SetFilter_Machine3" Content="GM05M"/>
+            <ComboBoxItem x:Name="comboBoxItem_SetFilter_Machine4" Content="GN07N"/>
+        </ComboBox>
+        <ComboBox x:Name="comboBox_SetFilterOption" Grid.Column="1">
+            <ComboBoxItem x:Name="comboBoxItem_SetFilter_OptionWatt" Content="전력"/>
+            <ComboBoxItem x:Name="comboBoxItem_SetFilter_OptionTemp" Content="온도"/>
+            <ComboBoxItem x:Name="comboBoxItem_SetFilter_OptionGas" Content="가스"/>
+        </ComboBox>
+
+        <ComboBox x:Name="comboBox_SetFilterMaxMin"  Grid.Column="2">
+            <ComboBoxItem x:Name="comboBox_SetFilerMaxValue" Content="이상"/>
+            <ComboBoxItem x:Name="comboBox_SetFilerMinValue" Content="이하"/>
+        </ComboBox>
+        <TextBox x:Name="textBox_SetFilterValue" Height="40" Grid.Column="3"/>
+        <ui:Button x:Name="button_SetFilterApply" Content="적용" Grid.Column="4" Height="50" Width="150" VerticalAlignment="Center" HorizontalAlignment="Center"
 />
-        <DataGrid x:Name="listBox_SetFilter" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="5">
+        <DataGrid x:Name="DataGrid_SetFilter" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="5">
         </DataGrid>
     </Grid>
 </Page>
