@@ -40,7 +40,7 @@ namespace _threeGuys_HeatDataProgram
         PLCSocketHandler.PLCSocketManager PLCSocket = new PLCSocketHandler.PLCSocketManager();
         private bool isPLCConnected = false;
 
-        string PLCIPAddress = "192.168.1.20";
+        string PLCIPAddress = "192.168.1.2";
         string PLCPortNumber = "2004";
 
         char PLCMemoryLocation = 'M';
