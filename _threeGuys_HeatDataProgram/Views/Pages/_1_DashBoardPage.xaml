@@ -29,25 +29,25 @@
 
         </Grid.ColumnDefinitions>
         <!-- 기계 1-->
-        <TextBlock x:Name="textBlock_Watt1" FontSize="24" Grid.Column="1" Text="전력 : "  TextWrapping="Wrap"  Width="70" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,45,0,0" />
-        <TextBlock x:Name="label_Watt1" FontSize="24" Grid.Row="0" Grid.Column="1" Text="Label" Margin="81,45,0,0" Height="30" VerticalAlignment="Top" Width="70" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
-        <TextBlock x:Name="textBlock_Temp1" FontSize="24" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Text="온도 : " Width="70" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,123,0,0" />
-        <TextBlock x:Name="label_Temp1" FontSize="24" Grid.Row="0" Grid.Column="1" Text="Label" Margin="81,123,0,0" HorizontalAlignment="Left" Width="70" Height="30" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="textBlock_Watt1" FontSize="22" Grid.Column="1" Text="전력 : "  TextWrapping="Wrap"  Width="100" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,45,0,0" />
+        <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="label_Watt1" FontSize="22" Grid.Row="0" Grid.Column="1" Text="Label" Margin="120,45,0,0" Height="50" VerticalAlignment="Top" Width="100" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+        <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="textBlock_Temp1" FontSize="22" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Text="온도 : " Width="100" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,123,0,0" />
+        <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="label_Temp1" FontSize="22" Grid.Row="0" Grid.Column="1" Text="Label" Margin="120,123,0,0" HorizontalAlignment="Left" Width="100" Height="50" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
         <!-- 기계 2-->
-        <TextBlock x:Name="textBlock_Watt2" FontSize="24" Grid.Column="4" TextWrapping="Wrap" Text="전력 : " Width="70" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,45,0,0" />
-        <TextBlock x:Name="label_Watt2" FontSize="24" Grid.Row="0" Text="Label" Margin="81,45,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="70" Grid.Column="4" Grid.ColumnSpan="2"/>
-        <TextBlock x:Name="textBlock_Temp2" FontSize="24" Grid.Column="4" TextWrapping="Wrap" Text="온도 : " Width="70" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,123,0,0"/>
-        <TextBlock x:Name="label_Temp2" FontSize="24" Text="Label" Margin="81,123,0,0" HorizontalAlignment="Left" Width="70" Height="30" VerticalAlignment="Top" Grid.Column="4" Grid.ColumnSpan="2"/>
+        <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="textBlock_Watt2" FontSize="22" Grid.Column="4" TextWrapping="Wrap" Text="전력 : " Width="100" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,45,0,0" />
+        <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="label_Watt2" FontSize="22" Grid.Row="0" Text="Label" Margin="120,45,0,0" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Grid.Column="4" Grid.ColumnSpan="2"/>
+        <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="textBlock_Temp2" FontSize="22" Grid.Column="4" TextWrapping="Wrap" Text="온도 : " Width="100" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,123,0,0"/>
+        <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="label_Temp2" FontSize="22" Text="Label" Margin="120,123,0,0" HorizontalAlignment="Left" Width="100" Height="50" VerticalAlignment="Top" Grid.Column="4" Grid.ColumnSpan="2"/>
         <!-- 기계 3-->
-        <TextBlock x:Name="textBlock_Watt3" FontSize="24" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="전력 : " Width="70" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,45,0,0" />
-        <TextBlock x:Name="label_Watt3" FontSize="24" Grid.Row="1" Text="Label" Margin="81,45,0,0" HorizontalAlignment="Left" Width="70" Height="30" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <TextBlock x:Name="textBlock_Temp3" FontSize="24" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="온도 : " Width="70" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,123,0,0" />
-        <TextBlock x:Name="label_Temp3" FontSize="24" Grid.Row="1" Text="Label" HorizontalAlignment="Left" Width="70" Height="30" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2" Margin="81,123,0,0"/>
+        <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="textBlock_Watt3" FontSize="22" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="전력 : " Width="100" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,45,0,0" />
+        <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="label_Watt3" FontSize="22" Grid.Row="1" Text="Label" Margin="120,45,0,0" HorizontalAlignment="Left" Width="100" Height="50" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="textBlock_Temp3" FontSize="22" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="온도 : " Width="100" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,123,0,0" />
+        <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="label_Temp3" FontSize="22" Grid.Row="1" Text="Label" HorizontalAlignment="Left" Width="100" Height="50" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2" Margin="120,123,0,0"/>
         <!-- 기계 4-->
-        <TextBlock x:Name="textBlock_Watt4" FontSize="24" Grid.Row="1" Grid.Column="4" TextWrapping="Wrap" Text="전력 : " Width="70" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,45,0,0" />
-        <TextBlock x:Name="label_Watt4" FontSize="24" Grid.Row="1" Text="Label" Margin="81,45,0,0" HorizontalAlignment="Left" Width="70" Height="30" VerticalAlignment="Top" Grid.Column="4" Grid.ColumnSpan="2"/>
-        <TextBlock x:Name="textBlock_Temp4" FontSize="24" Grid.Row="1" Grid.Column="4" TextWrapping="Wrap" Text="온도 : " Width="70" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,123,0,0"/>
-        <TextBlock x:Name="label_Temp4" FontSize="24" Grid.Row="1" Text="Label" Margin="81,123,0,0" HorizontalAlignment="Left" Width="70" Height="30" VerticalAlignment="Top" Grid.Column="4" Grid.ColumnSpan="2"/>
+        <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="textBlock_Watt4" FontSize="22" Grid.Row="1" Grid.Column="4" TextWrapping="Wrap" Text="전력 : " Width="100" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,45,0,0" />
+        <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="label_Watt4" FontSize="22" Grid.Row="1" Text="Label" Margin="120,45,0,0" HorizontalAlignment="Left" Width="100" Height="50" VerticalAlignment="Top" Grid.Column="4" Grid.ColumnSpan="2"/>
+        <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="textBlock_Temp4" FontSize="22" Grid.Row="1" Grid.Column="4" TextWrapping="Wrap" Text="온도 : " Width="100" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,123,0,0"/>
+        <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="label_Temp4" FontSize="22" Grid.Row="1" Text="Label" Margin="120,123,0,0" HorizontalAlignment="Left" Width="100" Height="50" VerticalAlignment="Top" Grid.Column="4" Grid.ColumnSpan="2"/>
 
 
         <!-- 1번 기계 버튼-->
