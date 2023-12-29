@@ -7,16 +7,16 @@
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="_3_LiveHistoryPage"
-      Loaded="Button_Click">
+      Background="{DynamicResource ApplicationBackgroundBrush}"
+      Title="_3_LiveHistoryPage">
 
     <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -24,21 +24,28 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ComboBox x:Name="comboBox_DataGridMachineName"  Grid.Column="0">
+
+        <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="구역 명" FontWeight="DemiBold" FontSize="22" Height="40" Margin="0,10,0,50" Grid.Column="0" />
+        <ComboBox x:Name="comboBox_DataGridMachineName" SelectedIndex="0" Grid.Column="0" Margin="0,56,0,0" VerticalAlignment="Top">
+            <ComboBoxItem x:Name="comboBoxItem_DataGrid_AllMachine" Content="전체 구역"/>
             <ComboBoxItem x:Name="comboBoxItem_DataGrid_Machine1" Content="GN02N"/>
             <ComboBoxItem x:Name="comboBoxItem_DataGrid_Machine2" Content="GM04M"/>
             <ComboBoxItem x:Name="comboBoxItem_DataGrid_Machine3" Content="GM05M"/>
             <ComboBoxItem x:Name="comboBoxItem_DataGrid_Machine4" Content="GN07N"/>
         </ComboBox>
-        <ComboBox x:Name="comboBox_DataGridOption" Grid.Column="1">
+        <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="항목 명" FontWeight="DemiBold" FontSize="22"  Height="40" Margin="0,10,0,50" Grid.Column="1" />
+        <ComboBox x:Name="comboBox_DataGridOption" Grid.Column="1" SelectedIndex="0" VerticalAlignment="Top" Margin="0,56,0,0">
+            <ComboBoxItem x:Name="comboBoxItem_DataGrid_OptionAllData" Content="모든 수치"/>
             <ComboBoxItem x:Name="comboBoxItem_DataGrid_OptionWatt" Content="전력"/>
             <ComboBoxItem x:Name="comboBoxItem_DataGrid_OptionTemp" Content="온도"/>
             <ComboBoxItem x:Name="comboBoxItem_DataGrid_OptionGas" Content="가스"/>
         </ComboBox>
-        <TextBox x:Name="textBox_DataGridStartDate" Height="40" Grid.Column="2"/>
-        <TextBox x:Name="textBox_DataGridEndDate" Height="40" Grid.Column="3"/>
+        <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="검색 시작 기간" FontWeight="DemiBold" FontSize="22"  Height="40" Margin="0,10,0,50" Grid.Column="2" />
+        <TextBox x:Name="textBox_DataGridStartDate" Height="40" Grid.Column="2" VerticalAlignment="Top" Margin="0,56,0,0"/>
+        <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="검색 종료 기간" FontWeight="DemiBold"  FontSize="22" Height="40" Margin="0,10,0,50" Grid.Column="3" />
+        <TextBox x:Name="textBox_DataGridEndDate" Height="40" Grid.Column="3" VerticalAlignment="Top" Margin="0,56,0,0" />
         <ui:Button x:Name="button_DataGridSearch" Content="검색" Grid.Column="4" Height="50" Width="150" VerticalAlignment="Center" HorizontalAlignment="Center" Click="button_DataGridSearch_Click"
 />
-        <DataGrid x:Name="dataGrid_History" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="5" AutoGeneratingColumn="dataGrid_History_AutoGeneratingColumn"/>
+        <ui:DataGrid x:Name="dataGrid_History" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="5" AutoGeneratingColumn="dataGrid_History_AutoGeneratingColumn"/>
     </Grid>
 </Page>

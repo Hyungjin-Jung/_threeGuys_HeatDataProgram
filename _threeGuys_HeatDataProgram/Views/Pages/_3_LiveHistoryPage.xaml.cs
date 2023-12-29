@@ -1,10 +1,7 @@
 ﻿using System.IO;
 using System.Windows.Controls;
-using System.Linq;
-using System.Globalization;
-using Wpf.Ui.Controls;
-using System.Windows.Data;
-using System.ComponentModel;
+
+
 
 namespace _threeGuys_HeatDataProgram.Views.Pages
 {
@@ -23,6 +20,13 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
         public _3_LiveHistoryPage()
         {
             InitializeComponent();
+            // CSV 파일 열어서 DataGrid에 저장
+            dataGrid_History.ItemsSource = factoryDataReader.heatTreatingFactoryDataRead(filePath);
+
+            // CSV 파일 열어서 리스트에 저장
+            factoryData_list = factoryDataReader.heatTreatingFactoryDataRead(filePath);
+
+            dataGrid_History.Items.Refresh();
         }
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -43,26 +47,166 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             string dataGrid_StartDate = textBox_DataGridStartDate.Text;
             string dataGrid_EndDate = textBox_DataGridEndDate.Text;
 
+
+            // 시작, 종료 비어있으면 true 로 처리하고 진행 -> 끝까지
+            if (dataGrid_StartDate == "")
+                dataGrid_StartDate = "true";
+
+            if (dataGrid_EndDate == "")
+                dataGrid_EndDate = "true";
+
             string dataGrid_MachineOption = DataGrid_MachineOption(dataGrid_MachineName, dataGrid_Option);
 
-            var filteredList = factoryData_list
-                .Where(d => d.Time.CompareTo(dataGrid_StartDate) > 0 &&
-                            d.Time.CompareTo(dataGrid_EndDate) < 1
-                ).Select(d => new
+            // 이하 조건에 맞게 해당하는 컬럼만 반환
+            if (dataGrid_MachineName == "전체 구역")
+            {
+                switch (dataGrid_Option)
                 {
-                    d.Time,
-                    dataGrid_MachineOption = GetColumnValue(d, dataGrid_MachineOption),
-                })
-                .ToList();
+                    case "전력":
+                        var filteredList_AllPower = factoryData_list
+                            .Where(d => d.Time.CompareTo(dataGrid_StartDate) > 0 &&
+                                        d.Time.CompareTo(dataGrid_EndDate) < 1)
+                            .Select(d => new
+                            {
+                                Time = d.Time,
+                                GN02N_MAIN_POWER = d.GN02N_MAIN_POWER,
+                                GN04M_MAIN_POWER = d.GN04M_MAIN_POWER,
+                                GN05M_MAIN_POWER = d.GN05M_MAIN_POWER,
+                                GN07N_MAIN_POWER = d.GN07N_MAIN_POWER
+                            })
+                            .ToList();
+                        dataGrid_History.ItemsSource = filteredList_AllPower;
+                        break;
+                    case "온도":
+                        var filteredList_AllTemp = factoryData_list
+                            .Where(d => d.Time.CompareTo(dataGrid_StartDate) > 0 &&
+                                        d.Time.CompareTo(dataGrid_EndDate) < 1)
+                            .Select(d => new
+                            {
+                                Time = d.Time,
+                                GN02N_TEMP = d.GN02N_TEMP,
+                                GN04M_TEMP = d.GN04M_TEMP,
+                                GN05M_TEMP = d.GN05M_TEMP,
+                                GN07N_TEMP = d.GN07N_TEMP
+                            })
+                            .ToList();
+                        dataGrid_History.ItemsSource = filteredList_AllTemp;
+                        break;
+                    case "가스":
+                        var filteredList_AllGas = factoryData_list
+                            .Where(d => d.Time.CompareTo(dataGrid_StartDate) > 0 &&
+                                        d.Time.CompareTo(dataGrid_EndDate) < 1)
+                            .Select(d => new
+                            {
+                                Time = d.Time,
+                                GN02N_GAS_NRG = d.GN02N_GAS_NRG,
+                                GN04M_GAS_NRG = d.GN04M_GAS_NRG,
+                                GN05M_GAS_NRG = d.GN05M_GAS_NRG,
+                                GN07N_GAS_NRG = d.GN07N_GAS_NRG
+                            })
+                            .ToList();
+                        dataGrid_History.ItemsSource = filteredList_AllGas;
+                        break;
+                    case "모든 수치":
+                        var filteredList = factoryData_list
+                            .Where(d => d.Time.CompareTo(dataGrid_StartDate) > 0 &&
+                                        d.Time.CompareTo(dataGrid_EndDate) < 1
+                            )
+                            .ToList();
 
-            
-            // DataGrid에 바인딩
-            dataGrid_History.ItemsSource = filteredList;
+                        // DataGrid에 바인딩
+                        dataGrid_History.ItemsSource = filteredList;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                if (dataGrid_Option == "모든 수치")
+                {
 
+                    switch (dataGrid_MachineName)
+                    {
+                        case "GN02N":
+                            var filteredList_AllDataMachine1 = factoryData_list
+                                .Where(d => d.Time.CompareTo(dataGrid_StartDate) > 0 &&
+                                            d.Time.CompareTo(dataGrid_EndDate) < 1)
+                                .Select(d => new
+                                {
+                                    Time = d.Time,
+                                    GN02N_MAIN_POWER = d.GN02N_MAIN_POWER,
+                                    GN02N_TEMP = d.GN02N_TEMP,
+                                    GN02N_GAS_NRG = d.GN02N_GAS_NRG
+                                })
+                                .ToList();
+                            dataGrid_History.ItemsSource = filteredList_AllDataMachine1;
+                            break;
+                        case "GN04M":
+                            var filteredList_AllDataMachine2 = factoryData_list
+                                .Where(d => d.Time.CompareTo(dataGrid_StartDate) > 0 &&
+                                            d.Time.CompareTo(dataGrid_EndDate) < 1)
+                                .Select(d => new
+                                {
+                                    Time = d.Time,
+                                    GN04M_MAIN_POWER = d.GN04M_MAIN_POWER,
+                                    GN04M_TEMP = d.GN04M_TEMP,
+                                    GN04M_GAS_NRG = d.GN04M_GAS_NRG
+                                })
+                                .ToList();
+                            dataGrid_History.ItemsSource = filteredList_AllDataMachine2;
+                            break;
+                        case "GN05M":
+                            var filteredList_AllDataMachine3 = factoryData_list
+                                .Where(d => d.Time.CompareTo(dataGrid_StartDate) > 0 &&
+                                            d.Time.CompareTo(dataGrid_EndDate) < 1)
+                                .Select(d => new
+                                {
+                                    Time = d.Time,
+                                    GN05M_MAIN_POWER = d.GN05M_MAIN_POWER,
+                                    GN05M_TEMP = d.GN05M_TEMP,
+                                    GN05M_GAS_NRG = d.GN05M_GAS_NRG
+                                })
+                                .ToList();
+                            dataGrid_History.ItemsSource = filteredList_AllDataMachine3;
+                            break;
+                        case "GN07N":
+                            var filteredList_AllDataMachine4 = factoryData_list
+                                .Where(d => d.Time.CompareTo(dataGrid_StartDate) > 0 &&
+                                            d.Time.CompareTo(dataGrid_EndDate) < 1)
+                                .Select(d => new
+                                {
+                                    Time = d.Time,
+                                    GN07N_MAIN_POWER = d.GN07N_MAIN_POWER,
+                                    GN07N_TEMP = d.GN07N_TEMP,
+                                    GN07N_GAS_NRG = d.GN07N_GAS_NRG
+                                })
+                                .ToList();
+                            dataGrid_History.ItemsSource = filteredList_AllDataMachine4;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    var filteredList = factoryData_list
+                        .Where(d => d.Time.CompareTo(dataGrid_StartDate) > 0 &&
+                                    d.Time.CompareTo(dataGrid_EndDate) < 1
+                        ).Select(d => new
+                        {
+                            d.Time,
+                            dataGrid_MachineOption = GetColumnValue(d, dataGrid_MachineOption),
+                        })
+                        .ToList();
+
+                    // DataGrid에 바인딩
+                    dataGrid_History.ItemsSource = filteredList;
+                }
+            }
         }
         private float GetColumnValue(FactoryDataReader.DataColumn data, string columnName)
         {
-            // 선택한 열에 대한 값을 동적으로 가져오기
             switch (columnName)
             {
                 case "GN02N_MAIN_POWER":
@@ -95,17 +239,15 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
         }
 
 
+        // 컬럼 하나만 가져올 때 컬럼명 쉽게 변경하게 하려고 만든 함수
         private void dataGrid_History_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-
             if (e.Column.Header.ToString() == "dataGrid_MachineOption")
             {
                 string dataGrid_MachineName = comboBox_DataGridMachineName.Text;
                 string dataGrid_Option = comboBox_DataGridOption.Text;
 
-                
-                e.Column.Header = DataGrid_MachineOption(dataGrid_MachineName, dataGrid_Option); 
-
+                e.Column.Header = DataGrid_MachineOption(dataGrid_MachineName, dataGrid_Option);
             }
         }
 

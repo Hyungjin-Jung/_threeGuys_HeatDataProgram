@@ -51,7 +51,7 @@ namespace FactoryDataReader
         public float GN02N_PPIT { get; set; }
     }
 
-    class FactoryDataReader
+    class FactoryDataReader : System.Data.DataColumn
     {
         public FactoryDataReader() // 생성자
         {

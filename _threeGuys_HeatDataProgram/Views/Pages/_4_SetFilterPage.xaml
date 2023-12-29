@@ -5,13 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:_threeGuys_HeatDataProgram.Views.Pages"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+
+      
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Background="{DynamicResource ApplicationBackgroundBrush}"
       Title="_4_SetFilterPage">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
+            <RowDefinition Height="100"/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -23,26 +26,34 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ComboBox x:Name="comboBox_SetFilterMachineName"  Grid.Column="0">
+
+        <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="구역 명" FontWeight="DemiBold" FontSize="22" Height="40" Margin="0,10,0,50" Grid.Column="0" />
+        <ComboBox x:Name="comboBox_SetFilterMachineName" SelectedIndex="0" Grid.Column="0"  Margin="0,56,0,0" VerticalAlignment="Top">
             <ComboBoxItem x:Name="comboBoxItem_SetFilter_Machine1" Content="GN02N"/>
-            <ComboBoxItem x:Name="comboBoxItem_SetFilter_Machine2" Content="GM04M"/>
-            <ComboBoxItem x:Name="comboBoxItem_SetFilter_Machine3" Content="GM05M"/>
+            <ComboBoxItem x:Name="comboBoxItem_SetFilter_Machine2" Content="GN04M"/>
+            <ComboBoxItem x:Name="comboBoxItem_SetFilter_Machine3" Content="GN05M"/>
             <ComboBoxItem x:Name="comboBoxItem_SetFilter_Machine4" Content="GN07N"/>
         </ComboBox>
-        <ComboBox x:Name="comboBox_SetFilterOption" Grid.Column="1">
+
+        <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="항목 명" FontWeight="DemiBold" FontSize="22"  Height="40" Margin="0,10,0,50" Grid.Column="1" />
+        <ComboBox x:Name="comboBox_SetFilterOption" Grid.Column="1" SelectedIndex="0" VerticalAlignment="Top" Margin="0,56,0,0">
             <ComboBoxItem x:Name="comboBoxItem_SetFilter_OptionWatt" Content="전력"/>
             <ComboBoxItem x:Name="comboBoxItem_SetFilter_OptionTemp" Content="온도"/>
             <ComboBoxItem x:Name="comboBoxItem_SetFilter_OptionGas" Content="가스"/>
         </ComboBox>
 
-        <ComboBox x:Name="comboBox_SetFilterMaxMin"  Grid.Column="2">
+        <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="최대/최소 조건" FontWeight="DemiBold" FontSize="22"  Height="40" Margin="0,10,0,50" Grid.Column="2" />
+        <ComboBox x:Name="comboBox_SetFilterMaxMin"  Grid.Column="2" SelectedIndex="0" VerticalAlignment="Top" Margin="0,56,0,0" >
             <ComboBoxItem x:Name="comboBox_SetFilerMaxValue" Content="이상"/>
             <ComboBoxItem x:Name="comboBox_SetFilerMinValue" Content="이하"/>
         </ComboBox>
-        <TextBox x:Name="textBox_SetFilterValue" Height="40" Grid.Column="3"/>
-        <ui:Button x:Name="button_SetFilterApply" Content="적용" Grid.Column="4" Height="50" Width="150" VerticalAlignment="Center" HorizontalAlignment="Center"
-/>
-        <DataGrid x:Name="DataGrid_SetFilter" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="5">
-        </DataGrid>
+
+        <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="설정 값" FontWeight="DemiBold"  FontSize="22" Height="40" Margin="0,10,0,50" Grid.Column="3" />
+        <TextBox x:Name="textBox_SetFilterValue" Height="40" Grid.Column="3" VerticalAlignment="Top" Margin="0,56,0,0" />
+
+
+        <ui:Button x:Name="button_SetFilterApply" Content="입력한 규칙 적용" Grid.Column="4" Height="50" Width="150" VerticalAlignment="Top" HorizontalAlignment="Center" Click="button_SetFilterApply_Click" Margin="0,4,0,0"/>
+        <ui:Button x:Name="button_SetFilterDelete" Content="규칙 초기화" Grid.Column="4" Height="50" Width="150" HorizontalAlignment="Center"  Margin="0,62,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Click="button_SetFilterDelete_Click"/>
+        <ui:DataGrid x:Name="DataGrid_SetFilter" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="5" Margin="0,22,0,10" />
     </Grid>
 </Page>

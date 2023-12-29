@@ -1,19 +1,17 @@
-﻿using System.ComponentModel.Design.Serialization;
-using System.Drawing;
+﻿using PLCSocketHandler;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
-using PLCSocketHandler;
+
 
 namespace _threeGuys_HeatDataProgram.Views.Pages
 {
     /// <summary>
     /// Interaction logic for _1_DashBoardPage.xaml
     /// </summary>
+
     public partial class _1_DashBoardPage : Page
     {
-
         PLCSocketHandler.PLCSocketManager PLCSocket = new PLCSocketHandler.PLCSocketManager();
         private bool isPLCConnected = false;
 
@@ -25,70 +23,67 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
         long PLCMemoryByteOffset = 8000;
         long PLCMemoryBitOffset = 1;
 
-        bool is_Button1_Green = false;
+        bool is_Machine1_connected = false;
+        bool is_Machine2_connected = false;
+        bool is_Machine3_connected = false;
+        bool is_Machine4_connected = false;
+
+        bool is_Machine_error_debug = true;
+
 
         public _1_DashBoardPage()
         {
             InitializeComponent();
-            listView_Notice.Items.Add("test");
         }
+
 
         private void listViewNoticeMouseDouble_Click(object sender, MouseButtonEventArgs e)
         {
 
         }
 
-        // 공장 버튼 눌렀을떄 1번 탭 활성화
-        private void DisplayFirstAreaTab_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
-        // 공장 버튼 눌렀을 때 2번 탭 활성화
-        private void DisplaySecondAreaTab_Click(object sender, RoutedEventArgs e)
-        {
-            //tabControl.SelectedIndex = 2;
-        }
-        // 공장 버튼 눌렀을 때 3번 탭 활성화
-        private void DisplayThirdAreaTab_Click(object sender, RoutedEventArgs e)
-        {
-            //tabControl.SelectedIndex = 3;
-        }
-        // 공장 버튼 눌렀을 때 4번 탭 활성화
-        private void DisplayFourthAreaTab_Click(object sender, RoutedEventArgs e)
-        {
-            //tabControl.SelectedIndex = 4;
-        }
 
-        // 눌렀을떄 기계 1 작동되는 구간의 메모리를 변경.
-        private void button_Machine1_Green_Click(object sender, RoutedEventArgs e)
-        {
-            // 원하는 메모리 위치 
-            PLCMemoryLocation = 'M';
-            PLCMemoryAccessSize = 'X';
-            PLCMemoryByteOffset = 8000;
-            PLCMemoryBitOffset = 1;
 
-            // 1=실행 , 0 = 종료
-            //WriteToPLC("1");
-            if(is_Button1_Green == false)
+
+        public string ReadToPLC()
+        {
+            // PLC에서 읽은 데이터를 저장할 변수 및 초기화
+            uint PLCReadResult = 0;
+            string PLCReadText = string.Empty;
+            UInt16[] bufRead = new UInt16[PLCMemoryBitOffset];
+            string PLCRead;
+
+            // PLC에서 데이터 읽기
+            PLCReadResult = PLCSocket.ReadData(PLCMemoryLocation, PLCMemoryAccessSize, PLCMemoryByteOffset, PLCMemoryBitOffset, bufRead);
+
+            if (PLCReadResult == (uint)XGCOMM_FUNC_RESULT.RT_XGCOMM_SUCCESS)
             {
-                button_Machine1_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Success;
-                button_Machine1_Green.Content = "작동 중...";
-                button_Machine1_Red.Appearance = Wpf.Ui.Common.ControlAppearance.Light;
-                button_Machine1_Red.Content = "가동 중지";
-                is_Button1_Green = true;
+                // 읽은 데이터를 텍스트로 변환하여 표시
+                for (int i = 0; i < PLCMemoryBitOffset; i++)
+                {
+                    PLCReadText += PLCMemoryAccessSize switch
+                    {
+                        DEF_DATA_TYPE.DATA_TYPE_BIT => $" {bufRead[i]:X1}",
+                        DEF_DATA_TYPE.DATA_TYPE_BYTE => $" {bufRead[i]:X2}",
+                        DEF_DATA_TYPE.DATA_TYPE_WORD => $" {bufRead[i]:X4}",
+                        _ => string.Empty,
+                    };
+                }
+                PLCRead = PLCReadText.Trim();
+                return PLCRead;
             }
             else
             {
-                button_Machine1_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Light;
-                button_Machine1_Green.Content = "작동 시작";
-                button_Machine1_Red.Appearance = Wpf.Ui.Common.ControlAppearance.Danger;
-                button_Machine1_Red.Content = "가동 중지중...";
-                is_Button1_Green = false;
+                // 실패한 경우 오류 메시지 표시
+                MessageBox.Show($"PLC 쓰기 실패!! 에러 코드: {PLCSocket.getResultCodeString(PLCReadResult)}");
+                return "-1";
             }
+
+            
         }
 
-        private void WriteToPLC(string inputPLCValue)
+
+        private void WriteToPLC(string inputPLCValue,bool isMachineConnected)
         {
 
             // 이미 PLC에 연결되어 있는 경우
@@ -106,10 +101,12 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             if (isPLCConnected == true)
             {
                 MessageBox.Show($"PLC 연결 성공... (IP: {PLCIPAddress}, Port: {PLCPortNumber})");
+                isMachineConnected = true;
             }
             else
             {
                 MessageBox.Show($"PLC 연결 실패!! (IP: {PLCIPAddress}, Port: {PLCPortNumber})");
+                isMachineConnected = false;
             }
 
             // PLC 쓰기 결과 변수 초기화
@@ -123,10 +120,12 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             if (PLCWriteResult == (uint)XGCOMM_FUNC_RESULT.RT_XGCOMM_SUCCESS)
             {
                 MessageBox.Show($"PLC 쓰기 성공...");
+                
             }
             else
             {
                 MessageBox.Show($"PLC 쓰기 실패!! 에러 코드: {PLCSocket.getResultCodeString(PLCWriteResult)}");
+                
             }
             // 연결 해제
             //uint isPLCDisconnect = PLCSocket.Disconnect();
@@ -178,5 +177,191 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             }
             return true;
         }
+
+
+        // 기계 1 동작 시작
+        private void button_Machine1_Green_Click(object sender, RoutedEventArgs e)
+        {
+            // 원하는 메모리 위치 
+            PLCMemoryLocation = 'M';
+            PLCMemoryAccessSize = 'X';
+            PLCMemoryByteOffset = 8001;
+            PLCMemoryBitOffset = 1;
+
+            // 1=실행 , 0 = 종료
+
+            if (!is_Machine1_connected)
+            {
+                WriteToPLC("1" ,is_Machine1_connected);
+                if (is_Machine1_connected)
+                {
+                    button_Machine1_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Light;
+                    button_Machine1_Green.Content = "작동 중...";
+                }
+            }
+
+        }
+        // 기계 2 동작 시작
+        private void button_Machine2_Green_Click(object sender, RoutedEventArgs e)
+        {
+            // 원하는 메모리 위치 
+            PLCMemoryLocation = 'M';
+            PLCMemoryAccessSize = 'X';
+            PLCMemoryByteOffset = 9001;
+            PLCMemoryBitOffset = 1;
+
+            // 1=실행 , 0 = 종료
+
+            if (!is_Machine2_connected)
+            {
+                WriteToPLC("1", is_Machine2_connected);
+                if (is_Machine2_connected)
+                {
+                    button_Machine2_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Light;
+                    button_Machine2_Green.Content = "작동 중...";
+                }
+            }
+        }
+
+        // 기계 3 동작 시작
+        private void button_Machine3_Green_Click(object sender, RoutedEventArgs e)
+        {
+            // 원하는 메모리 위치 
+            PLCMemoryLocation = 'M';
+            PLCMemoryAccessSize = 'X';
+            PLCMemoryByteOffset = 10001;
+            PLCMemoryBitOffset = 1;
+
+            // 1=실행 , 0 = 종료
+
+            if (!is_Machine3_connected)
+            {
+                WriteToPLC("1", is_Machine3_connected);
+                if (is_Machine3_connected)
+                {
+                    button_Machine3_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Light;
+                    button_Machine3_Green.Content = "작동 중...";
+                }
+            }
+        }
+        // 기계 4 동작 시작
+        private void button_Machine4_Green_Click(object sender, RoutedEventArgs e)
+        {
+            // 원하는 메모리 위치 
+            PLCMemoryLocation = 'M';
+            PLCMemoryAccessSize = 'X';
+            PLCMemoryByteOffset = 11001;
+            PLCMemoryBitOffset = 1;
+
+            // 1=실행 , 0 = 종료
+
+            if (!is_Machine4_connected)
+            {
+                WriteToPLC("1", is_Machine4_connected);
+                if (is_Machine4_connected)
+                {
+                    button_Machine4_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Light;
+                    button_Machine4_Green.Content = "작동 중...";
+                }
+            }
+        }
+
+        private void button_Machine1_Yellow_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.filter_alaram_list_string.RemoveAll(item => item.Contains("1번"));
+            listView_Notice.Text = string.Join(Environment.NewLine, MainWindow.filter_alaram_list_string);
+        }
+
+        private void button_Machine2_Yellow_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.filter_alaram_list_string.RemoveAll(item => item.Contains("2번"));
+            listView_Notice.Text = string.Join(Environment.NewLine, MainWindow.filter_alaram_list_string);
+        }
+
+        private void button_Machine3_Yellow_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.filter_alaram_list_string.RemoveAll(item => item.Contains("3번"));
+            listView_Notice.Text = string.Join(Environment.NewLine, MainWindow.filter_alaram_list_string);
+        }
+
+        private void button_Machine4_Yellow_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.filter_alaram_list_string.RemoveAll(item => item.Contains("4번"));
+            listView_Notice.Text = string.Join(Environment.NewLine, MainWindow.filter_alaram_list_string);
+        }
+
+        // 중지 버튼이 해야할것 들
+        private void button_Machine1_Red_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void button_Machine2_Red_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void button_Machine3_Red_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void button_Machine4_Red_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        // 의도적안 이상현상 발생
+
+        // 가스 장치 이상, numpad1
+        private void Window_1KeyDown(object sender, KeyEventArgs e)
+        {
+            // 원하는 메모리 위치 
+            PLCMemoryLocation = 'M';
+            PLCMemoryAccessSize = 'X';
+            PLCMemoryByteOffset = 8061;
+            PLCMemoryBitOffset = 1;
+
+            // 1=실행 , 0 = 종료
+            WriteToPLC("1", is_Machine_error_debug);
+        }
+        // 냉각 장치 이상, numpad2
+        private void Window_2KeyDown(object sender, KeyEventArgs e)
+        {
+            // 원하는 메모리 위치 
+            PLCMemoryLocation = 'M';
+            PLCMemoryAccessSize = 'X';
+            PLCMemoryByteOffset = 8062;
+            PLCMemoryBitOffset = 1;
+
+            // 1=실행 , 0 = 종료
+            WriteToPLC("1", is_Machine_error_debug);
+        }
+        // 열선 이상, numpad3
+        private void Window_3KeyDown(object sender, KeyEventArgs e)
+        {
+            // 원하는 메모리 위치 
+            PLCMemoryLocation = 'M';
+            PLCMemoryAccessSize = 'X';
+            PLCMemoryByteOffset = 8063;
+            PLCMemoryBitOffset = 1;
+
+            // 1=실행 , 0 = 종료
+            WriteToPLC("1", is_Machine_error_debug);
+        }
+        // 문 이상, numpad4
+        private void Window_4KeyDown(object sender, KeyEventArgs e)
+        {
+            // 원하는 메모리 위치 
+            PLCMemoryLocation = 'M';
+            PLCMemoryAccessSize = 'X';
+            PLCMemoryByteOffset = 8064;
+            PLCMemoryBitOffset = 1;
+
+            // 1=실행 , 0 = 종료
+            WriteToPLC("1", is_Machine_error_debug);
+        }
+
     }
 }
