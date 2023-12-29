@@ -16,12 +16,15 @@
         
         Width="1280"
         Height="800" 
+        
+        MinWidth="1400"
+        MinHeight="750"
              
         d:DesignWidth="900"
         d:DesignHeight="650"
         
         
-        Background="{DynamicResource ApplicationBackgroundBrush}"
+        Background="{ui:ThemeResource ApplicationBackgroundBrush}"
         ExtendsContentIntoTitleBar="True"
         WindowBackdropType="Mica"
         WindowCornerPreference="Round"
@@ -58,7 +61,8 @@
                 <!-- 이름이 RootFrame 인 곳에 Navigate 설정-->
                 <ui:NavigationStore.Items >
                     <ui:NavigationItem
-                        
+                        Click="UpdateLiveData"
+                        Loaded="UpdateLiveData"
                         Width="120" Height="120"
                         Content="대시보드"
                         PageTag="DashBoard"
@@ -77,14 +81,14 @@
                     <ui:NavigationSeparator />
                     <ui:NavigationItem
                         Width="120" Height="120"
-                        Content="실시간 내역"
+                        Content="화로 데이터 내역"
                         Icon="History24"
                         IconSize="60"
                         PageType="{x:Type pages:_3_LiveHistoryPage}" />
                     <ui:NavigationSeparator />
                     <ui:NavigationItem
                         Width="120" Height="120"
-                        Content="필터 조건"
+                        Content="필터 조건 설정"
                         Icon="ChannelSubtract24"
                         IconSize="60"
                         PageType="{x:Type pages:_4_SetFilterPage}" />
@@ -135,26 +139,27 @@
                                 x:Name="DashBoard"
                                 Click="NavigationPage_OnClick"
                                 Header="DashBoard"
-                                SymbolIcon="Library28"
+                                SymbolIcon="Home24"
                                 Tag="DashBoard" />
                             <ui:MenuItem
                                 x:Name="Details"
                                 Click="NavigationPage_OnClick"
                                 Header="Details"
-                                SymbolIcon="Save24"
+                                SymbolIcon="AppsListDetail24"
                                 Tag="Details" />
                             <ui:MenuItem
                                 x:Name="LiveHistory"
                                 Click="NavigationPage_OnClick"
                                 Header="LiveHistory"
-                                SymbolIcon="Save24"
+                                SymbolIcon="History24"
                                 Tag="LiveHistory" />
                             <ui:MenuItem
                                 x:Name="SetFilter"
                                 Click="NavigationPage_OnClick"
                                 Header="SetFilter"
-                                SymbolIcon="Save24"
+                                SymbolIcon="ChannelSubtract24"
                                 Tag="SetFilter" />
+                            <ui:NavigationSeparator/>
                             <ui:MenuItem
                                 x:Name="Exit"
                                 Click="NavigationPage_OnClick"

@@ -39,7 +39,7 @@
     <Color x:Key="TextOnAccentFillColorSecondary">#B3FFFFFF</Color>
     <Color x:Key="TextOnAccentFillColorDisabled">#A3FFFFFF</Color>
 
-    <Color x:Key="ControlFillColorDefault">#B3FFFFFF</Color>
+    <Color x:Key="ControlFillColorDefault">#B3FFFF</Color>
     <Color x:Key="ControlFillColorSecondary">#80F9F9F9</Color>
     <Color x:Key="ControlFillColorTertiary">#4DF9F9F9</Color>
     <Color x:Key="ControlFillColorDisabled">#4DF9F9F9</Color>
