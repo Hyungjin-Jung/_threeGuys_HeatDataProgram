@@ -1,11 +1,18 @@
 ﻿using PLCSocketHandler;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-
+using Wpf.Ui.Mvvm.Interfaces;
+using FactoryDataReader;
 
 namespace _threeGuys_HeatDataProgram.Views.Pages
 {
+
+
+
+
+
     /// <summary>
     /// Interaction logic for _1_DashBoardPage.xaml
     /// </summary>
@@ -28,13 +35,29 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
         bool is_Machine3_connected = false;
         bool is_Machine4_connected = false;
 
-        bool is_Machine_error_debug = true;
 
+        private readonly MainWindow mainWindow;
 
         public _1_DashBoardPage()
         {
             InitializeComponent();
+
         }
+
+
+        public void UpdateRandomNumber(List<DataColumn> testlist)
+        {
+            // SampleText TextBox에 1초마다 생성된 난수 출력
+            Application.Current.Dispatcher.Invoke(() => label_Watt1.Text = testlist[0].GN02N_MAIN_POWER.ToString());
+            Application.Current.Dispatcher.Invoke(() => label_Watt2.Text = testlist[0].GN04M_MAIN_POWER.ToString());
+            Application.Current.Dispatcher.Invoke(() => label_Watt3.Text = testlist[0].GN05M_MAIN_POWER.ToString());
+            Application.Current.Dispatcher.Invoke(() => label_Watt4.Text = testlist[0].GN07N_MAIN_POWER.ToString());
+            Application.Current.Dispatcher.Invoke(() => label_Temp1.Text = testlist[0].GN02N_TEMP.ToString());
+            Application.Current.Dispatcher.Invoke(() => label_Temp2.Text = testlist[0].GN04M_TEMP.ToString());
+            Application.Current.Dispatcher.Invoke(() => label_Temp3.Text = testlist[0].GN05M_TEMP.ToString());
+            Application.Current.Dispatcher.Invoke(() => label_Temp4.Text = testlist[0].GN07N_TEMP.ToString());
+        }
+
 
 
         private void listViewNoticeMouseDouble_Click(object sender, MouseButtonEventArgs e)
@@ -183,7 +206,7 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             // 원하는 메모리 위치 
             PLCMemoryLocation = 'M';
             PLCMemoryAccessSize = 'X';
-            PLCMemoryByteOffset = 8000;
+            PLCMemoryByteOffset = 8018;
             PLCMemoryBitOffset = 1;
 
             // 1=실행 , 0 = 종료
@@ -246,7 +269,7 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             // 원하는 메모리 위치 
             PLCMemoryLocation = 'M';
             PLCMemoryAccessSize = 'X';
-            PLCMemoryByteOffset = 10000;
+            PLCMemoryByteOffset = 10018;
             PLCMemoryBitOffset = 1;
 
             // 1=실행 , 0 = 종료
@@ -347,85 +370,54 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
 
         // 의도적안 이상현상 발생
 
-        // 가스 장치 이상, numpad1
-        private void Window_1KeyDown(object sender, KeyEventArgs e)
+        private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.NumPad1)
+            switch (e.Key)
             {
-                // 원하는 메모리 위치 
-                PLCMemoryLocation = 'M';
-                PLCMemoryAccessSize = 'X';
-                PLCMemoryByteOffset = 8061;
-                PLCMemoryBitOffset = 1;
-
-                // 1=실행 , 0 = 종료
-                WriteToPLC("1");
+                // 가스 장치 이상 발생, numpad1
+                case Key.NumPad1:
+                    PLCMemoryLocation = 'M';
+                    PLCMemoryAccessSize = 'X';
+                    PLCMemoryByteOffset = 8061;
+                    PLCMemoryBitOffset = 1;
+                    break;
+                // 냉각 장치 이상 발생, numpad2
+                case Key.NumPad2:
+                    PLCMemoryLocation = 'M';
+                    PLCMemoryAccessSize = 'X';
+                    PLCMemoryByteOffset = 8062;
+                    PLCMemoryBitOffset = 1;
+                    break;
+                // 열선 이상 발생, numpad3
+                case Key.NumPad3:
+                    PLCMemoryLocation = 'M';
+                    PLCMemoryAccessSize = 'X';
+                    PLCMemoryByteOffset = 8063;
+                    PLCMemoryBitOffset = 1;
+                    break;
+                // 문 이상 발생, numpad4
+                case Key.NumPad4:
+                    PLCMemoryLocation = 'M';
+                    PLCMemoryAccessSize = 'X';
+                    PLCMemoryByteOffset = 8064;
+                    PLCMemoryBitOffset = 1;
+                    break;
+                case Key.NumPad5:
+                    PLCMemoryLocation = 'M';
+                    PLCMemoryAccessSize = 'X';
+                    PLCMemoryByteOffset = 8000;
+                    PLCMemoryBitOffset = 1;
+                    break;
+                default:
+                    break;
             }
-        }
-        // 냉각 장치 이상, numpad2
-        private void Window_2KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.NumPad2)
-            {
-                // 원하는 메모리 위치 
-                PLCMemoryLocation = 'M';
-                PLCMemoryAccessSize = 'X';
-                PLCMemoryByteOffset = 8062;
-                PLCMemoryBitOffset = 1;
-
-                // 1=실행 , 0 = 종료
-                WriteToPLC("1");
-            }
-        }
-        // 열선 이상, numpad3
-        private void Window_3KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.NumPad3)
-            {
-                // 원하는 메모리 위치 
-                PLCMemoryLocation = 'M';
-                PLCMemoryAccessSize = 'X';
-                PLCMemoryByteOffset = 8063;
-                PLCMemoryBitOffset = 1;
-
-                // 1=실행 , 0 = 종료
-                WriteToPLC("1");
-            }
-        }
-        // 문 이상, numpad4
-        private void Window_4KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.NumPad4)
-            {
-
-                // 원하는 메모리 위치 
-                PLCMemoryLocation = 'M';
-            PLCMemoryAccessSize = 'X';
-            PLCMemoryByteOffset = 8064;
-            PLCMemoryBitOffset = 1;
 
             // 1=실행 , 0 = 종료
+            if((e.Key == Key.NumPad1) || (e.Key == Key.NumPad2) || (e.Key == Key.NumPad3) || (e.Key == Key.NumPad4) || (e.Key == Key.NumPad5) )
             WriteToPLC("1");
 
-            }
         }
-
-        private void Window_5KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.NumPad5)
-            {
-                // 원하는 메모리 위치 
-                PLCMemoryLocation = 'M';
-                PLCMemoryAccessSize = 'X';
-                PLCMemoryByteOffset = 8000;
-                PLCMemoryBitOffset = 1;
-
-                // 1=실행 , 0 = 종료
-                WriteToPLC("0");
-                button_Machine1_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Success;
-                button_Machine1_Green.Content = "가동 버튼";
-            }
-        }
-
     }
+
+
 }

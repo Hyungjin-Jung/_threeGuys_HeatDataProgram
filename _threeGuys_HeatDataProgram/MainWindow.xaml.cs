@@ -2,9 +2,12 @@
 using _threeGuys_HeatDataProgram.Views.Pages;
 using PLCSocketHandler;
 using SetFilterData;
+using System;
+using System.ComponentModel;
 using System.IO; // Directory(현재 주소위치 파악) 사용을 위해 필요.
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Threading;
 using Wpf.Ui.Appearance;
 using Wpf.Ui.Mvvm.Contracts;
@@ -63,7 +66,7 @@ namespace _threeGuys_HeatDataProgram
         static public List<string> filter_alaram_list_string = new List<string>();
         // 1초마다 작업을 하기위한 Timer 이용하기 위해 선언
         private DispatcherTimer timer = new DispatcherTimer();
-        int columNum = 0;
+        static public int columNum = 0;
         public MainWindow()
         {
             PySocket.prepareSocket();
@@ -100,8 +103,12 @@ namespace _threeGuys_HeatDataProgram
             // 1초마다 TimerTick 메서드 호출 -> 1초마다 CSV 알림 받아오는 용도로 설정
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += UpdateLiveData;
+
+            
             timer.Start();
+
         }
+
 
 
         // 실시간 데이터 받아오는 함수
@@ -109,41 +116,40 @@ namespace _threeGuys_HeatDataProgram
         {
             if (RootNavigation.SelectedPageIndex == 0)
             {
-                DashBoardPage.label_Watt1.Text = factoryData_list[columNum].GN02N_MAIN_POWER.ToString();
-                DashBoardPage.label_Watt2.Text = factoryData_list[columNum].GN04M_MAIN_POWER.ToString();
-                DashBoardPage.label_Watt3.Text = factoryData_list[columNum].GN05M_MAIN_POWER.ToString();
-                DashBoardPage.label_Watt4.Text = factoryData_list[columNum].GN07N_MAIN_POWER.ToString();
-                DashBoardPage.label_Temp1.Text = factoryData_list[columNum].GN02N_TEMP.ToString();
-                DashBoardPage.label_Temp2.Text = factoryData_list[columNum].GN04M_TEMP.ToString();
-                DashBoardPage.label_Temp3.Text = factoryData_list[columNum].GN05M_TEMP.ToString();
-                DashBoardPage.label_Temp4.Text = factoryData_list[columNum].GN07N_TEMP.ToString();
-                RootNavigation.TransitionType = Wpf.Ui.Animations.TransitionType.None;
-                RootFrame.Navigate(DashBoardPage);
-                RootNavigation.TransitionType = Wpf.Ui.Animations.TransitionType.FadeInWithSlide;
+                List<FactoryDataReader.DataColumn> send2DashboardPagelist = new List<FactoryDataReader.DataColumn>();
+                send2DashboardPagelist.Add(factoryData_list[columNum]);
+
+                ((_1_DashBoardPage)RootFrame.Content)?.UpdateRandomNumber(send2DashboardPagelist);
+
+
+                //RootFrame.Navigate(DashBoardPage);
                 columNum++;
             }
             else
             {
-                RootNavigation.TransitionType = Wpf.Ui.Animations.TransitionType.FadeInWithSlide;
                 columNum++;
             }
             showAlertOnDangerousLevels();
         }
 
-        // xaml 상에서 loaded 같은데서 사용
-        private void UpdateLiveData(object sender, RoutedEventArgs e)
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (RootNavigation.SelectedPageIndex == 0)
+            switch (e.Key)
             {
-                RootNavigation.TransitionType = Wpf.Ui.Animations.TransitionType.None;
-                RootFrame.Navigate(DashBoardPage);
-                RootNavigation.TransitionType = Wpf.Ui.Animations.TransitionType.FadeInWithSlide;
-            }
-            else
-            {
-                RootNavigation.TransitionType = Wpf.Ui.Animations.TransitionType.FadeInWithSlide;
+                // 가스 장치 이상 발생, numpad1
+                case Key.NumPad9:
+                    MessageBox.Show("좆됨!");
+
+                    break;
+
+                default:
+                    break;
             }
         }
+
+
+
 
 
         // 필터 CSV 체크

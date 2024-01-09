@@ -1,5 +1,7 @@
-﻿using System.IO;
-
+﻿using System.ComponentModel;
+using System;
+using System.IO;
+using System.ComponentModel;
 
 namespace _threeGuys_HeatDataProgram
 {
@@ -17,4 +19,5 @@ namespace _threeGuys_HeatDataProgram
         //  void StartDataUpdate(): 데이터 주기적 업데이트를 시작하는 메서드
         //  private void UpdateData(int newData): 데이터를 각 페이지에 전달하고 이벤트를 발생시키는 메서드
     }
+
 }

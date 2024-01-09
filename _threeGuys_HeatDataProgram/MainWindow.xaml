@@ -22,7 +22,7 @@
              
         d:DesignWidth="900"
         d:DesignHeight="650"
-        
+        KeyDown="Window_KeyDown"
         
         Background="{ui:ThemeResource ApplicationBackgroundBrush}"
         ExtendsContentIntoTitleBar="True"
@@ -30,6 +30,7 @@
         WindowCornerPreference="Round"
         WindowStartupLocation="CenterScreen"
              
+        
              
         mc:Ignorable="d"
         >
@@ -61,8 +62,7 @@
                 <!-- 이름이 RootFrame 인 곳에 Navigate 설정-->
                 <ui:NavigationStore.Items >
                     <ui:NavigationItem
-                        Click="UpdateLiveData"
-                        Loaded="UpdateLiveData"
+                        
                         Width="120" Height="120"
                         Content="대시보드"
                         PageTag="DashBoard"
