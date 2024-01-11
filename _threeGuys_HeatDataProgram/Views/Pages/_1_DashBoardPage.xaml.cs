@@ -41,6 +41,8 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
         public _1_DashBoardPage()
         {
             InitializeComponent();
+            // 실행시 PLC 연결 실행
+            PLCConnect();
 
         }
 
@@ -63,6 +65,197 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
         private void listViewNoticeMouseDouble_Click(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+
+        // 필터 CSV 체크
+        public void showAlertOnDangerousLevels()
+        {
+            // Filter CSV 파일 열어서
+
+            try
+            {
+                // CSV 파일과 현재 데이터를 비교
+                for (int i = 0; i < MainWindow.filter_list.Count; i++)
+                {
+                    //// 필터 CSV 파일의 변수명, 옵션(전력,온도,가스), 최댓값, 최솟값, 비고
+                    string filterName = MainWindow.filter_list[i].set_machine_name;
+                    string filterOption = MainWindow.filter_list[i].set_option_name;
+                    string filterMaxMin = MainWindow.filter_list[i].set_max_min;
+                    float filterValue = MainWindow.filter_list[i].set_input_value;
+
+                    string machineFilterOption = "";
+
+                    switch (filterOption)
+                    {
+                        case "전력":
+                            machineFilterOption = "MAIN_POWER";
+                            break;
+                        case "온도":
+                            machineFilterOption = "TEMP";
+                            break;
+                        case "가스":
+                            machineFilterOption = "GAS_NRG";
+                            break;
+                        default:
+                            break;
+                    }
+
+                    string machineName = filterName + "_" + machineFilterOption;
+
+                    switch (machineName)
+                    {
+                        case "GN02N_MAIN_POWER":
+                            appendListBoxNotice(MainWindow.factoryData_list[MainWindow.columNum].Time, 1, filterName, filterOption, filterMaxMin, filterValue, MainWindow.factoryData_list[MainWindow.columNum].GN02N_MAIN_POWER);
+                            break;
+                        case "GN04M_MAIN_POWER":
+                            appendListBoxNotice(MainWindow.factoryData_list[MainWindow.columNum].Time, 2, filterName, filterOption, filterMaxMin, filterValue, MainWindow.factoryData_list[MainWindow.columNum].GN04M_MAIN_POWER);
+                            break;
+                        case "GN05M_MAIN_POWER":
+                            appendListBoxNotice(MainWindow.factoryData_list[MainWindow.columNum].Time, 3, filterName, filterOption, filterMaxMin, filterValue, MainWindow.factoryData_list[MainWindow.columNum].GN05M_MAIN_POWER);
+                            break;
+                        case "GN07N_MAIN_POWER":
+                            appendListBoxNotice(MainWindow.factoryData_list[MainWindow.columNum].Time, 4, filterName, filterOption, filterMaxMin, filterValue, MainWindow.factoryData_list[MainWindow.columNum].GN07N_MAIN_POWER);
+                            break;
+                        case "GN02N_TEMP":
+                            appendListBoxNotice(MainWindow.factoryData_list[MainWindow.columNum].Time, 1, filterName, filterOption, filterMaxMin, filterValue, MainWindow.factoryData_list[MainWindow.columNum].GN02N_TEMP);
+                            break;
+                        case "GN04M_TEMP":
+                            appendListBoxNotice(MainWindow.factoryData_list[MainWindow.columNum].Time, 2, filterName, filterOption, filterMaxMin, filterValue, MainWindow.factoryData_list[MainWindow.columNum].GN04M_TEMP);
+                            break;
+                        case "GN05M_TEMP":
+                            appendListBoxNotice(MainWindow.factoryData_list[MainWindow.columNum].Time, 3, filterName, filterOption, filterMaxMin, filterValue, MainWindow.factoryData_list[MainWindow.columNum].GN05M_TEMP);
+                            break;
+                        case "GN07N_TEMP":
+                            appendListBoxNotice(MainWindow.factoryData_list[MainWindow.columNum].Time, 4, filterName, filterOption, filterMaxMin, filterValue, MainWindow.factoryData_list[MainWindow.columNum].GN07N_TEMP);
+                            break;
+                        case "GN02N_GAS_NRG":
+                            appendListBoxNotice(MainWindow.factoryData_list[MainWindow.columNum].Time, 1, filterName, filterOption, filterMaxMin, filterValue, MainWindow.factoryData_list[MainWindow.columNum].GN02N_GAS_NRG);
+                            break;
+                        case "GN04M_GAS_NRG":
+                            appendListBoxNotice(MainWindow.factoryData_list[MainWindow.columNum].Time, 2, filterName, filterOption, filterMaxMin, filterValue, MainWindow.factoryData_list[MainWindow.columNum].GN04M_GAS_NRG);
+                            break;
+                        case "GN05M_GAS_NRG":
+                            appendListBoxNotice(MainWindow.factoryData_list[MainWindow.columNum].Time, 3, filterName, filterOption, filterMaxMin, filterValue, MainWindow.factoryData_list[MainWindow.columNum].GN05M_GAS_NRG);
+                            break;
+                        case "GN07N_GAS_NRG":
+                            appendListBoxNotice(MainWindow.factoryData_list[MainWindow.columNum].Time, 4, filterName, filterOption, filterMaxMin, filterValue, MainWindow.factoryData_list[MainWindow.columNum].GN07N_GAS_NRG);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        /// <summary>
+        /// 현재 필터에 들어간 값과 동일한지
+        /// </summary>
+        /// <param name="filterAreaNum">구역번호</param>
+        /// <param name="filterName">구역명</param>
+        /// <param name="option">옵션</param>
+        /// <param name="inputValue">현재 값(CSV에서 읽은 값)</param>
+        /// <param name="filterMax">필터에서 설정한 최댓값</param>
+        /// <param name="filterMin">필터에서 설정한 최솟값</param>
+        /// 
+        //public SetFilterAlarmColumn() { }
+
+        //public string time { get; set; }
+        //public string machine_name { get; set; }
+        //public string option_name { get; set; }
+        //public string max_min { get; set; }
+        //public float input_value { get; set; }
+        private void appendListBoxNotice(string _time, int filterAreaNum, string _machine_name, string _option_name, string _max_min, float between_value, float _input_value)
+        {
+
+            SetFilterAlarmColumn setFilterAlarmColumn = new SetFilterAlarmColumn
+            {
+                time = _time,
+                areaNum = filterAreaNum,
+                machine_name = _machine_name,
+                option_name = _option_name,
+                max_min = _max_min,
+                input_value = _input_value
+            };
+
+
+            switch (_max_min)
+            {
+                case "이상":
+
+                    if ((_max_min == "이상") && (between_value <= _input_value))
+                    {
+                        //filter_alaram_list.Add(setFilterAlarmColumn);
+
+                        // 중복 체크
+                        if (!MainWindow.filter_alaram_list_string.Any(item => item == ($"{filterAreaNum} 번 기계 {_machine_name} 에서 {_option_name} 수치가 설정한 {between_value} {_max_min} 를 초과")))
+                        {
+                            // 중복이 아니라면 추가
+                            MainWindow.filter_alaram_list_string.Add($"{filterAreaNum} 번 기계 {_machine_name} 에서 {_option_name} 수치가 설정한 {between_value} {_max_min} 를 초과");
+                        }
+
+                        //for (int i = 0; i < filter_alaram_list.Count; i++)
+                        //{
+                        //    if (filter_alaram_list[i].areaNum == filterAreaNum)
+                        //    {
+                        //        filter_alaram_list.Remove(filter_alaram_list.Last());
+                        //        break;
+                        //    }
+                        //}
+
+                    }
+                    else
+                    {
+                        if (MainWindow.filter_alaram_list_string.Any(item => item == ($"{filterAreaNum} 번 기계 {_machine_name} 에서 {_option_name} 수치가 설정한 {between_value} {_max_min} 를 초과")))
+                        {
+                            // 중복이라면 삭제
+                            MainWindow.filter_alaram_list_string.Remove($"{filterAreaNum} 번 기계 {_machine_name} 에서 {_option_name} 수치가 설정한 {between_value} {_max_min} 를 초과");
+                        }
+                    }
+
+                    break;
+
+                case "이하":
+                    if ((_max_min == "이하") && (between_value >= _input_value))
+                    {
+                        // 중복 체크
+                        if (!MainWindow.filter_alaram_list_string.Any(item => item == ($"{filterAreaNum} 번 기계 {_machine_name} 에서 {_option_name} 수치가 설정한 {between_value} {_max_min} 를 초과")))
+                        {
+                            // 중복이 아니라면 추가
+                            MainWindow.filter_alaram_list_string.Add($"{filterAreaNum} 번 기계 {_machine_name} 에서 {_option_name} 수치가 설정한 {between_value} {_max_min} 를 초과");
+                        }
+                    }
+                    else
+                    {
+                        if (MainWindow.filter_alaram_list_string.Any(item => item == ($"{filterAreaNum} 번 기계 {_machine_name} 에서 {_option_name} 수치가 설정한 {between_value} {_max_min} 를 초과")))
+                        {
+                            // 중복이라면 삭제
+                            MainWindow.filter_alaram_list_string.Remove($"{filterAreaNum} 번 기계 {_machine_name} 에서 {_option_name} 수치가 설정한 {between_value} {_max_min} 를 초과");
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            // 중복 체크
+            try
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    // UI 스레드에서 컬렉션 수정 작업 수행
+                    listView_Notice.Text = string.Join(Environment.NewLine, MainWindow.filter_alaram_list_string);
+                });
+
+            }
+            catch
+            {
+                MainWindow.filter_alaram_list_string = new List<string>(); // 빈 컬렉션을 할당
+            }
         }
 
 
@@ -101,14 +294,16 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
                 MessageBox.Show($"PLC 쓰기 실패!! 에러 코드: {PLCSocket.getResultCodeString(PLCReadResult)}");
                 return "-1";
             }
-
-            
         }
 
 
         private void WriteToPLC(string inputPLCValue)
         {
-
+            Thread writeToPLCAsyncThread = new Thread(() =>
+            {
+                
+                
+            
             // 이미 PLC에 연결되어 있는 경우
             if (isPLCConnected == true)
             {
@@ -117,6 +312,7 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             }
             else
             {
+                //MessageBox.Show($"PLC와 연결되어 있지 않습니다.");
                 isPLCConnected = PLCConnect();
             }
 
@@ -148,19 +344,22 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
                 MessageBox.Show($"PLC 쓰기 실패!! 에러 코드: {PLCSocket.getResultCodeString(PLCWriteResult)}");
                 
             }
-            // 연결 해제
-            //uint isPLCDisconnect = PLCSocket.Disconnect();
+                // 연결 해제
+                //uint isPLCDisconnect = PLCSocket.Disconnect();
 
-            //// PLC 연결 끊기 성공 여부에 따라 메시지 박스를 표시
-            //if (isPLCDisconnect == (uint)XGCOMM_FUNC_RESULT.RT_XGCOMM_SUCCESS)
-            //{
-            //    MessageBox.Show($"PLC 연결 끊기 성공... (IP: {PLCIPAddress}, Port: {PLCPortNumber})");
-            //    isPLCConnected = false;
-            //}
-            //else
-            //{
-            //    MessageBox.Show($"PLC 연결 끊기 실패!! (IP: {PLCIPAddress}, Port: {PLCPortNumber})");
-            //}
+                //// PLC 연결 끊기 성공 여부에 따라 메시지 박스를 표시
+                //if (isPLCDisconnect == (uint)XGCOMM_FUNC_RESULT.RT_XGCOMM_SUCCESS)
+                //{
+                //    MessageBox.Show($"PLC 연결 끊기 성공... (IP: {PLCIPAddress}, Port: {PLCPortNumber})");
+                //    isPLCConnected = false;
+                //}
+                //else
+                //{
+                //    MessageBox.Show($"PLC 연결 끊기 실패!! (IP: {PLCIPAddress}, Port: {PLCPortNumber})");
+                //}
+
+            });
+            writeToPLCAsyncThread.Start();
         }
 
         private bool PLCConnect()
@@ -324,25 +523,28 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
 
         private void button_Machine1_Yellow_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.filter_alaram_list_string.RemoveAll(item => item.Contains("1번"));
-            listView_Notice.Text = string.Join(Environment.NewLine, MainWindow.filter_alaram_list_string);
+
+                // UI 스레드에서 컬렉션 수정 작업 수행
+                MainWindow.filter_alaram_list_string.RemoveAll(item => item.Contains("1 번"));
+                listView_Notice.Text = string.Join(Environment.NewLine, MainWindow.filter_alaram_list_string);
+
         }
 
         private void button_Machine2_Yellow_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.filter_alaram_list_string.RemoveAll(item => item.Contains("2번"));
+            MainWindow.filter_alaram_list_string.RemoveAll(item => item.Contains("2 번"));
             listView_Notice.Text = string.Join(Environment.NewLine, MainWindow.filter_alaram_list_string);
         }
 
         private void button_Machine3_Yellow_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.filter_alaram_list_string.RemoveAll(item => item.Contains("3번"));
+            MainWindow.filter_alaram_list_string.RemoveAll(item => item.Contains("3 번"));
             listView_Notice.Text = string.Join(Environment.NewLine, MainWindow.filter_alaram_list_string);
         }
 
         private void button_Machine4_Yellow_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.filter_alaram_list_string.RemoveAll(item => item.Contains("4번"));
+            MainWindow.filter_alaram_list_string.RemoveAll(item => item.Contains("4 번"));
             listView_Notice.Text = string.Join(Environment.NewLine, MainWindow.filter_alaram_list_string);
         }
 
@@ -416,6 +618,22 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             if((e.Key == Key.NumPad1) || (e.Key == Key.NumPad2) || (e.Key == Key.NumPad3) || (e.Key == Key.NumPad4) || (e.Key == Key.NumPad5) )
             WriteToPLC("1");
 
+        }
+
+        private void button_ChangePLCIP_Click(object sender, RoutedEventArgs e)
+        {
+            // 텍스트 박스에 입력된 텍스트를 가져옴
+            string plcIP = textBox_PLCIP.Text;
+            // Split
+            string[] plcIP_list = plcIP.Split(":");
+            
+            PLCIPAddress =  plcIP_list[0];
+            PLCPortNumber = plcIP_list[1];
+
+            MessageBox.Show($"{PLCIPAddress}:{PLCPortNumber}");
+
+            textBox_PLCIP.PlaceholderText = $"현재 : {PLCIPAddress}:{PLCPortNumber}";
+            textBox_PLCIP.Text = "";
         }
     }
 
