@@ -57,6 +57,7 @@
                 Width="120"
                 Precache="False"
                 SelectedPageIndex="0"
+                Foreground="Aqua"
                 TransitionDuration="300"
                 TransitionType="FadeInWithSlide">
                 <!-- 이름이 RootFrame 인 곳에 Navigate 설정-->

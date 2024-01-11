@@ -16,97 +16,186 @@
       d:DesignHeight="650" 
     Background="{DynamicResource ApplicationBackgroundBrush}"
     Title="_1_DashBoardPage">
+    <Border Padding="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="200" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="200" />
 
-            </Grid.ColumnDefinitions>
-            <!-- 기계 1-->
-            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="textBlock_Watt1" FontSize="22" Grid.Column="1" Text="전력 : "  TextWrapping="Wrap"  Width="100" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,45,0,0" />
-            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="label_Watt1" FontSize="22" Grid.Row="0" Grid.Column="1" Text=""  Margin="120,45,0,0" Height="50" VerticalAlignment="Top" Width="100" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
-            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="textBlock_Temp1" FontSize="22" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Text="온도 : " Width="100" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,123,0,0" />
-            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="label_Temp1" FontSize="22" Grid.Row="0" Grid.Column="1" Text="Label" Margin="120,123,0,0" HorizontalAlignment="Left" Width="100" Height="50" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-            <!-- 기계 2-->
-            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="textBlock_Watt2" FontSize="22" Grid.Column="4" TextWrapping="Wrap" Text="전력 : " Width="100" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,45,0,0" />
-            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="label_Watt2" FontSize="22" Grid.Row="0" Text="Label" Margin="120,45,0,0" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100" Grid.Column="4" Grid.ColumnSpan="2"/>
-            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="textBlock_Temp2" FontSize="22" Grid.Column="4" TextWrapping="Wrap" Text="온도 : " Width="100" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,123,0,0"/>
-            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="label_Temp2" FontSize="22" Text="Label" Margin="120,123,0,0" HorizontalAlignment="Left" Width="100" Height="50" VerticalAlignment="Top" Grid.Column="4" Grid.ColumnSpan="2"/>
-            <!-- 1번 기계 버튼-->
-            <ui:Button x:Name="button_Machine1_Green" Grid.Column="2" Icon="Status24" Content="가동 버튼" FontSize="20" HorizontalAlignment="Center" Appearance="Success" Height="55" Width="190" Margin="0,-150,0,0" VerticalAlignment="Center" Click="button_Machine1_Green_Click" />
-            <ui:Button x:Name="button_Machine1_Yellow"  Grid.Column="2" Icon="Lightbulb24" Content="경고알림 확인" FontSize="20" HorizontalAlignment="Center" Appearance="Caution" Height="55" Width="190" VerticalAlignment="Center" Click="button_Machine1_Yellow_Click"/>
-            <ui:Button x:Name="button_Machine1_Red" Grid.Column="2" Icon="Stop24" Content="중지 버튼" FontSize="20" HorizontalAlignment="Center" Appearance="Danger" Height="55" Width="190" Margin="0,150,0,0" VerticalAlignment="Center" Click="button_Machine1_Red_Click"/>
-            <!-- 2번 기계 버튼-->
-            <ui:Button x:Name="button_Machine2_Green" Grid.Column="5" Icon="Status24" Content="가동 버튼" FontSize="20" HorizontalAlignment="Center" Appearance="Success" Height="55" Width="190" Margin="0,-150,0,0" VerticalAlignment="Center" Click="button_Machine2_Green_Click" />
-            <ui:Button x:Name="button_Machine2_Yellow"  Grid.Column="5" Icon="Lightbulb24" Content="경고알림 확인" FontSize="20" HorizontalAlignment="Center" Appearance="Caution" Height="55" Width="190" VerticalAlignment="Center" Click="button_Machine2_Yellow_Click"/>
-            <ui:Button x:Name="button_Machine2_Red" Grid.Column="5" Icon="Stop24" Content="중지 버튼" FontSize="20" HorizontalAlignment="Center" Appearance="Danger" Height="55" Width="190" Margin="0,150,0,0" VerticalAlignment="Center" Click="button_Machine2_Red_Click"/>
-            <!--1번 기계 이미지-->
-            <Button x:Name="button_GoToTab1" Height="200" HorizontalAlignment="Center" Width="200">
-                <Button.Background>
-                    <ImageBrush ImageSource="pack://application:,,,/Resources/Image_GN02.png"/>
-                </Button.Background>
-            </Button>
-            <!--2번 기계 이미지-->
-            <Button x:Name="button_GoToTab2" Grid.Column="3"   Height="200" HorizontalAlignment="Center" Width="200">
-                <Button.Background>
-                    <ImageBrush ImageSource="/Resources/Image_GN04.png"/>
-                </Button.Background>
-            </Button>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="PLC IP 주소" FontWeight="Bold" Margin="10,0,10,0"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"  />
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <ui:TextBox x:Name="textBox_PLCIP" PlaceholderText="기본 : 192.168.1.2:2004" />
+                        <ui:Button Grid.Column="1" x:Name="button_ChangePLCIP" Content="연결" HorizontalAlignment="Center" Click="button_ChangePLCIP_Click" />
+                    </Grid>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="200" />
+                </Grid.ColumnDefinitions>
+                <!-- 기계 1-->
+                <Grid Grid.Column="1">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" Grid.Row="0" Grid.Column="0" IsEnabled="False" x:Name="textBlock_Watt1" FontSize="22" Text="전력 : "  TextWrapping="Wrap"  Width="100" Height="50" />
+                            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" Grid.Row="0" Grid.Column="1" IsEnabled="False" x:Name="label_Watt1" FontSize="22" Text=""  Height="50"  Width="100" />
+
+                            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" Grid.Row="1" Grid.Column="0" IsEnabled="False" x:Name="textBlock_Temp1" FontSize="22" TextWrapping="Wrap" Text="온도 : " Width="100" Height="50"  />
+                            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" Grid.Row="1" Grid.Column="1" IsEnabled="False" x:Name="label_Temp1" FontSize="22" Text="Label"  Width="100" Height="50"/>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+                <!-- 기계 2-->
+                <Grid Grid.Column="4">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" Grid.Row="0" Grid.Column="0" IsEnabled="False" x:Name="textBlock_Watt2" FontSize="22" TextWrapping="Wrap" Text="전력 : " Width="100" Height="50"  />
+                            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" Grid.Row="0" Grid.Column="1" IsEnabled="False" x:Name="label_Watt2" FontSize="22" Text="Label"  Height="50" Width="100" />
+
+                            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" Grid.Row="1" Grid.Column="0" IsEnabled="False" x:Name="textBlock_Temp2" FontSize="22" TextWrapping="Wrap" Text="온도 : " Width="100" Height="50" />
+                            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" Grid.Row="1" Grid.Column="1"  IsEnabled="False" x:Name="label_Temp2" FontSize="22" Text="Label" Width="100" Height="50" />
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+                <!-- 1번 기계 버튼-->
+                <StackPanel Grid.Column="2">
+                    <ui:Button x:Name="button_Machine1_Green" Icon="Status24" Content="가동 버튼" FontSize="20"  Appearance="Success" Height="55" Width="190" Click="button_Machine1_Green_Click" />
+                    <ui:Button x:Name="button_Machine1_Yellow"   Icon="Lightbulb24" Content="경고알림 확인" FontSize="20"  Appearance="Caution" Height="55" Width="190" Click="button_Machine1_Yellow_Click"/>
+                    <ui:Button x:Name="button_Machine1_Red" Icon="Stop24" Content="중지 버튼" FontSize="20"  Appearance="Danger" Height="55" Width="190" Click="button_Machine1_Red_Click"/>
+                </StackPanel>
+                <!-- 2번 기계 버튼-->
+                <StackPanel Grid.Column="5">
+                    <ui:Button x:Name="button_Machine2_Green" Icon="Status24" Content="가동 버튼" FontSize="20"  Appearance="Success" Height="55" Width="190"  Click="button_Machine2_Green_Click" />
+                    <ui:Button x:Name="button_Machine2_Yellow"  Icon="Lightbulb24" Content="경고알림 확인" FontSize="20" Appearance="Caution" Height="55" Width="190" Click="button_Machine2_Yellow_Click"/>
+                    <ui:Button x:Name="button_Machine2_Red" Icon="Stop24" Content="중지 버튼" FontSize="20" Appearance="Danger" Height="55" Width="190"  Click="button_Machine2_Red_Click"/>
+                </StackPanel>
+                <!--1번 기계 이미지-->
+                <Button x:Name="button_GoToTab1" Height="200" Width="200">
+                    <Button.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/Resources/Image_GN02.png"/>
+                    </Button.Background>
+                </Button>
+                <!--2번 기계 이미지-->
+                <Button x:Name="button_GoToTab2" Grid.Column="3"   Height="200"  Width="200">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Resources/Image_GN04.png"/>
+                    </Button.Background>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="200" />
+                </Grid.ColumnDefinitions>
+                <!-- 기계 3-->
+                <Grid Grid.Column="1">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" Grid.Row="0" Grid.Column="0" IsEnabled="False" x:Name="textBlock_Watt3" FontSize="22" Text="전력 : "  TextWrapping="Wrap"  Width="100" Height="50" />
+                            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" Grid.Row="0" Grid.Column="1" IsEnabled="False" x:Name="label_Watt3" FontSize="22" Text=""  Height="50"  Width="100" />
+
+                            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" Grid.Row="1" Grid.Column="0" IsEnabled="False" x:Name="textBlock_Temp3" FontSize="22" TextWrapping="Wrap" Text="온도 : " Width="100" Height="50"  />
+                            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" Grid.Row="1" Grid.Column="1" IsEnabled="False" x:Name="label_Temp3" FontSize="22" Text="Label"  Width="100" Height="50"/>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+                <!-- 기계 4-->
+                <Grid Grid.Column="4">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" Grid.Row="0" Grid.Column="0" IsEnabled="False" x:Name="textBlock_Watt4" FontSize="22" Text="전력 : "  TextWrapping="Wrap"  Width="100" Height="50" />
+                            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" Grid.Row="0" Grid.Column="1" IsEnabled="False" x:Name="label_Watt4" FontSize="22" Text=""  Height="50"  Width="100" />
+
+                            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" Grid.Row="1" Grid.Column="0" IsEnabled="False" x:Name="textBlock_Temp4" FontSize="22" TextWrapping="Wrap" Text="온도 : " Width="100" Height="50"  />
+                            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" Grid.Row="1" Grid.Column="1" IsEnabled="False" x:Name="label_Temp4" FontSize="22" Text="Label"  Width="100" Height="50"/>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+                <!-- 3번 기계 버튼-->
+                <StackPanel Grid.Column="2">
+                    <ui:Button x:Name="button_Machine3_Green" Icon="Status24" Content="가동 버튼" FontSize="20"  Appearance="Success" Height="55" Width="190" Click="button_Machine1_Green_Click" />
+                    <ui:Button x:Name="button_Machine3_Yellow"   Icon="Lightbulb24" Content="경고알림 확인" FontSize="20"  Appearance="Caution" Height="55" Width="190" Click="button_Machine1_Yellow_Click"/>
+                    <ui:Button x:Name="button_Machine3_Red" Icon="Stop24" Content="중지 버튼" FontSize="20"  Appearance="Danger" Height="55" Width="190" Click="button_Machine1_Red_Click"/>
+                </StackPanel>
+                <!-- 4번 기계 버튼-->
+                <StackPanel Grid.Column="5">
+                    <ui:Button x:Name="button_Machine4_Green" Icon="Status24" Content="가동 버튼" FontSize="20"  Appearance="Success" Height="55" Width="190" Click="button_Machine1_Green_Click" />
+                    <ui:Button x:Name="button_Machine4_Yellow"   Icon="Lightbulb24" Content="경고알림 확인" FontSize="20"  Appearance="Caution" Height="55" Width="190" Click="button_Machine1_Yellow_Click"/>
+                    <ui:Button x:Name="button_Machine4_Red" Icon="Stop24" Content="중지 버튼" FontSize="20"  Appearance="Danger" Height="55" Width="190" Click="button_Machine1_Red_Click"/>
+                </StackPanel>
+                <!--3번 기계 이미지-->
+                <Button x:Name="button_GoToTab3" Grid.Row="1" Width="200" Height="200">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Resources/Image_GN05.png"/>
+                    </Button.Background>
+                </Button>
+                <!--4번 기계 이미지-->
+                <Button x:Name="button_GoToTab4" Grid.Row="1" Grid.Column="3"  Height="200" Width="200">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Resources/Image_GN07.png"/>
+                    </Button.Background>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="3">
+                <!--알림 창-->
+                <TextBox x:Name="listView_Notice" IsReadOnly="True"   />
+            </Grid>
         </Grid>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="200" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="200" />
-            </Grid.ColumnDefinitions>
-            <!-- 기계 3-->
-            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="textBlock_Watt3" FontSize="22" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="전력 : " Width="100" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,45,0,0" />
-            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="label_Watt3" FontSize="22" Grid.Row="1" Text="Label" Margin="120,45,0,0" HorizontalAlignment="Left" Width="100" Height="50" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2"/>
-            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="textBlock_Temp3" FontSize="22" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="온도 : " Width="100" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,123,0,0" />
-            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="label_Temp3" FontSize="22" Grid.Row="1" Text="Label" HorizontalAlignment="Left" Width="100" Height="50" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2" Margin="120,123,0,0"/>
-            <!-- 기계 4-->
-            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="textBlock_Watt4" FontSize="22" Grid.Row="1" Grid.Column="4" TextWrapping="Wrap" Text="전력 : " Width="100" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,45,0,0" />
-            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="label_Watt4" FontSize="22" Grid.Row="1" Text="Label" Margin="120,45,0,0" HorizontalAlignment="Left" Width="100" Height="50" VerticalAlignment="Top" Grid.Column="4" Grid.ColumnSpan="2"/>
-            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="textBlock_Temp4" FontSize="22" Grid.Row="1" Grid.Column="4" TextWrapping="Wrap" Text="온도 : " Width="100" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,123,0,0"/>
-            <TextBox Foreground="{DynamicResource TextFillColorSecondaryBrush}" IsEnabled="False" x:Name="label_Temp4" FontSize="22" Grid.Row="1" Text="Label" Margin="120,123,0,0" HorizontalAlignment="Left" Width="100" Height="50" VerticalAlignment="Top" Grid.Column="4" Grid.ColumnSpan="2"/>
-            <!-- 3번 기계 버튼-->
-            <ui:Button x:Name="button_Machine3_Green" Grid.Row="1" Grid.Column="2" Icon="Status24" Content="가동 버튼" FontSize="20" HorizontalAlignment="Center" Appearance="Success" Height="55" Width="190" Margin="0,-150,0,0" VerticalAlignment="Center" Click="button_Machine3_Green_Click" />
-            <ui:Button x:Name="button_Machine3_Yellow" Grid.Row="1" Grid.Column="2" Icon="Lightbulb24" Content="경고알림 확인" FontSize="20" HorizontalAlignment="Center" Appearance="Caution" Height="55" Width="190" VerticalAlignment="Center" Click="button_Machine3_Yellow_Click"/>
-            <ui:Button x:Name="button_Machine3_Red" Grid.Row="1" Grid.Column="2" Icon="Stop24" Content="중지 버튼" FontSize="20" HorizontalAlignment="Center" Appearance="Danger" Height="55" Width="190" Margin="0,150,0,0" VerticalAlignment="Center" Click="button_Machine3_Red_Click"/>
-            <!-- 4번 기계 버튼-->
-            <ui:Button x:Name="button_Machine4_Green" Grid.Row="1" Grid.Column="5" Icon="Status24" Content="가동 버튼" FontSize="20" HorizontalAlignment="Center" Appearance="Success" Height="55" Width="190" Margin="0,-150,0,0" VerticalAlignment="Center" Click="button_Machine4_Green_Click" />
-            <ui:Button x:Name="button_Machine4_Yellow" Grid.Row="1" Grid.Column="5" Icon="Lightbulb24" Content="경고알림 확인" FontSize="20" HorizontalAlignment="Center" Appearance="Caution" Height="55" Width="190" VerticalAlignment="Center" Click="button_Machine4_Yellow_Click"/>
-            <ui:Button x:Name="button_Machine4_Red" Grid.Row="1" Grid.Column="5" Icon="Stop24" Content="중지 버튼" FontSize="20" HorizontalAlignment="Center" Appearance="Danger" Height="55" Width="190" Margin="0,150,0,0" VerticalAlignment="Center" Click="button_Machine4_Red_Click"/>
-            <!--3번 기계 이미지-->
-            <Button x:Name="button_GoToTab3" Grid.Row="1" HorizontalAlignment="Center" Width="200" Height="200">
-                <Button.Background>
-                    <ImageBrush ImageSource="/Resources/Image_GN05.png"/>
-                </Button.Background>
-            </Button>
-            <!--4번 기계 이미지-->
-            <Button x:Name="button_GoToTab4" Grid.Row="1" Grid.Column="3"  Height="200" HorizontalAlignment="Center" Width="200">
-                <Button.Background>
-                    <ImageBrush ImageSource="/Resources/Image_GN07.png"/>
-                </Button.Background>
-            </Button>
-        </Grid>
-        <Grid Grid.Row="2">
-            <!--알림 창-->
-            <TextBox x:Name="listView_Notice" IsReadOnly="True" Margin="50,18,50,18"  />
-        </Grid>
-    </Grid>
+    </Border>
 </Page>

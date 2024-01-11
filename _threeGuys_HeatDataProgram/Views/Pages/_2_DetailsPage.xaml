@@ -12,19 +12,35 @@
       Title="_2_DetailsPage">
 
     <Grid>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Padding="10">
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="WebPage IP 주소" FontWeight="Bold" Margin="10,0,10,0"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"  />
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <ui:TextBox x:Name="textBox_WebIP" PlaceholderText="기본 : 127.0.0.1:8050" KeyDown="OnKeyDownHandler" />
+                        <ui:Button Grid.Column="1" x:Name="button_ChangeWebPageIP" Content="접속" HorizontalAlignment="Center" Click="button_ChangeWebPageIP_Click" />
+                    </Grid>
+                    <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="PLC IP 주소" FontWeight="Bold" Margin="10,0,10,0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
 
-            <wv2:WebView2 x:Name="webView2_tab1" Grid.Row="0"  Grid.ColumnSpan="3" Source="http://127.0.0.1:8050" />
-            <!-- 하나의 webView로 공유 하는 방식으로 -->
-            
-        </Grid>
+
+        <wv2:WebView2 x:Name="webView2_tab1" Grid.Row="1" Source="http://127.0.0.1:8050" />
+        <!-- 하나의 webView로 공유 하는 방식으로 -->
+
     </Grid>
 </Page>
