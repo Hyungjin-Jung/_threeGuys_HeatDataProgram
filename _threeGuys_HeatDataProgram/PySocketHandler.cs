@@ -12,8 +12,9 @@ namespace PySocketHandler
         {
             try
             {
-                string serverIp = "127.0.0.1";
-                int serverPort = 56789;
+                string serverIp = "192.168.1.223";
+                //string serverIp = "127.0.0.1";
+                int serverPort = 56792;
 
                 client = new TcpClient(serverIp, serverPort);
 

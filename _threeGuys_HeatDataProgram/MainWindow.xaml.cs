@@ -5,6 +5,8 @@ using SetFilterData;
 using System;
 using System.ComponentModel;
 using System.IO; // Directory(현재 주소위치 파악) 사용을 위해 필요.
+using System.Net.Sockets;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -35,7 +37,7 @@ namespace _threeGuys_HeatDataProgram
 
         // 소켓통신
         PLCSocketHandler.PLCSocketManager PLCSocket = new PLCSocketHandler.PLCSocketManager();
-        private bool isPLCConnected = false;
+        private bool isPLCConnected = true;
 
         string PLCIPAddress = "192.168.1.2";
         string PLCPortNumber = "2004";
@@ -64,11 +66,17 @@ namespace _threeGuys_HeatDataProgram
         // 1초마다 작업을 하기위한 Timer 이용하기 위해 선언
         private DispatcherTimer timer = new DispatcherTimer();
         // 실시간 데이터 생성을 위해 1씩 증가하는 상수
-        static public int columNum = 0;
+        static public int columNum = 2000;
+        
+
+        private bool isPythonConnected = true;
+        private bool isFalling = false;
         public MainWindow()
         {
+           
             // 소켓 통신 대기
-            PySocket.prepareSocket();
+            Socket();
+            
 
             InitializeComponent();
 
@@ -90,6 +98,69 @@ namespace _threeGuys_HeatDataProgram
             // 테마 깔맞춤 용
             Wpf.Ui.Appearance.Accent.ApplySystemAccent();
         }
+
+        private bool Socket()
+        {
+            string isSuccess = PySocket.prepareSocket();
+
+            if (isSuccess == "Success")
+            {
+                Thread pySocketThread = new Thread(() =>
+                {
+                    while (isPythonConnected == true)
+                    {
+                        string receivedString = PySocket.receivedSocketString();
+                        Console.WriteLine(receivedString);
+                        switch (receivedString)
+                        {
+
+                            case "Falling":
+                                Application.Current.Dispatcher.Invoke(() =>
+                                {
+                                    if (RootFrame.Content is _1_DashBoardPage dashboardPage)
+                                    {
+                                        dashboardPage.testPageViewModel.PythonAlertText = "작업자 넘어짐";
+                                        if (isFalling)
+                                        {
+                                            MessageBox.Show(dashboardPage.testPageViewModel.PythonAlertText);
+                                            isFalling = false;
+                                        }
+                                    }
+                                });
+                                break;
+                            default:
+                                Application.Current.Dispatcher.Invoke(() =>
+                                {
+                                    if (RootFrame.Content is _1_DashBoardPage dashboardPage)
+                                    {
+                                        dashboardPage.testPageViewModel.PythonAlertText = "데이터 값 오류";
+
+                                        MessageBox.Show(dashboardPage.testPageViewModel.PythonAlertText);
+
+                                    }
+                                });
+                                break;
+
+                        }
+                    }
+
+                    // 연결 유지 실패 시 메시지 표시 및 플래그 설정
+                    isPythonConnected = false;
+                });
+
+                // 스레드 시작
+                pySocketThread.IsBackground = true;
+                pySocketThread.Start();
+
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
         // 실시간 데이터 받아오는 함수
         private void UpdateLiveData(object sender, EventArgs e)

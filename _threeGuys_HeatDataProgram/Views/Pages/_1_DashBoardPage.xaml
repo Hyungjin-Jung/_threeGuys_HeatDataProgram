@@ -7,7 +7,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
       xmlns:local="clr-namespace:_threeGuys_HeatDataProgram.Views.Pages"
-    
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
       KeyDown="Window_KeyDown"
       
     
@@ -193,8 +193,17 @@
                 </Button>
             </Grid>
             <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition ></ColumnDefinition>
+                </Grid.ColumnDefinitions>
                 <!--알림 창-->
                 <TextBox x:Name="listView_Notice" IsReadOnly="True"   />
+                <StackPanel Grid.Column="1">
+                    <Button   x:Name="pythonButton" Content="소켓 통신 테스트 버튼" Width="auto" Height="50" />
+                    <TextBox x:Name="pythonTextBox" Text="{Binding PythonAlertText}" IsReadOnly="True"   />
+
+                </StackPanel>
             </Grid>
         </Grid>
     </Border>

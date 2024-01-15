@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Wpf.Ui.Mvvm.Interfaces;
 using FactoryDataReader;
+using _threeGuys_HeatDataProgram.PageViewModel;
 
 namespace _threeGuys_HeatDataProgram.Views.Pages
 {
@@ -35,14 +36,14 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
         bool is_Machine3_connected = false;
         bool is_Machine4_connected = false;
 
-
-        private readonly MainWindow mainWindow;
+        public PageViewModel.PageViewModel testPageViewModel { get; } = new PageViewModel.PageViewModel();
 
         public _1_DashBoardPage()
         {
             InitializeComponent();
             // 실행시 PLC 연결 실행
             PLCConnect();
+            DataContext = testPageViewModel;
 
         }
 
