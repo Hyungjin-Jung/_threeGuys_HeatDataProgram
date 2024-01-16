@@ -585,26 +585,9 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             PLCMemoryByteOffset = 8020;
             PLCMemoryBitOffset = 1;
 
-            // 1=실행 , 0 = 종료
 
-            if (!is_Machine4_connected)
-            {
-                WriteToPLC("1");
-                WriteToPLC("0");
-
-                button_Machine4_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Light;
-                button_Machine4_Green.Content = "작동 중...";
-                is_Machine4_connected = true;
-            }
-            else
-            {
-                WriteToPLC("1");
-                WriteToPLC("0");
-
-                button_Machine4_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Success;
-                button_Machine4_Green.Content = "가동 버튼";
-                is_Machine4_connected = false;
-            }
+            WriteToPLC("1");
+            WriteToPLC("0");
         }
 
         private void button_Machine2_Red_Click(object sender, RoutedEventArgs e)
@@ -615,26 +598,9 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             PLCMemoryByteOffset = 9020;
             PLCMemoryBitOffset = 1;
 
-            // 1=실행 , 0 = 종료
 
-            if (!is_Machine4_connected)
-            {
-                WriteToPLC("1");
-                WriteToPLC("0");
-
-                button_Machine4_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Light;
-                button_Machine4_Green.Content = "작동 중...";
-                is_Machine4_connected = true;
-            }
-            else
-            {
-                WriteToPLC("1");
-                WriteToPLC("0");
-
-                button_Machine4_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Success;
-                button_Machine4_Green.Content = "가동 버튼";
-                is_Machine4_connected = false;
-            }
+            WriteToPLC("1");
+            WriteToPLC("0");
         }
 
         private void button_Machine3_Red_Click(object sender, RoutedEventArgs e)
@@ -645,26 +611,9 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             PLCMemoryByteOffset = 10020;
             PLCMemoryBitOffset = 1;
 
-            // 1=실행 , 0 = 종료
 
-            if (!is_Machine4_connected)
-            {
-                WriteToPLC("1");
-                WriteToPLC("0");
-
-                button_Machine4_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Light;
-                button_Machine4_Green.Content = "작동 중...";
-                is_Machine4_connected = true;
-            }
-            else
-            {
-                WriteToPLC("1");
-                WriteToPLC("0");
-
-                button_Machine4_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Success;
-                button_Machine4_Green.Content = "가동 버튼";
-                is_Machine4_connected = false;
-            }
+            WriteToPLC("1");
+            WriteToPLC("0");
 
         }
 
@@ -676,26 +625,10 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             PLCMemoryByteOffset = 11020;
             PLCMemoryBitOffset = 1;
 
-            // 1=실행 , 0 = 종료
 
-            if (!is_Machine4_connected)
-            {
-                WriteToPLC("1");
-                WriteToPLC("0");
+            WriteToPLC("1");
+            WriteToPLC("0");
 
-                button_Machine4_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Light;
-                button_Machine4_Green.Content = "작동 중...";
-                is_Machine4_connected = true;
-            }
-            else
-            {
-                WriteToPLC("1");
-                WriteToPLC("0");
-
-                button_Machine4_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Success;
-                button_Machine4_Green.Content = "가동 버튼";
-                is_Machine4_connected = false;
-            }
         }
 
 
