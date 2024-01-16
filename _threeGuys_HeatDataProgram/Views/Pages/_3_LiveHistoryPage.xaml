@@ -26,33 +26,77 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="구역 명" FontWeight="DemiBold" FontSize="22" Height="40" Margin="0,10,0,50" Grid.Column="0" />
-                <ComboBox x:Name="comboBox_DataGridMachineName" SelectedIndex="0" Grid.Column="0" Margin="0,56,0,0" VerticalAlignment="Top">
-                    <ComboBoxItem x:Name="comboBoxItem_DataGrid_AllMachine" Content="전체 구역"/>
-                    <ComboBoxItem x:Name="comboBoxItem_DataGrid_Machine1" Content="GN02N"/>
-                    <ComboBoxItem x:Name="comboBoxItem_DataGrid_Machine2" Content="GM04M"/>
-                    <ComboBoxItem x:Name="comboBoxItem_DataGrid_Machine3" Content="GM05M"/>
-                    <ComboBoxItem x:Name="comboBoxItem_DataGrid_Machine4" Content="GN07N"/>
-                </ComboBox>
-                <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="항목 명" FontWeight="DemiBold" FontSize="22"  Height="40" Margin="0,10,0,50" Grid.Column="1" />
-                <ComboBox x:Name="comboBox_DataGridOption" Grid.Column="1" SelectedIndex="0" VerticalAlignment="Top" Margin="0,56,0,0">
-                    <ComboBoxItem x:Name="comboBoxItem_DataGrid_OptionAllData" Content="모든 수치"/>
-                    <ComboBoxItem x:Name="comboBoxItem_DataGrid_OptionWatt" Content="전력"/>
-                    <ComboBoxItem x:Name="comboBoxItem_DataGrid_OptionTemp" Content="온도"/>
-                    <ComboBoxItem x:Name="comboBoxItem_DataGrid_OptionGas" Content="가스"/>
-                </ComboBox>
+
+                <Grid Grid.Column="0">
+                    <StackPanel>
+                        <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="구역 명" FontWeight="DemiBold" FontSize="22" Height="40" Margin="0,10,0,0" />
+                        <ComboBox x:Name="comboBox_DataGridMachineName" SelectedIndex="0" >
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_AllMachine" Content="전체 구역"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_Machine1" Content="GN02N"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_Machine2" Content="GN04M"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_Machine3" Content="GN05M"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_Machine4" Content="GN07N"/>
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <StackPanel>
+                        <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="항목 명" FontWeight="DemiBold" FontSize="22"  Height="40" Margin="0,10,0,0" />
+                        <ComboBox x:Name="comboBox_DataGridOption" Grid.Column="1" SelectedIndex="0" >
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_OptionAllData" Content="모든 수치"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_OptionWatt" Content="전력"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_OptionTemp" Content="온도"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_OptionGas" Content="가스"/>
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+
                 <Grid Grid.Column="2">
                     <StackPanel>
-                        <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="검색 시작 시간" FontWeight="DemiBold" FontSize="22"  Height="40" Margin="0,10,0,10" />
-                        <DatePicker x:Name="datePicker_startDate" Text="달력시작" Grid.Column="1" />
+                        <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="검색 시작 일" FontWeight="DemiBold" FontSize="22"  Height="40" Margin="0,10,0,0" />
+                        <DatePicker x:Name="datePicker_startDate" Text="달력시작"  />
                     </StackPanel>
                 </Grid>
                 <Grid Grid.Column="3">
                     <StackPanel>
-                        <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="검색 단위 선택" FontWeight="DemiBold"  FontSize="22" Height="40" Margin="0,10,0,10"  />
-                        <ComboBox x:Name="comboBox_DataGrid_SearchOption" Grid.Column="1" SelectedIndex="0" VerticalAlignment="Top" Margin="0,0,0,0">
+                        <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="시작시간" FontWeight="DemiBold" FontSize="22"  Height="40" Margin="0,10,0,0" />
+                        <ComboBox x:Name="comboBox_DataGridTime" Grid.Column="1" SelectedIndex="0" >
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_00" Content="0:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_01" Content="1:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_02" Content="2:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_03" Content="3:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_04" Content="4:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_05" Content="5:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_06" Content="6:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_07" Content="7:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_08" Content="8:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_09" Content="9:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_10" Content="10:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_11" Content="11:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_12" Content="12:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_13" Content="13:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_14" Content="14:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_15" Content="15:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_16" Content="16:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_17" Content="17:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_18" Content="18:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_19" Content="19:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_20" Content="20:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_21" Content="21:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_22" Content="22:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_23" Content="23:00"/>
+                            <ComboBoxItem x:Name="comboBoxItem_DataGrid_time_24" Content="24:00"/>
+                        </ComboBox>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="4">
+                    <StackPanel>
+                        <TextBlock Foreground="{DynamicResource TextFillColorSecondaryBrush}" Text="검색 단위" FontWeight="DemiBold"  FontSize="22" Height="40" Margin="0,10,0,0"  />
+                        <ComboBox x:Name="comboBox_DataGrid_SearchOption" Grid.Column="1" SelectedIndex="0" >
                             <ComboBoxItem x:Name="comboBoxItem_DataGrid_SearchOption_10S" Content="10 초"/>
                             <ComboBoxItem x:Name="comboBoxItem_DataGrid_SearchOption_30S" Content="30 초"/>
                             <ComboBoxItem x:Name="comboBoxItem_DataGrid_SearchOption_1M" Content="1 분"/>
@@ -68,9 +112,9 @@
                         </ComboBox>
                     </StackPanel>
                 </Grid>
-                <ui:Button x:Name="button_DataGridSearch" Content="검색" Grid.Column="4" Height="50" Width="150"  Click="button_DataGridSearch_Click"/>
+                <ui:Button x:Name="button_DataGridSearch" Content="검색" Grid.Column="5" Height="50" Width="130"  Click="button_DataGridSearch_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
-            <ui:DataGrid x:Name="dataGrid_History" Grid.Row="1" AutoGeneratingColumn="dataGrid_History_AutoGeneratingColumn"/>
+            <ui:DataGrid x:Name="dataGrid_History" Grid.Row="1"  AutoGeneratingColumn="dataGrid_History_AutoGeneratingColumn"/>
         </Grid>
     </Border>
 </Page>

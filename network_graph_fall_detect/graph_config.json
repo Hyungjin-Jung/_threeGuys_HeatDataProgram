@@ -1,0 +1,1336 @@
+{
+    "graph1": {
+        "figure1": {
+            "title": {
+                "text": "전력 스펙트럼",
+                "y": 0.95,
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top"
+            },
+            "height": 300,
+            "margin": {
+                "l": 0,
+                "r": 0,
+                "t": 75,
+                "b": 40
+            },
+            "legend_font_size": 14,
+            "hovermode": "x",
+            "xaxis": {
+                "showspikes": true,
+                "spikecolor": "black",
+                "spikesnap": "cursor",
+                "spikemode": "across"
+            },
+            "legend": {
+                "orientation": "h",
+                "xanchor": "left",
+                "yanchor": "top",
+                "x": 0.0005,
+                "y": 1.2,
+                "traceorder": "normal",
+                "bgcolor": "rgba(230, 236, 245, 1)",
+                "bordercolor": "rgba(0, 0, 0, 0.3)",
+                "borderwidth": 1
+            },
+            "subplot": {
+                "subplot1": {
+                    "row": 1,
+                    "col": 1,
+                    "xaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxes_title": "메인전력 [W]",
+                    "trace": {
+                        "trace1": {
+                            "column": "GN07N_MAIN_POWER",
+                            "name": "메인전력",
+                            "color": "darkorange",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        }
+                    }
+                }
+            }
+        },
+        "figure2": {
+            "title": {
+                "text": "전력 스펙트럼",
+                "y": 0.95,
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top"
+            },
+            "height": 300,
+            "margin": {
+                "l": 0,
+                "r": 0,
+                "t": 75,
+                "b": 40
+            },
+            "legend_font_size": 14,
+            "hovermode": "x",
+            "xaxis": {
+                "showspikes": true,
+                "spikecolor": "black",
+                "spikesnap": "cursor",
+                "spikemode": "across"
+            },
+            "legend": {
+                "orientation": "h",
+                "xanchor": "left",
+                "yanchor": "top",
+                "x": 0.0005,
+                "y": 1.2,
+                "traceorder": "normal",
+                "bgcolor": "rgba(230, 236, 245, 1)",
+                "bordercolor": "rgba(0, 0, 0, 0.3)",
+                "borderwidth": 1
+            },
+            "subplot": {
+                "subplot1": {
+                    "row": 1,
+                    "col": 1,
+                    "xaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxes_title": "보조전력 [W]",
+                    "trace": {
+                        "trace1": {
+                            "column": "GN07N_SUB_POWER",
+                            "name": "보조전력",
+                            "color": "darkgoldenrod",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        }
+                    }
+                }
+            }
+        },
+        "figure3": {
+            "title": {
+                "text": "온도 시계열 그래프",
+                "y": 0.95,
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top"
+            },
+            "height": 300,
+            "margin": {
+                "l": 0,
+                "r": 0,
+                "t": 75,
+                "b": 40
+            },
+            "legend_font_size": 14,
+            "hovermode": "x",
+            "xaxis": {
+                "showspikes": true,
+                "spikecolor": "black",
+                "spikesnap": "cursor",
+                "spikemode": "across"
+            },
+            "legend": {
+                "orientation": "h",
+                "xanchor": "left",
+                "yanchor": "top",
+                "x": 0.0005,
+                "y": 1.2,
+                "traceorder": "normal",
+                "bgcolor": "rgba(230, 236, 245, 1)",
+                "bordercolor": "rgba(0, 0, 0, 0.3)",
+                "borderwidth": 1
+            },
+            "subplot": {
+                "subplot1": {
+                    "row": 1,
+                    "col": 1,
+                    "xaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxes_title": "온도 [°C]",
+                    "trace": {
+                        "trace1": {
+                            "column": "GN07N_TEMP",
+                            "name": "온도",
+                            "color": "red",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        }
+                    }
+                }
+            }
+        },
+        "figure4": {
+            "title": {
+                "text": "온도 시계열 그래프",
+                "y": 0.95,
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top"
+            },
+            "height": 300,
+            "margin": {
+                "l": 0,
+                "r": 0,
+                "t": 75,
+                "b": 40
+            },
+            "legend_font_size": 14,
+            "hovermode": "x",
+            "xaxis": {
+                "showspikes": true,
+                "spikecolor": "black",
+                "spikesnap": "cursor",
+                "spikemode": "across"
+            },
+            "legend": {
+                "orientation": "h",
+                "xanchor": "left",
+                "yanchor": "top",
+                "x": 0.0005,
+                "y": 1.2,
+                "traceorder": "normal",
+                "bgcolor": "rgba(230, 236, 245, 1)",
+                "bordercolor": "rgba(0, 0, 0, 0.3)",
+                "borderwidth": 1
+            },
+            "subplot": {
+                "subplot1": {
+                    "row": 1,
+                    "col": 1,
+                    "xaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxes_title": "온도 [°C]",
+                    "trace": {
+                        "trace1": {
+                            "column": "GN07N_HIGH_TEMP",
+                            "name": "상층온도",
+                            "color": "darkred",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        },
+                        "trace2": {
+                            "column": "GN07N_MID_TEMP",
+                            "name": "중층온도",
+                            "color": "darkorange",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        },
+                        "trace3": {
+                            "column": "GN07N_LOW_TEMP",
+                            "name": "하층온도",
+                            "color": "orangered",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        },
+                        "trace4": {
+                            "column": "GN07N_OVER_TEMP",
+                            "name": "과열온도",
+                            "color": "firebrick",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        }
+                    }
+                }
+            }
+        },
+        "figure5": {
+            "title": {
+                "text": "가스 농도 그래프",
+                "y": 0.95,
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top"
+            },
+            "height": 300,
+            "margin": {
+                "l": 0,
+                "r": 0,
+                "t": 75,
+                "b": 40
+            },
+            "legend_font_size": 14,
+            "hovermode": "x",
+            "xaxis": {
+                "showspikes": true,
+                "spikecolor": "black",
+                "spikesnap": "cursor",
+                "spikemode": "across"
+            },
+            "legend": {
+                "orientation": "h",
+                "xanchor": "left",
+                "yanchor": "top",
+                "x": 0.0005,
+                "y": 1.2,
+                "traceorder": "normal",
+                "bgcolor": "rgba(230, 236, 245, 1)",
+                "bordercolor": "rgba(0, 0, 0, 0.3)",
+                "borderwidth": 1
+            },
+            "subplot": {
+                "subplot1": {
+                    "row": 1,
+                    "col": 1,
+                    "xaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxes_title": "암모니아가스 [㎥]",
+                    "trace": {
+                        "trace1": {
+                            "column": "GN07N_GAS_AMM",
+                            "name": "암모니아가스",
+                            "color": "limegreen",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        }
+                    }
+                }
+            }
+        },
+        "figure6": {
+            "title": {
+                "text": "가스 농도 그래프",
+                "y": 0.95,
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top"
+            },
+            "height": 300,
+            "margin": {
+                "l": 0,
+                "r": 0,
+                "t": 75,
+                "b": 40
+            },
+            "legend_font_size": 14,
+            "hovermode": "x",
+            "xaxis": {
+                "showspikes": true,
+                "spikecolor": "black",
+                "spikesnap": "cursor",
+                "spikemode": "across"
+            },
+            "legend": {
+                "orientation": "h",
+                "xanchor": "left",
+                "yanchor": "top",
+                "x": 0.0005,
+                "y": 1.2,
+                "traceorder": "normal",
+                "bgcolor": "rgba(230, 236, 245, 1)",
+                "bordercolor": "rgba(0, 0, 0, 0.3)",
+                "borderwidth": 1
+            },
+            "subplot": {
+                "subplot1": {
+                    "row": 1,
+                    "col": 1,
+                    "xaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxes_title": "질소, Co2가스 [㎥]",
+                    "trace": {
+                        "trace1": {
+                            "column": "GN07N_GAS_NRG",
+                            "name": "질소가스",
+                            "color": "forestgreen",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        },
+                        "trace2": {
+                            "column": "GN07N_GAS_CDO",
+                            "name": "Co2가스",
+                            "color": "darkgreen",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "graph2": {
+        "figure1": {
+            "title": {
+                "text": "전력 스펙트럼",
+                "y": 0.95,
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top"
+            },
+            "height": 300,
+            "margin": {
+                "l": 0,
+                "r": 0,
+                "t": 75,
+                "b": 40
+            },
+            "legend_font_size": 14,
+            "hovermode": "x",
+            "xaxis": {
+                "showspikes": true,
+                "spikecolor": "black",
+                "spikesnap": "cursor",
+                "spikemode": "across"
+            },
+            "legend": {
+                "orientation": "h",
+                "xanchor": "left",
+                "yanchor": "top",
+                "x": 0.0005,
+                "y": 1.2,
+                "traceorder": "normal",
+                "bgcolor": "rgba(230, 236, 245, 1)",
+                "bordercolor": "rgba(0, 0, 0, 0.3)",
+                "borderwidth": 1
+            },
+            "subplot": {
+                "subplot1": {
+                    "row": 1,
+                    "col": 1,
+                    "xaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxes_title": "메인전력 [W]",
+                    "trace": {
+                        "trace1": {
+                            "column": "GN05N_MAIN_POWER",
+                            "name": "메인전력",
+                            "color": "darkorange",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        }
+                    }
+                }
+            }
+        },
+        "figure2": {
+            "title": {
+                "text": "전력 스펙트럼",
+                "y": 0.95,
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top"
+            },
+            "height": 300,
+            "margin": {
+                "l": 0,
+                "r": 0,
+                "t": 75,
+                "b": 40
+            },
+            "legend_font_size": 14,
+            "hovermode": "x",
+            "xaxis": {
+                "showspikes": true,
+                "spikecolor": "black",
+                "spikesnap": "cursor",
+                "spikemode": "across"
+            },
+            "legend": {
+                "orientation": "h",
+                "xanchor": "left",
+                "yanchor": "top",
+                "x": 0.0005,
+                "y": 1.2,
+                "traceorder": "normal",
+                "bgcolor": "rgba(230, 236, 245, 1)",
+                "bordercolor": "rgba(0, 0, 0, 0.3)",
+                "borderwidth": 1
+            },
+            "subplot": {
+                "subplot1": {
+                    "row": 1,
+                    "col": 1,
+                    "xaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxes_title": "메인전력 [W]",
+                    "trace": {
+                        "trace1": {
+                            "column": "GN05M_MAIN_POWER",
+                            "name": "메인전력",
+                            "color": "darkgoldenrod",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        }
+                    }
+                }
+            }
+        },
+        "figure3": {
+            "title": {
+                "text": "온도 시계열 그래프",
+                "y": 0.95,
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top"
+            },
+            "height": 300,
+            "margin": {
+                "l": 0,
+                "r": 0,
+                "t": 75,
+                "b": 40
+            },
+            "legend_font_size": 14,
+            "hovermode": "x",
+            "xaxis": {
+                "showspikes": true,
+                "spikecolor": "black",
+                "spikesnap": "cursor",
+                "spikemode": "across"
+            },
+            "legend": {
+                "orientation": "h",
+                "xanchor": "left",
+                "yanchor": "top",
+                "x": 0.0005,
+                "y": 1.2,
+                "traceorder": "normal",
+                "bgcolor": "rgba(230, 236, 245, 1)",
+                "bordercolor": "rgba(0, 0, 0, 0.3)",
+                "borderwidth": 1
+            },
+            "subplot": {
+                "subplot1": {
+                    "row": 1,
+                    "col": 1,
+                    "xaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxes_title": "온도 [°C]",
+                    "trace": {
+                        "trace1": {
+                            "column": "GN05M_TEMP",
+                            "name": "온도",
+                            "color": "red",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        }
+                    }
+                }
+            }
+        },
+        "figure4": {
+            "title": {
+                "text": "온도 시계열 그래프",
+                "y": 0.95,
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top"
+            },
+            "height": 300,
+            "margin": {
+                "l": 0,
+                "r": 0,
+                "t": 75,
+                "b": 40
+            },
+            "legend_font_size": 14,
+            "hovermode": "x",
+            "xaxis": {
+                "showspikes": true,
+                "spikecolor": "black",
+                "spikesnap": "cursor",
+                "spikemode": "across"
+            },
+            "legend": {
+                "orientation": "h",
+                "xanchor": "left",
+                "yanchor": "top",
+                "x": 0.0005,
+                "y": 1.2,
+                "traceorder": "normal",
+                "bgcolor": "rgba(230, 236, 245, 1)",
+                "bordercolor": "rgba(0, 0, 0, 0.3)",
+                "borderwidth": 1
+            },
+            "subplot": {
+                "subplot1": {
+                    "row": 1,
+                    "col": 1,
+                    "xaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxes_title": "온도 [°C]",
+                    "trace": {
+                        "trace1": {
+                            "column": "GN05M_HIGH_TEMP",
+                            "name": "상층온도",
+                            "color": "darkred",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        },
+                        "trace2": {
+                            "column": "GN05M_LOW_TEMP",
+                            "name": "하층온도",
+                            "color": "orangered",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        },
+                        "trace3": {
+                            "column": "GN05M_OVER_TEMP",
+                            "name": "과열온도",
+                            "color": "firebrick",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        }
+                    }
+                }
+            }
+        },
+        "figure5": {
+            "title": {
+                "text": "가스 농도 그래프",
+                "y": 0.95,
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top"
+            },
+            "height": 300,
+            "margin": {
+                "l": 0,
+                "r": 0,
+                "t": 75,
+                "b": 40
+            },
+            "legend_font_size": 14,
+            "hovermode": "x",
+            "xaxis": {
+                "showspikes": true,
+                "spikecolor": "black",
+                "spikesnap": "cursor",
+                "spikemode": "across"
+            },
+            "legend": {
+                "orientation": "h",
+                "xanchor": "left",
+                "yanchor": "top",
+                "x": 0.0005,
+                "y": 1.2,
+                "traceorder": "normal",
+                "bgcolor": "rgba(230, 236, 245, 1)",
+                "bordercolor": "rgba(0, 0, 0, 0.3)",
+                "borderwidth": 1
+            },
+            "subplot": {
+                "subplot1": {
+                    "row": 1,
+                    "col": 1,
+                    "xaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxes_title": "암모니아가스 [㎥]",
+                    "trace": {
+                        "trace1": {
+                            "column": "GN05M_GAS_AMM",
+                            "name": "암모니아가스",
+                            "color": "limegreen",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        }
+                    }
+                }
+            }
+        },
+        "figure6": {
+            "title": {
+                "text": "가스 농도 그래프",
+                "y": 0.95,
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top"
+            },
+            "height": 300,
+            "margin": {
+                "l": 0,
+                "r": 0,
+                "t": 75,
+                "b": 40
+            },
+            "legend_font_size": 14,
+            "hovermode": "x",
+            "xaxis": {
+                "showspikes": true,
+                "spikecolor": "black",
+                "spikesnap": "cursor",
+                "spikemode": "across"
+            },
+            "legend": {
+                "orientation": "h",
+                "xanchor": "left",
+                "yanchor": "top",
+                "x": 0.0005,
+                "y": 1.2,
+                "traceorder": "normal",
+                "bgcolor": "rgba(230, 236, 245, 1)",
+                "bordercolor": "rgba(0, 0, 0, 0.3)",
+                "borderwidth": 1
+            },
+            "subplot": {
+                "subplot1": {
+                    "row": 1,
+                    "col": 1,
+                    "xaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxes_title": "질소, Co2가스 [㎥]",
+                    "trace": {
+                        "trace1": {
+                            "column": "GN05M_GAS_NRG",
+                            "name": "질소가스",
+                            "color": "forestgreen",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        },
+                        "trace2": {
+                            "column": "GN05M_GAS_CDO",
+                            "name": "Co2가스",
+                            "color": "darkgreen",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "graph3": {
+        "figure1": {
+            "title": {
+                "text": "전력 스펙트럼",
+                "y": 0.95,
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top"
+            },
+            "height": 300,
+            "margin": {
+                "l": 0,
+                "r": 0,
+                "t": 75,
+                "b": 40
+            },
+            "legend_font_size": 14,
+            "hovermode": "x",
+            "xaxis": {
+                "showspikes": true,
+                "spikecolor": "black",
+                "spikesnap": "cursor",
+                "spikemode": "across"
+            },
+            "legend": {
+                "orientation": "h",
+                "xanchor": "left",
+                "yanchor": "top",
+                "x": 0.0005,
+                "y": 1.2,
+                "traceorder": "normal",
+                "bgcolor": "rgba(230, 236, 245, 1)",
+                "bordercolor": "rgba(0, 0, 0, 0.3)",
+                "borderwidth": 1
+            },
+            "subplot": {
+                "subplot1": {
+                    "row": 1,
+                    "col": 1,
+                    "xaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxes_title": "메인전력 [W]",
+                    "secondary_y_yaxes_title": "메인전력 [W]",
+                    "trace": {
+                        "trace1": {
+                            "column": "GN04N_MAIN_POWER",
+                            "name": "메인전력",
+                            "color": "darkorange",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        },
+                        "trace2": {
+                            "column": "GN04M_MAIN_POWER",
+                            "name": "메인전력",
+                            "color": "darkgoldenrod",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": true
+                        }
+                    }
+                }
+            }
+        },
+        "figure2": {
+            "title": {
+                "text": "온도 시계열 그래프",
+                "y": 0.95,
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top"
+            },
+            "height": 300,
+            "margin": {
+                "l": 0,
+                "r": 0,
+                "t": 75,
+                "b": 40
+            },
+            "legend_font_size": 14,
+            "hovermode": "x",
+            "xaxis": {
+                "showspikes": true,
+                "spikecolor": "black",
+                "spikesnap": "cursor",
+                "spikemode": "across"
+            },
+            "legend": {
+                "orientation": "h",
+                "xanchor": "left",
+                "yanchor": "top",
+                "x": 0.0005,
+                "y": 1.2,
+                "traceorder": "normal",
+                "bgcolor": "rgba(230, 236, 245, 1)",
+                "bordercolor": "rgba(0, 0, 0, 0.3)",
+                "borderwidth": 1
+            },
+            "subplot": {
+                "subplot1": {
+                    "row": 1,
+                    "col": 1,
+                    "xaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxes_title": "온도 [°C]",
+                    "secondary_y_yaxes_title": "기타온도 [°C]",
+                    "trace": {
+                        "trace1": {
+                            "column": "GN04M_TEMP",
+                            "name": "온도",
+                            "color": "red",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        },
+                        "trace2": {
+                            "column": "GN04M_HIGH_TEMP",
+                            "name": "상층온도",
+                            "color": "darkred",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": true
+                        },
+                        "trace3": {
+                            "column": "GN04M_MID_TEMP",
+                            "name": "중층온도",
+                            "color": "darkorange",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": true
+                        },
+                        "trace4": {
+                            "column": "GN04M_LOW_TEMP",
+                            "name": "하층온도",
+                            "color": "orangered",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": true
+                        },
+                        "trace5": {
+                            "column": "GN04M_OVER_TEMP",
+                            "name": "과열온도",
+                            "color": "firebrick",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": true
+                        }
+                    }
+                }
+            }
+        },
+        "figure3": {
+            "title": {
+                "text": "가스 농도 그래프",
+                "y": 0.95,
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top"
+            },
+            "height": 300,
+            "margin": {
+                "l": 0,
+                "r": 0,
+                "t": 75,
+                "b": 40
+            },
+            "legend_font_size": 14,
+            "hovermode": "x",
+            "xaxis": {
+                "showspikes": true,
+                "spikecolor": "black",
+                "spikesnap": "cursor",
+                "spikemode": "across"
+            },
+            "legend": {
+                "orientation": "h",
+                "xanchor": "left",
+                "yanchor": "top",
+                "x": 0.0005,
+                "y": 1.2,
+                "traceorder": "normal",
+                "bgcolor": "rgba(230, 236, 245, 1)",
+                "bordercolor": "rgba(0, 0, 0, 0.3)",
+                "borderwidth": 1
+            },
+            "subplot": {
+                "subplot1": {
+                    "row": 1,
+                    "col": 1,
+                    "xaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxes_title": "암모니아가스 [㎥]",
+                    "secondary_y_yaxes_title": "질소, Co2가스 [㎥]",
+                    "trace": {
+                        "trace1": {
+                            "column": "GN04M_GAS_NRG",
+                            "name": "질소가스",
+                            "color": "forestgreen",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": true
+                        },
+                        "trace2": {
+                            "column": "GN04M_GAS_AMM",
+                            "name": "암모니아가스",
+                            "color": "limegreen",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        },
+                        "trace3": {
+                            "column": "GN04M_GAS_CDO",
+                            "name": "Co2가스",
+                            "color": "darkgreen",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": true
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "graph4": {
+        "figure1": {
+            "title": {
+                "text": "전력 스펙트럼",
+                "y": 0.95,
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top"
+            },
+            "height": 300,
+            "margin": {
+                "l": 0,
+                "r": 0,
+                "t": 75,
+                "b": 40
+            },
+            "legend_font_size": 14,
+            "hovermode": "x",
+            "xaxis": {
+                "showspikes": true,
+                "spikecolor": "black",
+                "spikesnap": "cursor",
+                "spikemode": "across"
+            },
+            "legend": {
+                "orientation": "h",
+                "xanchor": "left",
+                "yanchor": "top",
+                "x": 0.0005,
+                "y": 1.2,
+                "traceorder": "normal",
+                "bgcolor": "rgba(230, 236, 245, 1)",
+                "bordercolor": "rgba(0, 0, 0, 0.3)",
+                "borderwidth": 1
+            },
+            "subplot": {
+                "subplot1": {
+                    "row": 1,
+                    "col": 1,
+                    "xaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxes_title": "메인전력 [W]",
+                    "secondary_y_yaxes_title": "메인전력 [W]",
+                    "trace": {
+                        "trace1": {
+                            "column": "GN03N_MAIN_POWER",
+                            "name": "메인전력",
+                            "color": "darkorange",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        },
+                        "trace2": {
+                            "column": "GN02N_MAIN_POWER",
+                            "name": "메인전력",
+                            "color": "darkgoldenrod",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": true
+                        }
+                    }
+                }
+            }
+        },
+        "figure2": {
+            "title": {
+                "text": "온도 시계열 그래프",
+                "y": 0.95,
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top"
+            },
+            "height": 300,
+            "margin": {
+                "l": 0,
+                "r": 0,
+                "t": 75,
+                "b": 40
+            },
+            "legend_font_size": 14,
+            "hovermode": "x",
+            "xaxis": {
+                "showspikes": true,
+                "spikecolor": "black",
+                "spikesnap": "cursor",
+                "spikemode": "across"
+            },
+            "legend": {
+                "orientation": "h",
+                "xanchor": "left",
+                "yanchor": "top",
+                "x": 0.0005,
+                "y": 1.2,
+                "traceorder": "normal",
+                "bgcolor": "rgba(230, 236, 245, 1)",
+                "bordercolor": "rgba(0, 0, 0, 0.3)",
+                "borderwidth": 1
+            },
+            "subplot": {
+                "subplot1": {
+                    "row": 1,
+                    "col": 1,
+                    "xaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxes_title": "온도 [°C]",
+                    "secondary_y_yaxes_title": "기타온도 [°C]",
+                    "trace": {
+                        "trace1": {
+                            "column": "GN02N_TEMP",
+                            "name": "온도",
+                            "color": "red",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        },
+                        "trace2": {
+                            "column": "GN02N_HIGH_TEMP",
+                            "name": "상층온도",
+                            "color": "darkred",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": true
+                        },
+                        "trace3": {
+                            "column": "GN02N_MID_TEMP",
+                            "name": "중층온도",
+                            "color": "darkorange",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": true
+                        },
+                        "trace4": {
+                            "column": "GN02N_LOW_TEMP",
+                            "name": "하층온도",
+                            "color": "orangered",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": true
+                        },
+                        "trace5": {
+                            "column": "GN02N_OVER_TEMP",
+                            "name": "과열온도",
+                            "color": "firebrick",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": true
+                        }
+                    }
+                }
+            }
+        },
+        "figure3": {
+            "title": {
+                "text": "가스 농도 그래프",
+                "y": 0.95,
+                "x": 0.5,
+                "xanchor": "center",
+                "yanchor": "top"
+            },
+            "height": 300,
+            "margin": {
+                "l": 0,
+                "r": 0,
+                "t": 75,
+                "b": 40
+            },
+            "legend_font_size": 14,
+            "hovermode": "x",
+            "xaxis": {
+                "showspikes": true,
+                "spikecolor": "black",
+                "spikesnap": "cursor",
+                "spikemode": "across"
+            },
+            "legend": {
+                "orientation": "h",
+                "xanchor": "left",
+                "yanchor": "top",
+                "x": 0.0005,
+                "y": 1.2,
+                "traceorder": "normal",
+                "bgcolor": "rgba(230, 236, 245, 1)",
+                "bordercolor": "rgba(0, 0, 0, 0.3)",
+                "borderwidth": 1
+            },
+            "subplot": {
+                "subplot1": {
+                    "row": 1,
+                    "col": 1,
+                    "xaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxis_config": {
+                        "ticks": "outside",
+                        "tickwidth": 2,
+                        "tickfont_size": 12,
+                        "minor_ticks": "outside"
+                    },
+                    "yaxes_title": "암모니아가스 [㎥]",
+                    "secondary_y_yaxes_title": "질소, Co2가스 [㎥]",
+                    "trace": {
+                        "trace1": {
+                            "column": "GN02N_GAS_NRG",
+                            "name": "질소가스",
+                            "color": "forestgreen",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": true
+                        },
+                        "trace2": {
+                            "column": "GN02N_GAS_AMM",
+                            "name": "암모니아가스",
+                            "color": "limegreen",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": false
+                        },
+                        "trace3": {
+                            "column": "GN02N_GAS_CDO",
+                            "name": "Co2가스",
+                            "color": "darkgreen",
+                            "mode": "lines",
+                            "type": "scatter",
+                            "secondary_y": true
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

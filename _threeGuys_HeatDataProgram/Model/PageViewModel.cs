@@ -24,6 +24,24 @@ namespace _threeGuys_HeatDataProgram.PageViewModel
             }
         }
 
+        private bool _pythonAlertBlink;
+
+        public bool PythonAlertBlink
+        {
+            get { return _pythonAlertBlink; }
+            set
+            {
+                if (_pythonAlertBlink != value)
+                {
+                    _pythonAlertBlink = value;
+                    OnPropertyChanged(nameof(PythonAlertBlink));
+                }
+            }
+        }
+
+
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)

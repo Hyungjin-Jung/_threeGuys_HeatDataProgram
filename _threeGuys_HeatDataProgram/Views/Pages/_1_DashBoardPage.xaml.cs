@@ -59,12 +59,31 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             Application.Current.Dispatcher.Invoke(() => label_Temp2.Text = testlist[0].GN04M_TEMP.ToString());
             Application.Current.Dispatcher.Invoke(() => label_Temp3.Text = testlist[0].GN05M_TEMP.ToString());
             Application.Current.Dispatcher.Invoke(() => label_Temp4.Text = testlist[0].GN07N_TEMP.ToString());
-        }
 
 
+            //if(isPLCConnected == true)
+            //{
 
-        private void listViewNoticeMouseDouble_Click(object sender, MouseButtonEventArgs e)
-        {
+
+            //// 이하 plc로 데이터 전송하는 부분. 안되면 포기해야함.
+            //// 원하는 메모리 위치 
+            //PLCMemoryLocation = 'M';
+            //PLCMemoryAccessSize = 'W';
+            //PLCMemoryByteOffset = 1016;
+            //PLCMemoryBitOffset = 1;
+
+            //// 1=실행 , 0 = 종료
+            //WriteToPLC($"{testlist[0].GN02N_TEMP.ToString()}");
+
+            //PLCMemoryByteOffset = 1136;
+            //WriteToPLC($"{testlist[0].GN04M_TEMP.ToString()}");
+
+            //PLCMemoryByteOffset = 1142;
+            //WriteToPLC($"{testlist[0].GN05M_TEMP.ToString()}");
+            
+            //PLCMemoryByteOffset = 1260;
+            //WriteToPLC($"{testlist[0].GN07N_TEMP.ToString()}");
+            //}
 
         }
 
@@ -416,6 +435,7 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             if (!is_Machine1_connected)
             {
                 WriteToPLC("1");
+                WriteToPLC("0");
 
                 button_Machine1_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Light;
                 button_Machine1_Green.Content = "작동 중...";
@@ -423,6 +443,7 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             }
             else
             {
+                WriteToPLC("1");
                 WriteToPLC("0");
 
                 button_Machine1_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Success;
@@ -448,6 +469,7 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             if (!is_Machine2_connected)
             {
                 WriteToPLC("1");
+                WriteToPLC("0");
 
                 button_Machine2_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Light;
                 button_Machine2_Green.Content = "작동 중...";
@@ -455,6 +477,7 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             }
             else
             {
+                WriteToPLC("1");
                 WriteToPLC("0");
 
                 button_Machine2_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Success;
@@ -477,17 +500,19 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
 
                 if (!is_Machine3_connected)
                 {
-                    WriteToPLC("1");
+                WriteToPLC("1");
+                WriteToPLC("0");
 
-                    button_Machine3_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Light;
+                button_Machine3_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Light;
                     button_Machine3_Green.Content = "작동 중...";
                     is_Machine3_connected = true;
                 }
                 else
                 {
-                    WriteToPLC("0");
+                WriteToPLC("1");
+                WriteToPLC("0");
 
-                    button_Machine3_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Success;
+                button_Machine3_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Success;
                     button_Machine3_Green.Content = "가동 버튼";
                     is_Machine3_connected = false;
                 }
@@ -507,13 +532,15 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             if (!is_Machine4_connected)
             {
                 WriteToPLC("1");
+                WriteToPLC("0");
 
-                    button_Machine4_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Light;
-                    button_Machine4_Green.Content = "작동 중...";
+                button_Machine4_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Light;
+                button_Machine4_Green.Content = "작동 중...";
                 is_Machine4_connected = true;
             }
             else
             {
+                WriteToPLC("1");
                 WriteToPLC("0");
 
                 button_Machine4_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Success;
@@ -552,22 +579,123 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
         // 중지 버튼이 해야할것 들
         private void button_Machine1_Red_Click(object sender, RoutedEventArgs e)
         {
+            // 원하는 메모리 위치 
+            PLCMemoryLocation = 'M';
+            PLCMemoryAccessSize = 'X';
+            PLCMemoryByteOffset = 8020;
+            PLCMemoryBitOffset = 1;
 
+            // 1=실행 , 0 = 종료
+
+            if (!is_Machine4_connected)
+            {
+                WriteToPLC("1");
+                WriteToPLC("0");
+
+                button_Machine4_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Light;
+                button_Machine4_Green.Content = "작동 중...";
+                is_Machine4_connected = true;
+            }
+            else
+            {
+                WriteToPLC("1");
+                WriteToPLC("0");
+
+                button_Machine4_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Success;
+                button_Machine4_Green.Content = "가동 버튼";
+                is_Machine4_connected = false;
+            }
         }
 
         private void button_Machine2_Red_Click(object sender, RoutedEventArgs e)
         {
+            // 원하는 메모리 위치 
+            PLCMemoryLocation = 'M';
+            PLCMemoryAccessSize = 'X';
+            PLCMemoryByteOffset = 9020;
+            PLCMemoryBitOffset = 1;
 
+            // 1=실행 , 0 = 종료
+
+            if (!is_Machine4_connected)
+            {
+                WriteToPLC("1");
+                WriteToPLC("0");
+
+                button_Machine4_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Light;
+                button_Machine4_Green.Content = "작동 중...";
+                is_Machine4_connected = true;
+            }
+            else
+            {
+                WriteToPLC("1");
+                WriteToPLC("0");
+
+                button_Machine4_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Success;
+                button_Machine4_Green.Content = "가동 버튼";
+                is_Machine4_connected = false;
+            }
         }
 
         private void button_Machine3_Red_Click(object sender, RoutedEventArgs e)
         {
+            // 원하는 메모리 위치 
+            PLCMemoryLocation = 'M';
+            PLCMemoryAccessSize = 'X';
+            PLCMemoryByteOffset = 10020;
+            PLCMemoryBitOffset = 1;
+
+            // 1=실행 , 0 = 종료
+
+            if (!is_Machine4_connected)
+            {
+                WriteToPLC("1");
+                WriteToPLC("0");
+
+                button_Machine4_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Light;
+                button_Machine4_Green.Content = "작동 중...";
+                is_Machine4_connected = true;
+            }
+            else
+            {
+                WriteToPLC("1");
+                WriteToPLC("0");
+
+                button_Machine4_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Success;
+                button_Machine4_Green.Content = "가동 버튼";
+                is_Machine4_connected = false;
+            }
 
         }
 
         private void button_Machine4_Red_Click(object sender, RoutedEventArgs e)
         {
+            // 원하는 메모리 위치 
+            PLCMemoryLocation = 'M';
+            PLCMemoryAccessSize = 'X';
+            PLCMemoryByteOffset = 11020;
+            PLCMemoryBitOffset = 1;
 
+            // 1=실행 , 0 = 종료
+
+            if (!is_Machine4_connected)
+            {
+                WriteToPLC("1");
+                WriteToPLC("0");
+
+                button_Machine4_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Light;
+                button_Machine4_Green.Content = "작동 중...";
+                is_Machine4_connected = true;
+            }
+            else
+            {
+                WriteToPLC("1");
+                WriteToPLC("0");
+
+                button_Machine4_Green.Appearance = Wpf.Ui.Common.ControlAppearance.Success;
+                button_Machine4_Green.Content = "가동 버튼";
+                is_Machine4_connected = false;
+            }
         }
 
 

@@ -13,12 +13,26 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
         SetFilterData.SetFilterData setFilterData = new SetFilterData.SetFilterData();
 
         string setfilePath = Directory.GetCurrentDirectory() + "/HeatDataAlarmFilter.csv";
+        public PageViewModel.PageViewModel testPageViewModel { get; } = new PageViewModel.PageViewModel();
         public _4_SetFilterPage()
         {
 
             InitializeComponent();
+            DataContext = testPageViewModel;
 
-            DataGrid_SetFilter.ItemsSource = setFilterData.ReadCSV(setfilePath);
+            MainWindow.filter_list = setFilterData.ReadCSV(setfilePath);
+            var filteredList = MainWindow.filter_list
+                            .Select(d => new
+                            {
+                                구역명 = d.set_machine_name,
+                                항목명 = d.set_option_name,
+                                설정값 = d.set_input_value,
+                                최대최소 = d.set_max_min
+                            })
+                            .ToList();
+            DataGrid_SetFilter.ItemsSource = filteredList;
+
+            //DataGrid_SetFilter.ItemsSource = setFilterData.ReadCSV(setfilePath);
         }
 
         private void button_SetFilterApply_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -64,7 +78,16 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
                 // 데이터 새로 쓰기
                 setFilterData.WriteToCsv(existingData, setfilePath);
                 MainWindow.filter_list = setFilterData.ReadCSV(setfilePath);
-                DataGrid_SetFilter.ItemsSource = setFilterData.ReadCSV(setfilePath);
+                var filteredList = MainWindow.filter_list
+                                .Select(d => new
+                                {
+                                    구역명 = d.set_machine_name,
+                                    항목명 = d.set_option_name,
+                                    설정값 = d.set_input_value,
+                                    최대최소 = d.set_max_min
+                                })
+                                .ToList();
+                DataGrid_SetFilter.ItemsSource = filteredList;
             }
             catch
             {
@@ -89,7 +112,16 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
                 // 데이터 새로 쓰기
                 setFilterData.WriteToCsv(existingData, setfilePath);
                 MainWindow.filter_list = setFilterData.ReadCSV(setfilePath);
-                DataGrid_SetFilter.ItemsSource = setFilterData.ReadCSV(setfilePath);
+                var filteredList = MainWindow.filter_list
+                                .Select(d => new
+                                {
+                                    구역명 = d.set_machine_name,
+                                    항목명 = d.set_option_name,
+                                    설정값 = d.set_input_value,
+                                    최대최소 = d.set_max_min
+                                })
+                                .ToList();
+                DataGrid_SetFilter.ItemsSource = filteredList;
             }
         }
 

@@ -70,7 +70,11 @@ namespace _threeGuys_HeatDataProgram
         
 
         private bool isPythonConnected = true;
-        private bool isFalling = false;
+        private bool isFalling = true;
+        private bool isPythonDataError = true;
+        public static string pythonAddress = "127.0.0.1";
+        //public static string pythonAddress = "192.168.1.223";
+
         public MainWindow()
         {
            
@@ -86,7 +90,7 @@ namespace _threeGuys_HeatDataProgram
             factoryData_list = factoryDataReader.heatTreatingFactoryDataRead(filePath);
             filter_list = setFilterData.ReadCSV(setfilePath);
 
-            LiveHistoryPage.dataGrid_History.Items.Refresh();
+            //LiveHistoryPage.dataGrid_History.Items.Refresh();
 
             // 1초마다 TimerTick 메서드 호출 -> 1초마다 CSV 알림 받아오는 용도로 설정
             timer.Interval = TimeSpan.FromSeconds(1);
@@ -101,64 +105,95 @@ namespace _threeGuys_HeatDataProgram
 
         private bool Socket()
         {
-            string isSuccess = PySocket.prepareSocket();
-
-            if (isSuccess == "Success")
+            while (!isPythonConnected == false)
             {
-                Thread pySocketThread = new Thread(() =>
+                string isSuccess = PySocket.prepareSocket(pythonAddress);
+
+                if (isSuccess == "Success")
                 {
-                    while (isPythonConnected == true)
+                    Thread pySocketThread = new Thread(() =>
                     {
-                        string receivedString = PySocket.receivedSocketString();
-                        Console.WriteLine(receivedString);
-                        switch (receivedString)
+                        while (isPythonConnected == true)
                         {
+                            string receivedString = PySocket.receivedSocketString();
+                            Console.WriteLine(receivedString);
+                            switch (receivedString)
+                            {
 
-                            case "Falling":
-                                Application.Current.Dispatcher.Invoke(() =>
-                                {
-                                    if (RootFrame.Content is _1_DashBoardPage dashboardPage)
+                                case "Falling":
+                                    Application.Current.Dispatcher.Invoke(() =>
                                     {
-                                        dashboardPage.testPageViewModel.PythonAlertText = "작업자 넘어짐";
-                                        if (isFalling)
+                                        if (RootFrame.Content is _1_DashBoardPage dashboardPage)
                                         {
-                                            MessageBox.Show(dashboardPage.testPageViewModel.PythonAlertText);
-                                            isFalling = false;
+                                            dashboardPage.testPageViewModel.PythonAlertText = "작업자 넘어짐";
+                                            if (isFalling)
+                                            {
+                                                MessageBox.Show(dashboardPage.testPageViewModel.PythonAlertText);
+                                                isFalling = false;
+                                            }
                                         }
-                                    }
-                                });
-                                break;
-                            default:
-                                Application.Current.Dispatcher.Invoke(() =>
-                                {
-                                    if (RootFrame.Content is _1_DashBoardPage dashboardPage)
+                                        if (RootFrame.Content is _2_DetailsPage detailsPage)
+                                        {
+                                            detailsPage.testPageViewModel.PythonAlertText = "작업자 넘어짐";
+                                            if (isFalling)
+                                            {
+                                                MessageBox.Show(detailsPage.testPageViewModel.PythonAlertText);
+                                                isFalling = false;
+                                            }
+                                        }
+                                        if (RootFrame.Content is _3_LiveHistoryPage liveHistoryPage)
+                                        {
+                                            liveHistoryPage.testPageViewModel.PythonAlertText = "작업자 넘어짐";
+                                            if (isFalling)
+                                            {
+                                                MessageBox.Show(liveHistoryPage.testPageViewModel.PythonAlertText);
+                                                isFalling = false;
+                                            }
+                                        }
+                                        if (RootFrame.Content is _4_SetFilterPage setFilterPage)
+                                        {
+                                            setFilterPage.testPageViewModel.PythonAlertText = "작업자 넘어짐";
+                                            if (isFalling)
+                                            {
+                                                MessageBox.Show(setFilterPage.testPageViewModel.PythonAlertText);
+                                                isFalling = false;
+                                            }
+                                        }
+                                    });
+                                    break;
+                                default:
+                                    Application.Current.Dispatcher.Invoke(() =>
                                     {
-                                        dashboardPage.testPageViewModel.PythonAlertText = "데이터 값 오류";
+                                        if (RootFrame.Content is _1_DashBoardPage dashboardPage)
+                                        {
+                                            dashboardPage.testPageViewModel.PythonAlertText = "데이터 값 오류";
+                                            if (isPythonDataError)
+                                            {
+                                                MessageBox.Show(dashboardPage.testPageViewModel.PythonAlertText);
+                                                isPythonDataError = false;
+                                            }
+                                        }
+                                    });
+                                    break;
 
-                                        MessageBox.Show(dashboardPage.testPageViewModel.PythonAlertText);
-
-                                    }
-                                });
-                                break;
-
+                            }
                         }
-                    }
 
-                    // 연결 유지 실패 시 메시지 표시 및 플래그 설정
-                    isPythonConnected = false;
-                });
+                        // 연결 유지 실패 시 메시지 표시 및 플래그 설정
+                        isPythonConnected = false;
+                    });
 
-                // 스레드 시작
-                pySocketThread.IsBackground = true;
-                pySocketThread.Start();
+                    // 스레드 시작
+                    pySocketThread.IsBackground = true;
+                    pySocketThread.Start();
 
-                return true;
+                    return true;
 
+                }
             }
-            else
-            {
+
                 return false;
-            }
+
         }
 
 
@@ -189,6 +224,31 @@ namespace _threeGuys_HeatDataProgram
             {
                 // 가스 장치 이상 발생, numpad1
                 case Key.NumPad9:
+                    if(isFalling == true)
+                    {
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            if (RootFrame.Content is _1_DashBoardPage dashboardPage)
+                            {
+                                dashboardPage.testPageViewModel.PythonAlertText = "";
+
+                            }
+                        });
+                    }
+                    else
+                    {
+
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            if (RootFrame.Content is _1_DashBoardPage dashboardPage)
+                            {
+                                dashboardPage.testPageViewModel.PythonAlertText = "";
+
+                            }
+                        });
+                        isFalling = true;
+                    }
+                        
                     break;
 
                 default:

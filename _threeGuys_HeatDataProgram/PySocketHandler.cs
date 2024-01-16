@@ -8,11 +8,12 @@ namespace PySocketHandler
         private TcpClient client;
         private NetworkStream stream;
 
-        public string prepareSocket()
+        public string prepareSocket(string Address)
         {
             try
             {
-                string serverIp = "192.168.1.223";
+                
+                string serverIp = Address;
                 //string serverIp = "127.0.0.1";
                 int serverPort = 56792;
 
