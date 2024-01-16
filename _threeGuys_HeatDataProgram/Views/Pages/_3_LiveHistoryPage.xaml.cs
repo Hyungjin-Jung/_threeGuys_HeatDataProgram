@@ -18,16 +18,19 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
 
 
         FactoryDataReader.FactoryDataReader factoryDataReader = new FactoryDataReader.FactoryDataReader();
+        public PageViewModel.PageViewModel testPageViewModel { get; } = new PageViewModel.PageViewModel();
         public _3_LiveHistoryPage()
         {
             InitializeComponent();
+            DataContext = testPageViewModel;
             // CSV 파일 열어서 DataGrid에 저장
-            dataGrid_History.ItemsSource = factoryDataReader.heatTreatingFactoryDataRead(filePath);
+            //dataGrid_History.ItemsSource = factoryDataReader.heatTreatingFactoryDataRead(filePath);
 
             // CSV 파일 열어서 리스트에 저장
             factoryData_list = factoryDataReader.heatTreatingFactoryDataRead(filePath);
 
-            dataGrid_History.Items.Refresh();
+            //dataGrid_History.Items.Refresh();
+
         }
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -49,8 +52,12 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             DateTime dataGrid_StartDateTime = datePicker_startDate.SelectedDate.GetValueOrDefault();
            
             string[] dataGrid_SearchOption = comboBox_DataGrid_SearchOption.Text.Split(" ");
+            string[] dataGrid_SearchOptionHour = comboBox_DataGridTime.Text.Split(":");
             
+
             int timespan = int.Parse(dataGrid_SearchOption[0]);    // 몇초
+            int timespanHour = int.Parse(dataGrid_SearchOptionHour[0]); // 몇시부터 시작할지
+
             string timespanHMS = dataGrid_SearchOption[1];
             int timespanInput = 0;
 
@@ -70,7 +77,7 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             // 검색 시작 날짜
             DateTime date = dataGrid_StartDateTime;
             // 어디까지 검색할 건지
-            TimeSpan time = new TimeSpan(0,0,timespanInput);
+            TimeSpan time = new TimeSpan(timespanHour,0,timespanInput);
             // 검색 종료 날짜
             DateTime combined = date.Add(time);
             
@@ -135,6 +142,51 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
                             .Where(d => d.Time.CompareTo(startdate) > 0 &&
                                         d.Time.CompareTo(enddate) < 1
                             )
+                            .Select(d => new
+                            {
+                                시간 = d.Time,
+                                GN07N전력  =  d.GN07N_MAIN_POWER ,
+                                GN07N서브전력  =  d.GN07N_SUB_POWER ,
+                                GN07N온도  =  d.GN07N_TEMP ,
+                                GN07N상부온도  =  d.GN07N_HIGH_TEMP ,
+                                GN07N중부온도  =  d.GN07N_MID_TEMP ,
+                                GN07N하부온도  =  d.GN07N_LOW_TEMP ,
+                                GN07N과열온도  =  d.GN07N_OVER_TEMP ,
+                                GN07N질소  =  d.GN07N_GAS_NRG ,
+                                GN07N암모니아  =  d.GN07N_GAS_AMM ,
+                                GN07N이산화탄소  =  d.GN07N_GAS_CDO ,
+                                GN07N번호  =  d.GN07N_PPIT ,
+                                GN05N전력  =  d.GN05N_MAIN_POWER ,
+                                GN05M전력  =  d.GN05M_MAIN_POWER ,
+                                GN05M온도  =  d.GN05M_TEMP ,
+                                GN05M상부온도  =  d.GN05M_HIGH_TEMP ,
+                                GN05M하부온도  =  d.GN05M_LOW_TEMP ,
+                                GN05M과열온도  =  d.GN05M_OVER_TEMP ,
+                                GN05M질소  =  d.GN05M_GAS_NRG ,
+                                GN05M암모니아  =  d.GN05M_GAS_AMM ,
+                                GN05M이산화탄소  =  d.GN05M_GAS_CDO ,
+                                GN04N전력  =  d.GN04N_MAIN_POWER ,
+                                GN04M전력  =  d.GN04M_MAIN_POWER ,
+                                GN04M온도  =  d.GN04M_TEMP ,
+                                GN04M상부온도  =  d.GN04M_HIGH_TEMP ,
+                                GN04M중부온도  =  d.GN04M_MID_TEMP ,
+                                GN04M하부온도  =  d.GN04M_LOW_TEMP ,
+                                GN04M과열온도  =  d.GN04M_OVER_TEMP ,
+                                GN04M질소  =  d.GN04M_GAS_NRG ,
+                                GN04M암모니아 =  d.GN04M_GAS_AMM ,
+                                GN04M이산화탄소  =  d.GN04M_GAS_CDO ,
+                                GN03N전력  =  d.GN03N_MAIN_POWER ,
+                                GN02N전력  =  d.GN02N_MAIN_POWER ,
+                                GN02N온도  =  d.GN02N_TEMP ,
+                                GN02N상부온도  =  d.GN02N_HIGH_TEMP ,
+                                GN02N중부온도  =  d.GN02N_MID_TEMP ,
+                                GN02N하부온도  =  d.GN02N_LOW_TEMP ,
+                                GN02N과열온도  =  d.GN02N_OVER_TEMP ,
+                                GN02N질소  =  d.GN02N_GAS_NRG ,
+                                GN02N암모니아  =  d.GN02N_GAS_AMM ,
+                                GN02N이산화탄소  =  d.GN02N_GAS_CDO ,
+                                GN02N번호  =  d.GN02N_PPIT
+                            })
                             .ToList();
 
                         // DataGrid에 바인딩
@@ -218,10 +270,13 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
                                     d.Time.CompareTo(enddate) < 1
                         ).Select(d => new
                         {
-                            d.Time,
+                            시간 = d.Time,
                             dataGrid_MachineOption = GetColumnValue(d, dataGrid_MachineOption),
                         })
                         .ToList();
+
+
+
 
                     // DataGrid에 바인딩
                     dataGrid_History.ItemsSource = filteredList;
@@ -229,6 +284,39 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
             }
         }
         private float GetColumnValue(FactoryDataReader.DataColumn data, string columnName)
+        {
+            switch (columnName)
+            {
+                case "GN02N_MAIN_POWER":
+                    return data.GN02N_MAIN_POWER;
+                case "GN04M_MAIN_POWER":
+                    return data.GN04N_MAIN_POWER;
+                case "GN05M_MAIN_POWER":
+                    return data.GN05N_MAIN_POWER;
+                case "GN07N_MAIN_POWER":
+                    return data.GN07N_MAIN_POWER;
+                case "GN02N_TEMP":
+                    return data.GN02N_TEMP;
+                case "GN04M_TEMP":
+                    return data.GN04M_TEMP;
+                case "GN05M_TEMP":
+                    return data.GN05M_TEMP;
+                case "GN07N_TEMP":
+                    return data.GN07N_TEMP;
+                case "GN02N_GAS":
+                    return data.GN02N_GAS_NRG;
+                case "GN04M_GAS":
+                    return data.GN04M_GAS_NRG;
+                case "GN05M_GAS":
+                    return data.GN05M_GAS_NRG;
+                case "GN07N_GAS":
+                    return data.GN07N_GAS_NRG;
+                default:
+                    return 0;
+            }
+        }
+
+        private float GetColumnValue(FactoryDataReader.DataColumn data, string columnName, int num)
         {
             switch (columnName)
             {
@@ -270,7 +358,7 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
                 string dataGrid_MachineName = comboBox_DataGridMachineName.Text;
                 string dataGrid_Option = comboBox_DataGridOption.Text;
 
-                e.Column.Header = DataGrid_MachineOption(dataGrid_MachineName, dataGrid_Option);
+                e.Column.Header = dataGrid_Option;
             }
         }
 

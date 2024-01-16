@@ -13,9 +13,12 @@ namespace _threeGuys_HeatDataProgram.Views.Pages
 
         string WebIPAddress = "127.0.0.1";
         string WebPortNumber = "8050";
+        public PageViewModel.PageViewModel testPageViewModel { get; } = new PageViewModel.PageViewModel();
+        
         public _2_DetailsPage()
         {
             InitializeComponent();
+            DataContext = testPageViewModel;
         }
 
         private void button_ChangeWebPageIP_Click(object sender, System.Windows.RoutedEventArgs e)
